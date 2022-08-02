@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from .models import Team
 
 def index(request):
-    return HttpResponse("<h1>The Teams</h1>")
+    context = {'team_list': Team.objects.order_by('name')}
+    return render(request, 'teams/teams.html', context)

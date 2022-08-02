@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Teams for the 2022 Munro Team Step Challenge</h1>
+  <p>This year, Peakers will be divided into the following teams:</p>
+  <ul>
+    {% for team in team_list %}
+    <li>{{team.name}}</li>
+    {% endfor %}
+  </ul>
+  {% endblock content %}

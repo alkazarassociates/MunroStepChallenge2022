@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Groups Participating in the Team Step Challenge</h1>
+  <p>The following groups have registered to participate in our Team Challenge.</p>
+  <p>This means that any Peaker who picks one of these groups when they register before September 1 will be placed on the same team as their fellow groupmates.</p>
+  <ul>
+    {% for group in group_list %}
+    <li>{{group.name}}</li>
+    {% endfor %}
+  </ul>
+  {% endblock content %}

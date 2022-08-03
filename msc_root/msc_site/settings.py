@@ -33,6 +33,8 @@ ALLOWED_HOSTS = ['127.0.0.1', '54.209.231.205']
 INSTALLED_APPS = [
     'landing.apps.LandingConfig',
     'teams.apps.TeamsConfig',
+    'groups.apps.GroupsConfig',
+    'contact.apps.ContactConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

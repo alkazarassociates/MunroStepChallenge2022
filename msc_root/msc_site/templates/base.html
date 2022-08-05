@@ -9,12 +9,16 @@
 <body>
 <div id="wrapper">
   <header id="header">
-    <div id="topbanner"><img src="{% static 'TSC2022banner.jpg' %}" width="800" height="300" alt=""/></div>    
+    <div id="topbanner"><img src="{% static 'TSC2022banner.jpg' %}" style="width:100%" alt="Team Step Challenge Banner"/></div>    
   </header>
   <aside id="leftsidebar">
     <nav id="nav">
     <ul>
-      <li><a href='/' >Home</a></li><li><a href='/steps'>Enter Steps</a></li><li><a href='/teams'>Teams</a></li><li><a href='/groups'>Groups</a></li>
+      <li><a href='/' >Home</a></li>
+      {% comment %}<li><a href='/steps'>Enter Steps</a></li>
+      <li><a href='/teams'>Teams</a></li>
+      <li><a href='/groups'>Groups</a></li>{% endcomment %}
+      <li><a href='/groups/register'>Ambassador Groups</a></li>
       <li><a href='/contact'>Contact Us</a></li>
     </ul>
     </nav>

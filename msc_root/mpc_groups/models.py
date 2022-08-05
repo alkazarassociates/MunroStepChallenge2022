@@ -10,9 +10,9 @@ class MpcGroup(models.Model):
         return self.name
 
 class MpcAdminRegistration(models.Model):
-    name = models.CharField('Name', max_length=40, help_text="Enter the name you use in the Ambassador group facebook page.")
-    primary_group = models.CharField('MPC Group', max_length=60, help_text="The name of your MPC Group, as you wish it to appear.")
-    secondary_group = models.CharField('Optional second group', max_length=60, blank=True, help_text="If you are the admin of another group, you can enter it here and we will try and make sure both are on the same <b>Team</b>")
+    name = models.CharField('Name', max_length=40, help_text="Enter the facebook name you use.")
+    primary_group = models.CharField('Ambassador Group', max_length=60, help_text="Enter the name of your Ambassador Group as you wish it to appear.")
+    secondary_group = models.CharField('Optional second Ambassador Group', max_length=60, blank=True, help_text="If you are the admin of another group, you can enter it here to request your two groups being on the same Team.")
 
     def __str__(self):
         sep = ''

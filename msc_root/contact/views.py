@@ -11,13 +11,11 @@ def contact(request):
         if form.is_valid():
             cd = form.cleaned_data
             # assert False
-            con = get_connection('django.core.mail.backends.console.EmailBackend')
             send_mail(
                 cd['subject'],
                 cd['message'],
                 cd.get('email', 'noreply@example.com'),
-                ['teamstepchallenge2022@gmail.com'],
-                connection=con
+                ['teamstepchallenge2022@gmail.com']
             )
             return HttpResponseRedirect('/contact?submitted=True')
     else:

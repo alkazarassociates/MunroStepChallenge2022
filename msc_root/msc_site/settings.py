@@ -54,6 +54,14 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'email-smtp.us-east-1.amazonaws.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.environ['AWS_EMAIL_USER']
+EMAIL_HOST_PASSWORD = os.environ['AWS_EMAIL_PASSWORD']
+EMAIL_USE_TLS = True
+
 ROOT_URLCONF = 'msc_site.urls'
 
 TEMPLATES = [

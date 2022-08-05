@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Register Ambassador Group for Team Step Challenge{% endblock title %}
+
+{% block content %}
+<h1>Register your MPC Ambassador Group for the Team Step Challenge</h1>
+
+{% if submitted %}
+    <p class="success">
+        Your group or groups were successfully registered.
+    </p>
+
+{% else %}
+    Greetings, MPC Ambasador Group Administrators!
+    
+    <p>When Peakers register for the Team Challenge, they will be assigned to one of eight <b>Teams</b>. If you add 
+    your <em>Ambassador Group</em> to our list now, Peakers can choose to register as a member of your group, and we
+    will do our best to put all such members on the same Team.</p>
+
+    <p>We will do our best to answer questions and fix problems that arise, but this will work best if, by signing up, 
+    you agree to help your members when they have the kind of trouble you can help with--translating instructions,
+    walking through web navigation, etc. just the way that Ambassador admins always help their members!</p>
+    <form action="" enctype="multipart/form-data" method="post" novalidate>
+        <table>
+            {{ form.as_table }}
+            <tr>
+                <td>&nbsp;</td>
+                <td><input type="submit" value="Submit"></td>
+            </tr>
+        </table>
+        {% csrf_token %}
+    </form>
+{% endif %}
+{% endblock content %}

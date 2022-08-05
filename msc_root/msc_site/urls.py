@@ -21,6 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('landing.urls')),
     path('teams', include('teams.urls')),
-    path('groups', include('mpc_groups.urls')),
+    path('groups/', include('mpc_groups.urls')),
     path('contact', include('contact.urls')),
 ]

@@ -77,8 +77,8 @@ WSGI_APPLICATION = 'msc_site.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'team_step_challenge_2022',
-        'USER': 'postgres',
+        'NAME': 'django',
+        'USER': 'django',
         'PASSWORD': os.environ['POSTGRES_PASSWORD'],
         'HOST': 'localhost',
         'PORT': '5432',

@@ -23,6 +23,7 @@ class Command(BaseCommand):
             self._groups[cannonical] = group_name
             print(group_name)
         else:
+            print(group_name.strip())
             obj = MpcGroup.objects.get(name=group_name.strip())
             old = obj.admin
             obj.admin = admin.strip()

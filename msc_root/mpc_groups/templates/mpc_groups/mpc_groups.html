@@ -2,7 +2,7 @@
 
 {% block content %}
 <h1>Groups Participating in the Team Step Challenge</h1>
-  <p>The following groups {{len(group_list)}} have registered to participate in our Team Challenge, as of {{updated}}.</p>
+  <p>The following groups {{group_list|length}} have registered to participate in our Team Challenge, as of {{updated}}.</p>
   <p>This means that any Peaker who picks one of these groups when they register before September 1 will be placed on the same team as their fellow groupmates.</p>
   <ul>
     {% for group in group_list %}

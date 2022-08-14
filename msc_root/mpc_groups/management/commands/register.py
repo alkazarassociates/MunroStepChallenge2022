@@ -23,7 +23,7 @@ class Command(BaseCommand):
             MpcGroup.objects.update_or_create(name=group_name, admin=admin.strip())
             self._groups[cannonical] = group_name
             modified = True
-            print(group_name, file=self.stdout)
+            print(group_name)
         else:
             print(group_name.strip())
             obj = MpcGroup.objects.get(name=self._groups[group_name.strip().lower()])

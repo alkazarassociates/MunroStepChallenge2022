@@ -35,7 +35,7 @@ class Command(BaseCommand):
                 modified = True
         if modified:
             GroupModifications.objects.create()
-            
+
 
     def update_groups(self):
         self._groups = {}

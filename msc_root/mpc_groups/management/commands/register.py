@@ -8,7 +8,7 @@ class Command(BaseCommand):
         self._groups = {}
     
     def handle(self, *args, **options):
-        # TODO Fill in _groups
+        self.update_groups()
         registrations = MpcAdminRegistration.objects.all()
         for registration in registrations:
             self.register(registration.primary_group, registration.name)
@@ -24,8 +24,13 @@ class Command(BaseCommand):
             print(group_name)
         else:
             print(group_name.strip())
-            obj = MpcGroup.objects.get(name=group_name.strip())
+            obj = MpcGroup.objects.get(name=self._groups[group_name.strip().lower()])
             old = obj.admin
             obj.admin = admin.strip()
             obj.save()
             print(f"DUP: changed admin from {old} to {admin.strip()}")
+
+    def update_groups(self):
+        self._groups = {}
+        for g in MpcGroup.objects.all():
+            self._groups[g.name.lower()] = g.name

@@ -4,7 +4,7 @@ from teams.models import Team
 class MpcGroup(models.Model):
     name = models.CharField('Name', max_length=60, unique=True)
     team = models.ForeignKey(Team, on_delete=models.SET_NULL, blank=True, null=True)
-    # TODO Admins, many_to_many to users with admin=true
+    admin = models.CharField('Admin', max_length=60)
 
     def __str__(self):
         return self.name

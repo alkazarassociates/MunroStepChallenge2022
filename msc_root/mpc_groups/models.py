@@ -22,3 +22,6 @@ class MpcAdminRegistration(models.Model):
 
 class GroupModifications(models.Model):
     modification_time = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.modification_time.strftime("%m/%d/%Y %H:%M")

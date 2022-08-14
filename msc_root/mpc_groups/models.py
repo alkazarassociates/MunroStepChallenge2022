@@ -19,3 +19,6 @@ class MpcAdminRegistration(models.Model):
         if self.secondary_group:
             sep = ' & '
         return f'{self.name}:{self.primary_group}{sep}{self.secondary_group}'
+
+class GroupModifications(models.Model):
+    modification_time = models.DateTimeField(auto_now_add=True)

@@ -7,7 +7,7 @@ from .models import GroupModifications, MpcGroup
 def index(request):
     context = {
         'group_list': MpcGroup.objects.order_by('name'),
-        'updated': GroupModifications.objects.latest().modification_time.strftime("%m/%d/%Y %h:%m"),
+        'updated': GroupModifications.objects.latest('modification_time').modification_time.strftime("%m/%d/%Y %h:%m"),
     }
     return render(request, 'mpc_groups/mpc_groups.html', context)
 

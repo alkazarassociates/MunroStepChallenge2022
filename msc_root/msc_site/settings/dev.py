@@ -9,7 +9,7 @@ DEBUG = True
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-z7zy3y-od5m8gvw2+gh-&4xr-i+ppo^mm6ehq5mtz7lb#cq9fb'
 
-ALLOWED_HOSTS = ['test.alkazarassociates.com']
+ALLOWED_HOSTS = ['test.alkazarassociates.com', '127.0.0.1']
 
 # Use test database
 DATABASES['default']['name'] = 'django_test'

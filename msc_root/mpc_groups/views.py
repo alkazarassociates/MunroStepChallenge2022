@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
 
 from .forms import MpcAdminRegistrationForm
 from .models import GroupModifications, MpcGroup
@@ -11,6 +13,7 @@ def index(request):
     }
     return render(request, 'mpc_groups/mpc_groups.html', context)
 
+@login_required(login_url=reverse_lazy('login'))
 def register(request):
     submitted = False
     if request.method == 'POST':

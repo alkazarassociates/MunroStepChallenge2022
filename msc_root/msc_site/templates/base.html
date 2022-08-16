@@ -9,6 +9,13 @@
 <body>
 <div id="wrapper">
   <header id="header">
+    <span style="float: right;">
+      {% if user.is_authenticated %}
+        Hello, {{ user.username }}. <a href="{% url 'logout' %}?next=/">Log out</a>.
+      {% else %}
+        Not logged in. <a href="{% url 'login' %}?next=/">Log in</a>.
+      {% endif %}
+    </span>
     <div id="topbanner"><img src="{% static 'TSC2022banner.jpg' %}" style="width:100%" alt="Team Step Challenge Banner"/></div>    
   </header>
   <aside id="leftsidebar">

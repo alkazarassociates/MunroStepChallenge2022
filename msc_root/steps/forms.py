@@ -7,5 +7,5 @@ class StepEntryForm(ModelForm):
     class Meta:
         model = StepEntry
         fields = [
-            'peaker', 'date', 'amount'
+            'date', 'steps'
         ]

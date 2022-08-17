@@ -5,6 +5,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 
+import datetime
+
 from .models import StepEntry
 from .forms import StepEntryForm
 
@@ -31,8 +33,8 @@ def step_entry(request):
             entry.save()
             return HttpResponseRedirect('/steps/?submitted=True')
     else:
-        form = StepEntryForm()
+        form = StepEntryForm(initial={'date': datetime.date.today})
         if 'submitted' in request.GET:
             submitted = True
 
-    return render(request, 'steps/steps.html', {'form': form, 'submitted': submitted})
+    return render(request, 'steps/steps.html', {'form': form, 'submitted': submitted, 'peaker': request.user})

@@ -18,11 +18,6 @@ class Register(CreateView):
     form_class = PeakerRegistrationForm
     success_url = reverse_lazy('register-success')
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['MPC_GROUPS'] = MpcGroup.objects.order_by('name')
-        return context
-
     def form_valid(self, form):
         form.save()
         # Now save the profile

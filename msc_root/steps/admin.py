@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import StepEntry
+from .models import Profile, StepEntry
 
 class StepEntryAdmin(admin.ModelAdmin):
     list_display = ('peaker', 'entered', 'date', 'steps', 'valid', 'notes')
@@ -8,3 +8,8 @@ class StepEntryAdmin(admin.ModelAdmin):
     readonly_fields = ('entered',)
 
 admin.site.register(StepEntry, StepEntryAdmin)
+
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ('peaker', 'group')
+
+admin.site.register(Profile, ProfileAdmin)

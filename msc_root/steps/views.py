@@ -1,21 +1,31 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.views.generic import CreateView
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
+from django import forms
 
 import datetime
 
 from .models import StepEntry
-from .forms import StepEntryForm
+from .forms import PeakerRegistrationForm, StepEntryForm
+from mpc_groups.models import MpcGroup
 
 class Register(CreateView):
+            
     template_name: str = 'registration/register.html'
-    form_class = UserCreationForm
+    form_class = PeakerRegistrationForm
     success_url = reverse_lazy('register-success')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['MPC_GROUPS'] = MpcGroup.objects.order_by('name')
+        return context
+
     def form_valid(self, form):
+        print("***********")
+        print(form.cleaned_data)
+        print("*********")
         form.save()
         return HttpResponseRedirect(self.success_url)
 

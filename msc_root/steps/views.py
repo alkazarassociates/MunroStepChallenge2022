@@ -4,10 +4,11 @@ from django.views.generic import CreateView
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django import forms
+from django.contrib.auth.models import User
 
 import datetime
 
-from .models import StepEntry
+from .models import Profile, StepEntry
 from .forms import PeakerRegistrationForm, StepEntryForm
 from mpc_groups.models import MpcGroup
 
@@ -23,10 +24,11 @@ class Register(CreateView):
         return context
 
     def form_valid(self, form):
-        print("***********")
-        print(form.cleaned_data)
-        print("*********")
         form.save()
+        # Now save the profile
+        prof = Profile.objects.get(peaker=User.objects.get(username=form.cleaned_data['username']))
+        prof.group=form.cleaned_data['group_field']
+        prof.save()
         return HttpResponseRedirect(self.success_url)
 
 @login_required(login_url=reverse_lazy('login'))

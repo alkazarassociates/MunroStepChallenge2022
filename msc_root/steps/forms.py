@@ -14,7 +14,7 @@ class StepEntryForm(ModelForm):
         ]
 
 class PeakerRegistrationForm(UserCreationForm):
-    group_field = forms.ModelChoiceField(label='Optional Group', queryset=MpcGroup.objects.all().order_by('name'), empty_label='None, pick a Team for me.', required=False)
+    group_field = forms.ModelChoiceField(label='Ambassador Group', queryset=MpcGroup.objects.all().order_by('name'), empty_label='None, pick a Team for me.', required=False)
     class Meta(UserCreationForm.Meta):
         pass
     def __init__(self, *args, **kwargs):

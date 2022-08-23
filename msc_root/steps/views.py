@@ -3,7 +3,6 @@ from django.http import HttpResponseRedirect
 from django.views.generic import CreateView
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
-from django import forms
 from django.contrib.auth.models import User
 
 import datetime

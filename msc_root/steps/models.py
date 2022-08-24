@@ -8,7 +8,7 @@ from django.dispatch import receiver
 from mpc_groups.models import MpcGroup
 
 class Profile(models.Model):
-    peaker = models.OneToOneField(User, on_delete=models.CASCADE)
+    peaker = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     group = models.ForeignKey(MpcGroup, null=True, blank=True, on_delete=models.SET_NULL)
 
 @receiver(post_save, sender=User)

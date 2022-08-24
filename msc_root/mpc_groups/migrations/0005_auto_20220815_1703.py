@@ -10,19 +10,19 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.CreateModel(
-            name='GroupModifications',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('modification_time', models.DateTimeField(auto_now_add=True)),
-            ],
-        ),
-        migrations.AddField(
-            model_name='mpcgroup',
-            name='admin',
-            field=models.CharField(default='No Admin', max_length=60, verbose_name='Admin'),
-            preserve_default=False,
-        ),
+        #migrations.CreateModel(
+        #    name='GroupModifications',
+        #    fields=[
+        #        ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+        #        ('modification_time', models.DateTimeField(auto_now_add=True)),
+        #    ],
+        #),
+        #migrations.AddField(
+        #    model_name='mpcgroup',
+        #    name='admin',
+        #    field=models.CharField(default='No Admin', max_length=60, verbose_name='Admin'),
+        #    preserve_default=False,
+        #),
         migrations.AlterField(
             model_name='mpcadminregistration',
             name='name',

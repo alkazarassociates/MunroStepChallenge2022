@@ -13,8 +13,8 @@ def contact(request):
             # assert False
             send_mail(
                 cd['subject'],
-                cd['message'],
-                cd.get('email', 'noreply@example.com'),
+                cd.get('email', 'NO REPLY EMAIL') + "\n" + cd['message'],
+                'teamstepchallenge2022@gmail.com',
                 ['teamstepchallenge2022@gmail.com']
             )
             return HttpResponseRedirect('/contact?submitted=True')

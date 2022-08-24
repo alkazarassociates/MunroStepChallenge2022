@@ -12,7 +12,9 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 ALLOWED_HOSTS = ['44.194.8.93', '.alkazarassociates.com']
 
 SECURE_HSTS_SECONDS=3600
-SECURE_SSL_REDIRECT=True
+# SSL Redirects are handled by outer server.  Enabling here
+# causes infinite redirect loop
+SECURE_SSL_REDIRECT=False
 SESSION_COOKIE_SECURE=True
 CSRF_COOKIE_SECURE=True
 SECURE_HSTS_INCLUDE_SUBDOMAINS=True

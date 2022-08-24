@@ -33,7 +33,7 @@ class Command(BaseCommand):
                 obj.save()
                 print(f"DUP: changed admin from {old} to {admin.strip()}")
                 modified = True
-        if modified:
+        if modified or GroupModifications.objects.count() == 0:
             GroupModifications.objects.create()
 
 

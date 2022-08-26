@@ -11,5 +11,6 @@ admin.site.register(StepEntry, StepEntryAdmin)
 
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ('peaker', 'group')
+    search_fields = ('peaker__username',)
 
 admin.site.register(Profile, ProfileAdmin)

@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 import datetime
 
 from .models import Profile, StepEntry
-from .forms import PeakerRegistrationForm, StepEntryForm
+from .forms import PeakerRegistrationForm, StepEntryForm, PeakerModificationForm
 from mpc_groups.models import MpcGroup
 
 class Register(CreateView):
@@ -24,6 +24,7 @@ class Register(CreateView):
         prof.group=form.cleaned_data['group_field']
         prof.save()
         return HttpResponseRedirect(self.success_url)
+
 
 @login_required(login_url=reverse_lazy('login'))
 def step_entry(request):
@@ -44,3 +45,23 @@ def step_entry(request):
             submitted = True
 
     return render(request, 'steps/steps.html', {'form': form, 'submitted': submitted, 'peaker': request.user})
+
+@login_required(login_url=reverse_lazy('login'))
+def peaker_modification(request):
+    submitted = False
+    if request.method == 'POST':
+        form = PeakerModificationForm(request.POST)
+        if form.is_valid():
+            entry = form.save(commit=False)
+            try:
+                entry.peaker = request.user
+            except Exception:
+                pass
+            entry.save()
+            return HttpResponseRedirect('/peaker/?submitted=True')
+    else:
+        form = PeakerModificationForm(initial={'group': request.user.profile.group})
+        if 'submitted' in request.GET:
+            submitted = True
+
+    return render(request, 'steps/peaker.html', {'form': form, 'submitted': submitted, 'peaker': request.user})

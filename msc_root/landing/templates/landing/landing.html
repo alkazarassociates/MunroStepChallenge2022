@@ -17,9 +17,11 @@
   {% else %}
   We will pick a team for you by August 31st.
   {% endif %}
-    </p>
+  </p>
+  <p>Want to change what MPC Group you are teamed with?  You can modify your profile <a href="peaker/">here</a>.</p>
+  
   {% else %}
   <p>You can register to participate <a href="/register">here</a>.</p>
-  <p>Or if you have already registered, you can login <a href="/login">here</a>.</p>
+  <p>Or if you have already registered, you can login <a href="{% url 'login' %}?next=/">here</a>.</p>
   {% endif %}
   {% endblock content %}

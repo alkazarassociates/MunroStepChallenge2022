@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Peaker Profile{% endblock title %}
+
+{% block content %}
+<h1>Your Profile</h1>
+
+{% if submitted %}
+    <p class="success">
+        Your profile was modified successfully.
+    </p>
+
+{% else %}
+    <form action="" enctype="multipart/form-data" method="post" novalidate>
+        <p>Changing your group will only effect your Team assignment if done before September 1st!</p>
+        <table>
+            <tr><td><b>Peaker</b></td><td>{{peaker}}</td></tr>
+            {{ form.as_table }}
+            <tr>
+                <td>&nbsp;</td>
+                <td><input type="submit" value="Submit"></td>
+            </tr>
+        </table>
+        {% csrf_token %}
+    </form>
+{% endif %}
+{% endblock content %}

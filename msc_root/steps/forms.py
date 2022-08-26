@@ -2,7 +2,7 @@ from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 
-from .models import StepEntry
+from .models import Profile, StepEntry
 from mpc_groups.models import MpcGroup
 
 class StepEntryForm(ModelForm):
@@ -19,3 +19,9 @@ class PeakerRegistrationForm(UserCreationForm):
         pass
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+class PeakerModificationForm(ModelForm):
+    required_css_class = 'required'
+    class Meta:
+        model = Profile
+        fields = [ 'group' ]

@@ -103,3 +103,12 @@ input {
 .required label:after {
 	content: "*";
 }
+
+tr.odd_row td {
+	background-color: lightgrey;
+	padding: 5px;
+}
+
+tr.even_row td {
+	padding: 5px;
+}

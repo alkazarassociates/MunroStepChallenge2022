@@ -2,13 +2,16 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 from .forms import MpcAdminRegistrationForm
 from .models import GroupModifications, MpcGroup
 
 def index(request):
+    group_list = [ {'name': g.name, 'count': User.objects.filter(profile__group=g).count() } for g in MpcGroup.objects.order_by('name')]
     context = {
-        'group_list': MpcGroup.objects.order_by('name'),
+        'group_list': group_list,
+        'no_group_count': User.objects.filter(profile__group=None).count,
         'updated': GroupModifications.objects.latest('modification_time').modification_time.strftime("%m/%d/%Y %H:%M"),
     }
     return render(request, 'mpc_groups/mpc_groups.html', context)

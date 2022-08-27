@@ -7,6 +7,7 @@ from mpc_groups.models import MpcGroup
 
 class StepEntryForm(ModelForm):
     required_css_class = 'required'
+    date = forms.DateField(widget=forms.SelectDateWidget)
     class Meta:
         model = StepEntry
         fields = [

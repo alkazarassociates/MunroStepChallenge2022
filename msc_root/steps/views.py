@@ -29,6 +29,14 @@ class Register(CreateView):
 @login_required(login_url=reverse_lazy('login'))
 def step_entry(request):
     submitted = False
+    latest = None
+    steps = StepEntry.objects.filter(peaker=request.user)
+    if steps:
+        latest = steps.latest('entered')
+        d = latest.date.strftime("%B %d")
+        recent_steps = str(latest.steps) + " on " + d
+    else:
+        recent_steps = ""
     if request.method == 'POST':
         form = StepEntryForm(request.POST)
         if form.is_valid():
@@ -44,7 +52,7 @@ def step_entry(request):
         if 'submitted' in request.GET:
             submitted = True
 
-    return render(request, 'steps/steps.html', {'form': form, 'submitted': submitted, 'peaker': request.user})
+    return render(request, 'steps/steps.html', {'form': form, 'submitted': submitted, 'peaker': request.user, 'recent_steps': recent_steps})
 
 @login_required(login_url=reverse_lazy('login'))
 def peaker_modification(request):

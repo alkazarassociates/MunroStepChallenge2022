@@ -9,12 +9,18 @@
     <p class="success">
         Your steps were successfully entered.
     </p>
-
+    <p>To enter more steps click <a href="{% url 'step_entry' %}">here</a>.</p>
 {% else %}
     <form action="" enctype="multipart/form-data" method="post" novalidate>
         <table>
-            <tr><td><b>Peaker</b></td><td>{{peaker}}</td></tr>
-            {{ form.as_table }}
+            <tr><th>Peaker</th><th style="text-align:center">{{peaker}}</th></tr>
+            {% if recent_steps %}
+            <tr><td>Your most recent steps were</td><td style="text-align: center">{{recent_steps}}</td></tr>
+            {% else %}
+            <tr><td>You have not entered any steps yet.</td></tr>
+            {% endif %}
+                      {{ form.as_table }}
+            <tr><td>&nbsp;</td></tr>
             <tr>
                 <td>&nbsp;</td>
                 <td><input type="submit" value="Submit"></td>

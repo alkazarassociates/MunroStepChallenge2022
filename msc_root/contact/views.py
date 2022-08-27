@@ -19,7 +19,8 @@ def contact(request):
                 ['teamstepchallenge2022@gmail.com'] # to
             )
             if 'email' in cd:
-                email.reply_to = cd['email']
+                email.reply_to = [cd['email']]
+            
             email.send()
             return HttpResponseRedirect('/contact?submitted=True')
     else:

@@ -12,6 +12,7 @@ def index(request):
     context = {
         'group_list': group_list,
         'no_group_count': User.objects.filter(profile__group=None).count,
+        'total_peakers': User.objects.count,
         'updated': GroupModifications.objects.latest('modification_time').modification_time.strftime("%m/%d/%Y %H:%M"),
     }
     return render(request, 'mpc_groups/mpc_groups.html', context)

@@ -2,15 +2,16 @@
 
 {% block content %}
 <h1>Groups Participating in the Team Step Challenge</h1>
-  <p>The following groups {{group_list|length}} have registered to participate in our Team Challenge, as of {{updated}}.</p>
+  <p>The following groups {{group_list|length}} have registered to participate in our Team Challenge.</p>
   <p>This means that any Peaker who picks one of these groups when they register before September 1 will be placed on the same team as their fellow groupmates.</p>
   <table>
     <tr>
       <th>Group</th>
       <th>Registered</th>
     </tr>
+    <tr><td>Total Peakers</td><td style="text-align: center">{{total_peakers}}</td></tr>
     {% for group in group_list %}
-    <tr class="{% cycle 'odd_row' 'even_row' %}">
+    <tr class="{% cycle 'odd_row' 'even_row' as rowstyle %}">
       <td>{{group.name}}</td>
       <td style="text-align:center">{{group.count}}</td>
     </tr>

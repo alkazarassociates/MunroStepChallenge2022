@@ -1,6 +1,7 @@
+from email.message import EmailMessage
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from django.core.mail import send_mail, get_connection
+from django.core.mail import EmailMessage, send_mail, get_connection
 
 from .forms import ContactForm
 
@@ -11,12 +12,15 @@ def contact(request):
         if form.is_valid():
             cd = form.cleaned_data
             # assert False
-            send_mail(
+            email = EmailMessage(
                 cd['subject'],
-                cd.get('email', 'NO REPLY EMAIL') + "\n" + cd['message'],
-                'teamstepchallenge2022@gmail.com',
-                ['teamstepchallenge2022@gmail.com']
+                'From ' + cd['yourname'] + '\n' + cd['message'],
+                'teamstepchallenge2022@gmail.com',  # From
+                ['teamstepchallenge2022@gmail.com'] # to
             )
+            if 'email' in cd:
+                email.reply_to = cd['email']
+            email.send()
             return HttpResponseRedirect('/contact?submitted=True')
     else:
         form = ContactForm()

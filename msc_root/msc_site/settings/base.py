@@ -70,6 +70,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'msc_site.wsgi.application'
 
+ADMINS = [('Mike Elkins', 'mike@elkins.com')]
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases

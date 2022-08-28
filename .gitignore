@@ -4,3 +4,5 @@ env_msc/*
 .vscode/*
 msc_root/db_test_to_local.bat
 msc_root/set_local_environment.ps1
+data/*
+scripts/*

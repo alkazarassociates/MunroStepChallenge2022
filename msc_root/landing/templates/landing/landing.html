@@ -14,7 +14,7 @@
   <p style="border-width: 2px;border-style: solid;border-color: black; padding: 1em">You are registered as <strong>{{ user.username }}</strong><br>
   {% if user.profile.group %}
   <p>You will participate on the same team as other members of <strong>{{ user.profile.group }}</strong></p>
-  <p>... which is <strong style="color:{{user.profile.team.color}};"">{{user.profile.team}}</strong></p>
+  <p>... which is <strong style="color:{{user.profile.team.color}};"">Team {{user.profile.team}}</strong></p>
   {% else %}
   {% if user.profile.team %}
   <p>You are on team <strong style="color:{{user.profile.team.color}};">{{user.profile.team}}</strong></p>

@@ -5,7 +5,7 @@
   <p>This year, Peakers will be divided into the following teams:</p>
   <ul>
     {% for team in team_list %}
-    <li>{{team.name}}</li>
+    <li><a href={% url 'team_page' team.name %} style="color:{{team.color}};">{{team.name}}</a></li>
     {% endfor %}
   </ul>
   {% endblock content %}

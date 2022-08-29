@@ -13,9 +13,14 @@
   {% if user.is_authenticated %}
   <p style="border-width: 2px;border-style: solid;border-color: black; padding: 1em">You are registered as <strong>{{ user.username }}</strong><br>
   {% if user.profile.group %}
-  You will participate on the same team as other members of <strong>{{ user.profile.group }}</strong>
+  <p>You will participate on the same team as other members of <strong>{{ user.profile.group }}</strong></p>
+  <p>... which is <strong style="color:{{user.profile.team.color}};"">{{user.profile.team}}</strong></p>
+  {% else %}
+  {% if user.profile.team %}
+  <p>You are on team <strong style="color:{{user.profile.team.color}};">{{user.profile.team}}</strong></p>
   {% else %}
   We will pick a team for you by August 31st.
+  {% endif %}
   {% endif %}
   </p>
   <p>Want to change what MPC Group you are teamed with?  You can modify your profile <a href="peaker/">here</a>.</p>

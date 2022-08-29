@@ -22,6 +22,8 @@ class Register(CreateView):
         # Now save the profile
         prof = Profile.objects.get(peaker=User.objects.get(username=form.cleaned_data['username']))
         prof.group=form.cleaned_data['group_field']
+        if prof.group and prof.group.team:
+            prof.team = prof.group.team
         prof.save()
         return HttpResponseRedirect(self.success_url)
 
@@ -86,6 +88,8 @@ def peaker_modification(request):
             entry = form.save(commit=False)
             try:
                 entry.peaker = request.user
+                if entry.group and entry.group.team:
+                    entry.team = entry.group.team
             except Exception:
                 pass
             entry.save()

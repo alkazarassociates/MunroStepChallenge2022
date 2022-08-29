@@ -6,10 +6,12 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 from mpc_groups.models import MpcGroup
+from teams.models import Team
 
 class Profile(models.Model):
     peaker = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     group = models.ForeignKey(MpcGroup, null=True, blank=True, on_delete=models.SET_NULL)
+    team = models.ForeignKey(Team, null=True, blank=True, on_delete=models.SET_NULL)
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):

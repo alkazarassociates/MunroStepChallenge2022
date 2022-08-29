@@ -8,12 +8,14 @@
     <tr>
       <th>Group</th>
       <th>Registered</th>
+      <th>Team</th>
     </tr>
     <tr><td>Total Peakers</td><td style="text-align: center">{{total_peakers}}</td></tr>
     {% for group in group_list %}
     <tr class="{% cycle 'odd_row' 'even_row' as rowstyle %}">
       <td>{{group.name}}</td>
       <td style="text-align:center">{{group.count}}</td>
+      <td style="text-align:center">{{group.team}}</td>
     </tr>
     {% endfor %}
     <tr><td>&nbsp;</td></tr>

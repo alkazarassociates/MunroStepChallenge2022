@@ -8,7 +8,7 @@ from .forms import MpcAdminRegistrationForm
 from .models import GroupModifications, MpcGroup
 
 def index(request):
-    group_list = [ {'name': g.name, 'count': User.objects.filter(profile__group=g).count() } for g in MpcGroup.objects.order_by('name')]
+    group_list = [ {'name': g.name, 'count': User.objects.filter(profile__group=g).count(), 'team': g.team } for g in MpcGroup.objects.order_by('name')]
     context = {
         'group_list': group_list,
         'no_group_count': User.objects.filter(profile__group=None).count,

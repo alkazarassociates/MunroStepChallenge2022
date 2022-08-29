@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Confirm Your Steps{% endblock title %}
+
+{% block content %}
+<h1>Confirm Your Steps</h1>
+
+{% if submitted %}
+    <p class="success">
+        Your steps were successfully entered.
+    </p>
+    <p>To enter more steps click <a href="{% url 'step_entry' %}">here</a>.</p>
+{% else %}
+    <p>You entered {{ form.date.value }} steps, which is a <b>LOT</b>!</p>
+    <p>Are you sure?</p>
+        <table>
+            <tr>
+                <td>
+                    <form action="{% url 'step_entry' %}">
+                        <input type="submit" value="Go back, try again." />
+                    </form>
+                </td>
+                <td>
+                    <form action="" enctype="multipart/form-data" method="post" novalidate>
+                        {{ form.date.as_hidden }}
+                        {{ form.steps.as_hidden }}
+                        <input type="submit" value="I'm sure">
+                    </form>
+                </td>
+            </tr>
+        </table>
+        {% csrf_token %}
+    </form>
+{% endif %}
+{% endblock content %}

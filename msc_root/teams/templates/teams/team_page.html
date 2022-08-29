@@ -2,5 +2,5 @@
 
 {% block content %}
 <h1 style="color:{{team.color}};">Team {{team.name}}</h1>
-  <p>{{team.description}}</p>
+  <p>{{team.description|safe}}</p>
   {% endblock content %}

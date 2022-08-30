@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -31,4 +31,13 @@ def register(request):
             submitted = True
 
     return render(request, 'mpc_groups/register.html', {'form': form, 'submitted': submitted})
+
+@login_required(login_url=reverse_lazy('login'))
+def members(request, group):
+    try:
+        g = MpcGroup.objects.get(name=group)
+    except MpcGroup.DoesNotExist:
+        raise Http404("No Such Group")
+    context = {'group': g, 'peakers': User.objects.filter(profile__group=g).order_by('username')}
+    return render(request, 'mpc_groups/members.html', context)
 

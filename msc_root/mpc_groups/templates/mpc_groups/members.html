@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}{{group}}{% endblock title %}
+
+{% block content %}
+<h1>Peakers Registered with {{group}}</h1>
+  <table>
+    <tr>
+      <th>Peaker</th>
+    </tr>
+    {% for peaker in peakers %}
+    <tr class="{% cycle 'odd_row' 'even_row' as rowstyle %}">
+      <td>{{peaker.username}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% endblock content %}

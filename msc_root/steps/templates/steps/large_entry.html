@@ -11,7 +11,7 @@
     </p>
     <p>To enter more steps click <a href="{% url 'step_entry' %}">here</a>.</p>
 {% else %}
-    <p>You entered {{ form.date.value }} steps, which is a <b>LOT</b>!</p>
+    <p>You entered {{ form.steps.value }} steps, which is a <b>LOT</b>!</p>
     <p>Are you sure?</p>
         <table>
             <tr>
@@ -24,12 +24,13 @@
                     <form action="" enctype="multipart/form-data" method="post" novalidate>
                         {{ form.date.as_hidden }}
                         {{ form.steps.as_hidden }}
+                        {% csrf_token %}
                         <input type="submit" value="I'm sure">
                     </form>
                 </td>
             </tr>
         </table>
-        {% csrf_token %}
+
     </form>
 {% endif %}
 {% endblock content %}

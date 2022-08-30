@@ -68,6 +68,7 @@ def step_entry(request):
 
 @login_required(login_url=reverse_lazy('login'))
 def large_entry(request):
+    print(request.GET)
     submitted = False
     if request.method == 'POST':
         form = StepEntryForm(request.POST)
@@ -81,7 +82,7 @@ def large_entry(request):
             entry.save()
             return HttpResponseRedirect('/steps/?submitted=True')
     else:
-        form = StepEntryForm(initial={'date': datetime.date.today})
+        form = StepEntryForm(initial={'date': request.GET['date'], 'steps': request.GET['steps']})
         if 'submitted' in request.GET:
             submitted = True
 

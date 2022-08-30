@@ -35,7 +35,7 @@ class StepEntry(models.Model):
 
     class Meta:
         constraints = [
-            models.UniqueConstraint(fields=['peaker','date'], name='One Entry for day in Septemberpy')
+            models.UniqueConstraint(fields=['peaker','date'], name='One Entry for day in September')
         ]
 
     def __str__(self):

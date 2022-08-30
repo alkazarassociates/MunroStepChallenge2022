@@ -17,7 +17,11 @@
     <tr class="{% cycle 'odd_row' 'even_row' as rowstyle %}">
       <td>{{group.name}}</td>
       <td style="text-align:center">{{group.count}}</td>
-      <td><a href={% url 'team_page' group.team %} style="text-align:center;color:{{group.team.color}};">{{group.team}}</a></td>
+      <td>
+        {% if group.team %}
+        <a href={% url 'team_page' group.team %} style="text-align:center;color:{{group.team.color}};">{{group.team}}</a>
+        {% endif %}
+      </td>
     </tr>
     {% endfor %}
     <tr><td>&nbsp;</td></tr>

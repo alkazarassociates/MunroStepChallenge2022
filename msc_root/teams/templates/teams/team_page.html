@@ -2,7 +2,7 @@
 
 {% block content %}
 {% if team.picture %}
-<img src='{{team.picture}}' alt="Team {{team.name}}" style="width: 100%;"/>
+<img src='{{team.picture}}' alt="Team {{team.name}}" style="width: 100%;padding-top:1.5em"/>
 {% else %}
 <h1 style="color:{{team.color}};">Team {{team.name}}</h1>
 {% endif %}

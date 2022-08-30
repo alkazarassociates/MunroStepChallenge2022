@@ -119,3 +119,8 @@ def peaker_modification(request):
             submitted = True
 
     return render(request, 'steps/peaker.html', {'form': form, 'submitted': submitted, 'peaker': request.user})
+
+@login_required(login_url=reverse_lazy('login'))
+def step_report(request):
+    step_data = StepEntry.objects.filter(peaker=request.user).all()
+    return render(request, 'steps/report.html', {'steps': step_data, 'total': sum([x.steps for x in step_data])})

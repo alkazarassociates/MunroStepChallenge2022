@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Recorded Steps{% endblock title %}
+
+{% block content %}
+<h1>Recorded Steps</h1>
+
+<p>We have the following days steps recorded for you:</p>
+<table>
+    <tr><th style="text-align: center;"">Day</th><th style="text-align: center;"">Steps</th></tr>
+    {% for se in steps %}
+    <tr class="{% cycle 'odd_row' 'even_row' as rowstyle %}"><td>{{se.date|date:"M d"}}</td><td style="text-align:right; padding-left: 2em; padding-right: 2em">{{se.steps}}</td></tr>
+    {% endfor %}
+    <tr class="{% cycle rowstyle %}"><th>Total</th><td style="text-align:right; padding-left: 2em; padding-right: 2em;border-top-width:2px; border-top-color:black;border-top-style:outset">{{total}}</td></tr>
+</table>
+{% endblock content %}

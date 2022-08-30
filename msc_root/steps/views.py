@@ -77,7 +77,6 @@ def step_entry(request):
 
 @login_required(login_url=reverse_lazy('login'))
 def large_entry(request):
-    print(request.GET)
     submitted = False
     if request.method == 'POST':
         form = StepEntryForm(request.POST)

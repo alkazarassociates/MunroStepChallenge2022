@@ -11,9 +11,10 @@
 
   
   {% if user.is_authenticated %}
-  <p style="border-width: 2px;border-style: solid;border-color: black; padding: 1em">You are registered as <strong>{{ user.username }}</strong><br>
+  <div style="border-width: 2px;border-style: solid;border-color: black; padding: 1em">
+  <p style=>You are registered as <strong>{{ user.username }}</strong><br></p>
   {% if user.profile.group %}
-  <p>You will participate on the same team as other members of <strong>{{ user.profile.group }}</strong></p>
+  <p>You are participating on the same team as other members of <strong>{{ user.profile.group }}</strong></p>
   {% if user.profile.group.team %}
   <p>... which is <a href={% url 'team_page' user.profile.team %}><strong style="color:{{user.profile.team.color}};"">Team {{user.profile.team}}</strong></a></p>
   {% endif %}
@@ -25,6 +26,8 @@
   {% endif %}
   {% endif %}
   </p>
+  <p>You have walked {{total_steps}} steps so far--Keep it up!</p>
+  </div>
   <p>Want to change what MPC Group you are teamed with?  You can modify your profile <a href="peaker/">here</a>.</p>
   
   {% else %}

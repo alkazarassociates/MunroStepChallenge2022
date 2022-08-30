@@ -57,7 +57,12 @@ def step_entry(request):
                 entry.peaker = request.user
             except Exception:
                 pass
+            existing = StepEntry.objects.filter(peaker=entry.peaker, date=entry.date).first()
+            if existing:
+                existing.delete()
+
             entry.save()
+            
             return HttpResponseRedirect('/steps/?submitted=True')
     else:
         form = StepEntryForm(initial={'date': datetime.date.today})
@@ -73,12 +78,14 @@ def large_entry(request):
     if request.method == 'POST':
         form = StepEntryForm(request.POST)
         if form.is_valid():
-            print("SAVING DATA from LARGE ENTRY")
             entry = form.save(commit=False)
             try:
                 entry.peaker = request.user
             except Exception:
                 pass
+            existing = StepEntry.objects.filter(peaker=entry.peaker, date=entry.date).first()
+            if existing:
+                existing.delete()
             entry.save()
             return HttpResponseRedirect('/steps/?submitted=True')
     else:

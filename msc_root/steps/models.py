@@ -33,6 +33,11 @@ class StepEntry(models.Model):
     valid = models.BooleanField()
     notes = models.TextField()
 
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['peaker','date'], name='One Entry for day in Septemberpy')
+        ]
+
     def __str__(self):
         return str(self.peaker) + " " + str(self.date)
 

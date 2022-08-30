@@ -44,7 +44,7 @@ def step_entry(request):
     if steps:
         latest = steps.latest('entered')
         d = latest.date.strftime("%B %d")
-        recent_steps = str(latest.steps) + " steps on " + d
+        recent_steps = str(latest.steps) + " steps for " + d
     else:
         recent_steps = ""
     if request.method == 'POST':

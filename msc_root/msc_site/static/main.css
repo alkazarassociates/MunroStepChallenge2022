@@ -12,6 +12,12 @@
 	width: 800px;	
 }
 body {
+	background-image: url('TreeImage.jpg');
+	width: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
 	background-color: #E0E0E0;
 	font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 0.9em;

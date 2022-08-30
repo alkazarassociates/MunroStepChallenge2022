@@ -47,6 +47,7 @@ def step_entry(request):
         recent_steps = str(latest.steps) + " steps for " + d
     else:
         recent_steps = ""
+    activity = request.session.get('last_activity', '')
     if request.method == 'POST':
         form = StepEntryForm(request.POST)
         if form.is_valid():
@@ -60,6 +61,7 @@ def step_entry(request):
             existing = StepEntry.objects.filter(peaker=entry.peaker, date=entry.date).first()
             if existing:
                 existing.delete()
+            request.session['last_activity'] = request.POST['activity']
 
             entry.save()
             
@@ -69,7 +71,9 @@ def step_entry(request):
         if 'submitted' in request.GET:
             submitted = True
 
-    return render(request, 'steps/steps.html', {'form': form, 'submitted': submitted, 'peaker': request.user, 'recent_steps': recent_steps})
+    return render(request, 'steps/steps.html', {
+        'form': form, 'submitted': submitted, 'peaker': request.user, 'recent_steps': recent_steps, 'last_activity': activity
+        })
 
 @login_required(login_url=reverse_lazy('login'))
 def large_entry(request):

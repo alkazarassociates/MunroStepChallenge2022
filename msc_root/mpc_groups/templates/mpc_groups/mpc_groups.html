@@ -13,7 +13,7 @@
     <tr><td>Total Peakers</td><td style="text-align: center">{{total_peakers}}</td></tr>
     {% for group in group_list %}
     <tr class="{% cycle 'odd_row' 'even_row' as rowstyle %}">
-      <td>{{group.name}}</td>
+      <td><a href={% url 'group_page' group.name %}>{{group.name}}</a></td>
       <td style="text-align:center">{{group.count}}</td>
       <td>
         {% if group.team %}

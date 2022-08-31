@@ -27,7 +27,7 @@
       <li><a href='/steps'>Enter Steps</a></li>
       {% if user.is_authenticated %}<li><a href={% url 'step_report' %}>Your Step Summary</a></li>{% endif %}
       <li><a href='/teams'>Teams</a></li>
-      <li><a href='/groups'>Groups</a></li>
+      {% comment %}<li><a href='/groups'>Groups</a></li>{% endcomment %}
       {% comment %}<li><a href='/groups/register'>Group Registration</a></li>{% endcomment %}
       <li><a href='/faq'>FAQ</a></li>
       <li><a href='/contact'>Contact Us</a></li>

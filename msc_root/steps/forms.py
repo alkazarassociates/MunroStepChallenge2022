@@ -43,6 +43,7 @@ class PeakerRegistrationForm(UserCreationForm):
         super().__init__(*args, **kwargs)
 
 class PeakerModificationForm(ModelForm):
+    group = forms.ModelChoiceField(label='Group', queryset=MpcGroup.objects.all().order_by('name'), empty_label='None, pick a Team for me.', required=False)
     required_css_class = 'required'
     class Meta:
         model = Profile

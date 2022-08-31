@@ -19,8 +19,8 @@ class StepEntryForm(ModelForm):
     
     def clean_date(self):
         d = self.cleaned_data['date']
-        #if d < datetime.date(2022, 9, 1) or d >= datetime.date(2022, 10, 1):
-        #    raise ValidationError("Steps must be for the month of September")
+        if d < datetime.date(2022, 9, 1) or d >= datetime.date(2022, 10, 1):
+            raise ValidationError("Steps must be for the month of September")
         # UTC+-12 should be enough of the world for this.
         if datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=+12))).date() < d:
             raise ValidationError("You can't enter steps for the future")

@@ -6,6 +6,12 @@
 {% else %}
 <h1 style="color:{{team.color}};">Team {{team.name}}</h1>
 {% endif %}
+<table width="100%" style="padding-top:1em;">
+  {% for g in group_list %}
+  <tr><td>{{g.0}}</td><td>{{g.1}}</td><td>{{g.2}}</td></tr>
+  {% endfor %}
+
+</table>
   <p><h3 style="padding-top:5em;padding-bottom:5em;">Team Infographics [TO BE UPDATED WHEN CHALLENGE IS LIVE]</h3></p>
   <h3>Interesting Facts About the {{team.name}} Tree</h3>
   <p>{{team.description|safe}}</p>

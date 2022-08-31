@@ -12,7 +12,7 @@
 
 {% else %}
     <form action="" enctype="multipart/form-data" method="post" novalidate>
-        <p>Changing your group will only effect your Team assignment if done before September 1st!</p>
+        <p>You can change your password <a href={% url 'change-password' %}>here</a>.
         <table>
             <tr><td><b>Peaker</b></td><td>{{peaker}}</td></tr>
             {{ form.as_table }}

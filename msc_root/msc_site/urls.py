@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+import django.contrib.auth
 from django.urls import include, path
 from django.views.generic import TemplateView
 from steps.views import Register, peaker_modification
@@ -29,4 +30,5 @@ urlpatterns = [
     path('teams', include('teams.urls')),
     path('groups/', include('mpc_groups.urls')),
     path('contact', include('contact.urls')),
+    path('change-password', django.contrib.auth.views.PasswordChangeView.as_view(), name='change-password'),
 ]

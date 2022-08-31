@@ -1,6 +1,9 @@
+from django.db.models import Sum
 from django.shortcuts import render
 from mpc_groups.models import MpcGroup
+from django.contrib.auth.models import User
 from .models import Team
+from steps.models import StepEntry
 
 def index(request):
     context = {'team_list': Team.objects.order_by('name'), 'title': 'Munro Step Challenge'}
@@ -15,5 +18,10 @@ def team_page(request, args):
     group_lines = []
     for i in range(len(groups) // 3):
         group_lines.append([groups[3*i], groups[3*i+1], groups[3*i+2]])
-    context = {'team': team, 'group_list': group_lines}
+    team_steps = StepEntry.objects.filter(peaker__profile__team=team).aggregate(Sum('steps'))['steps__sum']
+    if team_steps is None:
+        team_steps = 0
+    context = {
+        'team': team, 'group_list': group_lines, 'team_size': User.objects.filter(profile__team=team).count(), 
+        'team_steps': team_steps}
     return render(request, 'teams/team_page.html', context )

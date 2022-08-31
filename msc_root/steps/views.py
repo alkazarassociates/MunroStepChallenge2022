@@ -60,7 +60,7 @@ def step_entry(request):
                 pass
             existing = StepEntry.objects.filter(peaker=entry.peaker, date=entry.date).first()
             if existing:
-                existing.delete()
+                return HttpResponseRedirect(f"/steps/overwrite?date={form.cleaned_data['date']}&steps={form.cleaned_data['steps']}")
             request.session['last_activity'] = request.POST['activity']
 
             entry.save()
@@ -88,7 +88,7 @@ def large_entry(request):
                 pass
             existing = StepEntry.objects.filter(peaker=entry.peaker, date=entry.date).first()
             if existing:
-                existing.delete()
+                return HttpResponseRedirect(f"/steps/overwrite?date={form.cleaned_data['date']}&steps={form.cleaned_data['steps']}")
             entry.save()
             return HttpResponseRedirect('/steps/?submitted=True')
     else:
@@ -122,5 +122,32 @@ def peaker_modification(request):
 
 @login_required(login_url=reverse_lazy('login'))
 def step_report(request):
-    step_data = StepEntry.objects.filter(peaker=request.user).all()
+    step_data = StepEntry.objects.filter(peaker=request.user).all().order_by('date')
     return render(request, 'steps/report.html', {'steps': step_data, 'total': sum([x.steps for x in step_data])})
+
+@login_required(login_url=reverse_lazy('login'))
+def overwrite_confirm(request):
+    submitted = False
+    existing = None
+    sum_steps = 0
+    if request.method == 'POST':
+        form = StepEntryForm(request.POST)
+        if form.is_valid():
+            entry = form.save(commit=False)
+            try:
+                entry.peaker = request.user
+            except Exception:
+                pass
+            existing = StepEntry.objects.filter(peaker=entry.peaker, date=entry.date).first()
+            if existing:
+                existing.delete()
+            entry.save()
+            return HttpResponseRedirect('/steps/?submitted=True')
+    else:
+        existing = StepEntry.objects.filter(peaker=request.user, date=request.GET['date']).first()
+        form = StepEntryForm(initial={'date': request.GET['date'], 'steps': request.GET['steps']})
+        sum_steps = existing.steps + int(request.GET['steps'])
+        if 'submitted' in request.GET:
+            submitted = True
+
+    return render(request, 'steps/overwrite.html', {'form': form, 'submitted': submitted, 'peaker': request.user, 'existing': existing, 'sum_steps': sum_steps})

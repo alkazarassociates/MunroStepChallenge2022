@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Confirm Your Steps{% endblock title %}
+
+{% block content %}
+<h1>Confirm Your Steps</h1>
+
+{% if submitted %}
+    <p class="success">
+        Your steps were successfully entered.
+    </p>
+    <p>To enter more steps click <a href="{% url 'step_entry' %}">here</a>.</p>
+{% else %}
+    <p>On {{existing.entered}} you entered {{existing.steps}} steps for {{existing.date}}. Do you want to change it to {{form.steps.value}} steps, or are these additional steps?</p>
+    <p>Which do you want to do?</p>
+        <table>
+            <tr>
+                <td>
+                    <form action="{% url 'index' %}">
+                        <input type="submit" value="Nevermind." />
+                    </form>
+                </td>
+                <td>
+                    <form action="" enctype="multipart/form-data" method="post" novalidate>
+                        {{ form.date.as_hidden }}
+                        {{ form.steps.as_hidden }}
+                        {% csrf_token %}
+                        <input type="submit" value="Overwrite with {{form.steps.value}}" autofocus>
+                    </form>
+                </td>
+                <td>
+                    <form action="" enctype="multipart/form-data" method="post" novalidate>
+                        {{ form.date.as_hidden }}
+                        <input type="hidden" id="steps" name="steps" value="{{sum_steps}}">
+                        {% csrf_token %}
+                        <input type="submit" value="Add them together">
+                    </form>
+                </td>
+            </tr>
+        </table>
+
+    </form>
+{% endif %}
+{% endblock content %}

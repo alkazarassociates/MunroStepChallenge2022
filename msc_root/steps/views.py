@@ -25,12 +25,12 @@ class Register(CreateView):
         prof.group=form.cleaned_data['group_field']
         if prof.group and prof.group.team:
             prof.team = prof.group.team
-        #if not prof.team:
-        #    # We need to calculate what team to put this peaker on.
-        #    counter = {}
-        #    for team in Team.objects.all():
-        #        counter[team] = User.objects.filter(profile__team=team).count()
-        #    prof.team = min(counter, key=counter.get)
+        if not prof.team:
+            # We need to calculate what team to put this peaker on.
+            counter = {}
+            for team in Team.objects.all():
+                counter[team] = User.objects.filter(profile__team=team).count()
+            prof.team = min(counter, key=counter.get)
 
         prof.save()
         return HttpResponseRedirect(self.success_url)

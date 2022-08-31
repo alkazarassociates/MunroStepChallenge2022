@@ -3,7 +3,7 @@ from teams.models import Team
 
 class MpcGroup(models.Model):
     name = models.CharField('Name', max_length=60, unique=True)
-    team = models.ForeignKey(Team, on_delete=models.SET_NULL, blank=True, null=True)
+    team = models.ForeignKey(Team, on_delete=models.CASCADE)
     admin = models.CharField('Admin', max_length=60)
 
     def __str__(self):

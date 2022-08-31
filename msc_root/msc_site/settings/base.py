@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'mpc_groups.apps.MpcGroupsConfig',
     'contact.apps.ContactConfig',
     'steps.apps.StepsConfig',
+    'faq_page.apps.FaqPageConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

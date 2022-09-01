@@ -53,15 +53,20 @@ def report(request, group):
     dates = StepEntry.objects.distinct('date').values_list('date')
     day_totals = []
     step_total = 0
-    mile_total = 0
+    distance_total = 0
+    unit_name = 'Kilometers'
+    conv = 0.7242 / 1000.0
+    if request.user.profile.imperial:
+        unit_name = 'Miles'
+        conv = 0.45 / 1000.0
     for date in dates:
         day = date[0]
         steps = StepEntry.objects.filter(date=day, peaker__profile__group=g).aggregate(Sum('steps'))['steps__sum'] or 0
         step_total += steps
-        miles = 0.45 * steps / 1000.0
-        mile_total += miles
-        day_totals.append({'day': day, 'steps': steps, 'miles': miles})
-    day_totals.append({'day': 'Total', 'steps': step_total, 'miles': mile_total})
+        distance = conv * steps
+        distance_total += distance
+        day_totals.append({'day': day, 'steps': steps, 'distance': distance})
+    day_totals.append({'day': 'Total', 'steps': step_total, 'distance': distance_total})
 
     peakers = StepEntry.objects.filter(peaker__profile__group=g).distinct('peaker').values_list('peaker', 'peaker__username')
     peaker_totals = []
@@ -78,5 +83,5 @@ def report(request, group):
         peaker_totals.sort(key=lambda t: t['peaker'].lower())
 
     peaker_totals.append({'peaker': 'Total', 'steps': step_total})
-    context = {'group': g, 'day_totals': day_totals, 'peaker_totals': peaker_totals, 'sort': 'Top steps' if request.GET.get('sorted', False) else 'Alpha'}
+    context = {'group': g, 'unit_name': unit_name, 'day_totals': day_totals, 'peaker_totals': peaker_totals, 'sort': 'Top steps' if request.GET.get('sorted', False) else 'Alpha'}
     return render(request, 'mpc_groups/report.html', context)

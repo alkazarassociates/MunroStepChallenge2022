@@ -47,4 +47,4 @@ class PeakerModificationForm(ModelForm):
     required_css_class = 'required'
     class Meta:
         model = Profile
-        fields = [ 'group' ]
+        fields = [ 'group', 'imperial']

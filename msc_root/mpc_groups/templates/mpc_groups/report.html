@@ -6,12 +6,12 @@
 <h1 style="border: 3px groove black;text-align: center;">{{group}}</h1>
 <div><em>Daily Totals</em></div>
 <table style="border: 1px solid black;width: 100%;">
-  <tr><th style="text-align: center">Date</th><th style="text-align: center">Steps</th><th style="text-align: center">Miles</th></tr>
+  <tr><th style="text-align: center">Date</th><th style="text-align: center">Steps</th><th style="text-align: center">{{unit_name}}</th></tr>
   {% for day_total in day_totals %}
   <tr class="{% cycle 'odd_row' 'even_row' as rowstyle %}">
     <td style="border: 1px solid black">{{day_total.day}}</td>
-    <td style="border: 1px solid black">{{day_total.steps}}</td>
-    <td style="border: 1px solid black">{{day_total.miles}}</td>
+    <td style="border: 1px solid black;text-align:right">{{day_total.steps}}</td>
+    <td style="border: 1px solid black;text-align:right">{{day_total.distance|floatformat:2}}</td>
   </tr>
   {% endfor %}
 </table>
@@ -21,7 +21,7 @@
     {% for peaker_total in peaker_totals %}
     <tr class="{% cycle 'odd_row' 'even_row' as rowstyle %}">
         <td style="border: 1px solid black;">{{peaker_total.peaker}}</td>
-        <td style="border: 1px solid black;">{{peaker_total.steps}}</td>
+        <td style="border: 1px solid black;text-align:right;">{{peaker_total.steps}}</td>
     </tr>
     {% endfor %}
 </table>

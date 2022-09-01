@@ -12,6 +12,7 @@ class Profile(models.Model):
     peaker = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     group = models.ForeignKey(MpcGroup, null=True, blank=True, on_delete=models.SET_NULL)
     team = models.ForeignKey(Team, null=True, blank=True, on_delete=models.SET_NULL)
+    imperial = models.BooleanField(default=True)
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
@@ -31,7 +32,7 @@ class StepEntry(models.Model):
     date = models.DateField()
     steps = models.IntegerField()
     valid = models.BooleanField()
-    notes = models.TextField()
+    notes = models.TextField(default='', blank=True)
 
     class Meta:
         constraints = [

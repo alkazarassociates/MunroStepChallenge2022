@@ -5,6 +5,7 @@ class Team(models.Model):
     description = models.TextField('Description')
     color = models.CharField('Color', max_length=20, default='Black')
     picture = models.CharField('Picture', max_length=40, blank=True, null=True)
+    auxiliary = models.BooleanField('Auxiliary', default=False)
 
     def __str__(self):
         return self.name

@@ -25,4 +25,6 @@
     </tr>
     {% endfor %}
 </table>
+<p><a href={% url 'group_members' group %}>Complete Member List</a></p>
+<p>{% now "M d Y" %}</p>
 {% endblock content %}

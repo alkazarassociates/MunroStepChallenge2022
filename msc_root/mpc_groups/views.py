@@ -19,7 +19,6 @@ def index(request):
     }
     return render(request, 'mpc_groups/mpc_groups.html', context)
 
-@login_required(login_url=reverse_lazy('login'))
 def register(request):
     # TODO 2023   Record username, make them in Group MPCAdmin
     submitted = False

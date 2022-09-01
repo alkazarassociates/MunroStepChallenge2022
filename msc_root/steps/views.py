@@ -128,8 +128,21 @@ def peaker_modification(request):
 
 @login_required(login_url=reverse_lazy('login'))
 def step_report(request):
-    step_data = StepEntry.objects.filter(peaker=request.user).all().order_by('date')
-    return render(request, 'steps/report.html', {'steps': step_data, 'total': sum([x.steps for x in step_data])})
+    unit_name = 'Kilometers'
+    conv = 0.7242 / 1000.0
+    if request.user.profile.imperial:
+        unit_name = 'Miles'
+        conv = 0.45 / 1000.0
+    step_data = []
+    step_total = 0
+    distance_total = 0.0
+    for entry in StepEntry.objects.filter(peaker=request.user).all().order_by('date'):
+        distance = entry.steps * conv
+        step_total += entry.steps
+        distance_total += distance
+        step_data.append({'day': entry.date, 'steps': entry.steps, 'distance': distance})
+    step_data.append({'day': 'Total', 'steps': step_total, 'distance': distance_total})
+    return render(request, 'steps/report.html', {'unit_name': unit_name, 'steps': step_data})
 
 @login_required(login_url=reverse_lazy('login'))
 def overwrite_confirm(request):

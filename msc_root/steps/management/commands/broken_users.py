@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User
 from steps.models import Profile
+from teams.models import Team
 
 class Command(BaseCommand):
     help = 'Set Group Teams'

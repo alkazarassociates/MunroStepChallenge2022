@@ -28,7 +28,7 @@ class Register(CreateView):
         if not prof.team:
             # We need to calculate what team to put this peaker on.
             counter = {}
-            for team in Team.objects.all():
+            for team in Team.objects.filter(auxiliary=False):
                 counter[team] = User.objects.filter(profile__team=team).count()
             prof.team = min(counter, key=counter.get)
 
@@ -109,6 +109,12 @@ def peaker_modification(request):
                 entry.peaker = request.user
                 if entry.group and entry.group.team:
                     entry.team = entry.group.team
+                if not entry.team:
+                    # We need to calculate what team to put this peaker on.
+                    counter = {}
+                    for team in Team.objects.filter(auxiliary=False):
+                        counter[team] = User.objects.filter(profile__team=team).count()
+                    entry.team = min(counter, key=counter.get)
             except Exception:
                 pass
             entry.save()

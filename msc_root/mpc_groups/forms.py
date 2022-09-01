@@ -7,5 +7,5 @@ class MpcAdminRegistrationForm(ModelForm):
     class Meta:
         model = MpcAdminRegistration
         fields = [
-            'name', 'primary_group', 'secondary_group'
+            'name', 'primary_group',  # No secondary groups after sep 1   'secondary_group'
         ]

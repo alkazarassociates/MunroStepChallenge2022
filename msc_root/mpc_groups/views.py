@@ -73,10 +73,8 @@ def report(request, group):
         peaker_totals.append({'peaker': peaker_wrap[1], 'steps': steps})
     # Sort these alphabetically or by total.
     if request.GET.get('sorted', 'False') == 'True':
-        print("TOP STEPS")
         peaker_totals.sort(key=lambda t: t['steps'], reverse=True)
     else:
-        print("ALPHA")
         peaker_totals.sort(key=lambda t: t['peaker'].lower())
 
     peaker_totals.append({'peaker': 'Total', 'steps': step_total})

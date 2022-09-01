@@ -11,12 +11,13 @@ from teams.models import Team
 class Profile(models.Model):
     peaker = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     group = models.ForeignKey(MpcGroup, null=True, blank=True, on_delete=models.SET_NULL)
-    team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    team = models.ForeignKey(Team, null=True, blank=True, on_delete=models.SET_NULL)
     imperial = models.BooleanField(verbose_name='USA Units', default=True, help_text="Check means distances are miles, unchecked means kilometers.")
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
+
         Profile.objects.create(peaker=instance)
 
 @receiver(post_save, sender=User)

@@ -1,9 +1,11 @@
+from django.db.models import Sum
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
+from steps.models import StepEntry
 from .forms import MpcAdminRegistrationForm
 from .models import GroupModifications, MpcGroup
 
@@ -19,6 +21,7 @@ def index(request):
 
 @login_required(login_url=reverse_lazy('login'))
 def register(request):
+    # TODO 2023   Record username, make them in Group MPCAdmin
     submitted = False
     if request.method == 'POST':
         form = MpcAdminRegistrationForm(request.POST)
@@ -41,3 +44,41 @@ def members(request, group):
     context = {'group': g, 'peakers': User.objects.filter(profile__group=g).order_by('username')}
     return render(request, 'mpc_groups/members.html', context)
 
+@login_required(login_url=reverse_lazy('login'))
+def report(request, group):
+    try:
+        g = MpcGroup.objects.get(name=group)
+    except MpcGroup.DoesNotExist:
+        raise Http404("No Such Group")
+    dates = StepEntry.objects.distinct('date').values_list('date')
+    day_totals = []
+    step_total = 0
+    mile_total = 0
+    for date in dates:
+        day = date[0]
+        steps = StepEntry.objects.filter(date=day, peaker__profile__group=g).aggregate(Sum('steps'))['steps__sum'] or 0
+        step_total += steps
+        miles = 0.45 * steps / 1000.0
+        mile_total += miles
+        day_totals.append({'day': day, 'steps': steps, 'miles': miles})
+    day_totals.append({'day': 'Total', 'steps': step_total, 'miles': mile_total})
+
+    peakers = StepEntry.objects.filter(peaker__profile__group=g).distinct('peaker').values_list('peaker', 'peaker__username')
+    peaker_totals = []
+    step_total = 0
+    for peaker_wrap in peakers:
+        peaker = peaker_wrap[0]
+        steps = StepEntry.objects.filter(peaker=peaker).aggregate(Sum('steps'))['steps__sum'] or 0
+        step_total += steps
+        peaker_totals.append({'peaker': peaker_wrap[1], 'steps': steps})
+    # Sort these alphabetically or by total.
+    if request.GET.get('sorted', 'False') == 'True':
+        print("TOP STEPS")
+        peaker_totals.sort(key=lambda t: t['steps'], reverse=True)
+    else:
+        print("ALPHA")
+        peaker_totals.sort(key=lambda t: t['peaker'].lower())
+
+    peaker_totals.append({'peaker': 'Total', 'steps': step_total})
+    context = {'group': g, 'day_totals': day_totals, 'peaker_totals': peaker_totals, 'sort': 'Top steps' if request.GET.get('sorted', False) else 'Alpha'}
+    return render(request, 'mpc_groups/report.html', context)

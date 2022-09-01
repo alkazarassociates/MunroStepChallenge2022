@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}{{group}}{% endblock title %}
+
+{% block content %}
+<h1 style="border: 3px groove black;text-align: center;">{{group}}</h1>
+<div><em>Daily Totals</em></div>
+<table style="border: 1px solid black;width: 100%;">
+  <tr><th style="text-align: center">Date</th><th style="text-align: center">Steps</th><th style="text-align: center">Miles</th></tr>
+  {% for day_total in day_totals %}
+  <tr class="{% cycle 'odd_row' 'even_row' as rowstyle %}">
+    <td style="border: 1px solid black">{{day_total.day}}</td>
+    <td style="border: 1px solid black">{{day_total.steps}}</td>
+    <td style="border: 1px solid black">{{day_total.miles}}</td>
+  </tr>
+  {% endfor %}
+</table>
+<div style="padding-top: 1em;width: 100%;"><em style="padding-right: 4em;">Peaker Totals</em><a href="{% url 'group_report' group %}?sorted=False" style="padding-right: 1em;"><small>Alpha</small></a><a href="{% url 'group_report' group %}?sorted=True"><small>Top Steps</small></a></div>
+<table style="border: 1px solid black;width: 100%;">
+    <tr><th style="text-align: center">Peaker</th><th style="text-align: center;">Steps</th></tr>
+    {% for peaker_total in peaker_totals %}
+    <tr class="{% cycle 'odd_row' 'even_row' as rowstyle %}">
+        <td style="border: 1px solid black;">{{peaker_total.peaker}}</td>
+        <td style="border: 1px solid black;">{{peaker_total.steps}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock content %}

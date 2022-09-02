@@ -31,7 +31,7 @@ class StepEntry(models.Model):
     peaker = models.ForeignKey(User, on_delete=models.CASCADE)
     entered = models.DateTimeField(auto_now_add=True)
     date = models.DateField()
-    steps = models.IntegerField()
+    steps = models.IntegerField(help_text="No ',' or '.' please. Just digits.")
     valid = models.BooleanField()
     notes = models.TextField(default='', blank=True)
 

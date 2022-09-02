@@ -11,15 +11,6 @@ from mpc_groups.models import MpcGroup
 class StepEntryForm(ModelForm):
     required_css_class = 'required'
     date = forms.DateField(widget=forms.SelectDateWidget)
-    steps = forms.IntegerField()
-    old_to_python = steps.to_python
-    def my_to_python(raw):
-        print(f"got raw {raw}")
-        ret = StepEntryForm.old_to_python(raw)
-        print(f"produced {ret}")
-        return ret
-    steps.to_python = my_to_python
-
     class Meta:
         model = StepEntry
         fields = [

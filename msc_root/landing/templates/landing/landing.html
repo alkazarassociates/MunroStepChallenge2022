@@ -2,36 +2,27 @@
 
 {% block content %}
 <h1>Welcome to the Munro Step Challenge - Team Challenge 2022 </h1>
-  <p>This is our fifth team challenge and we're hoping to make it our best yet.
-  We have our own website this year for one-stop shopping - registration, daily input, reports, FAQ.</p> 
-  <p>Once again 8 Super Teams of peakers will work together to complete this year's "Walk around the World" challenge.  There'll be some friendly team competition too.</p>
-  <p>And remember - we are doing this for Blood Cancer Awareness Month and to help Blood Cancer UK. They really appreciate our enthusiasm and support.</p>
-  <p><b><i>So, are we ready to break that billion step count together this year!?!</i></b></p>
-  <p>~Mike and Cheryl</p>
 
+<p>Our fifth team challenge is underway and we're hoping to make it our best yet.</p>
+<p>Our Goal: 450 Million steps together in September (for teams wanting the extra challenge that’s at least 50 million steps per team)</p>
+<p>The Reason:  September is  Blood Cancer Awareness Month so we are raising awareness and funds for Blood Cancer UK. They really appreciate our enthusiasm and support.</p>
+<b><em>So, are we ready!?!</em></b>
+
+<p>~Mike and Cheryl</p>
   
-  {% if user.is_authenticated %}
+{% if user.is_authenticated %}
   <div style="border-width: 2px;border-style: solid;border-color: black; padding: 1em">
-  <p style=>You are registered as <strong>{{ user.username }}</strong><br></p>
-  {% if user.profile.group %}
-  <p>You are participating on the same team as other members of <strong>{{ user.profile.group }}</strong></p>
-  {% if user.profile.group.team %}
-  <p>... which is <a href={% url 'team_page' user.profile.team %}><strong style="color:{{user.profile.team.color}};"">Team {{user.profile.team}}</strong></a></p>
-  {% endif %}
-  {% else %}
-  {% if user.profile.team %}
-  <p>You are on team <a href={% url 'team_page' user.profile.team %}><strong style="color:{{user.profile.team.color}};">{{user.profile.team}}</strong></a></p>
-  {% else %}
-  We will pick a team for you by August 31st.
-  {% endif %}
-  {% endif %}
-  </p>
-  <p>You have walked {{total_steps}} steps so far--{% if total_steps %}Keep it up{% else %}Let's get going{% endif %}!</p>
+    <p>You are registered as <strong>{{ user.username }}</strong></p>
+    <p>You are on <strong style="color:{{user.profile.team.color}};"">Team {{user.profile.team}}</strong></a></p> 
+    {% if user.profile.group %}
+      <p>You are part of <strong>{{ user.profile.group }}</strong></p>
+    {% endif %}
+    <p>You have walked {{total_steps}} steps so far--{% if total_steps %}Keep it up{% else %}Let's get going{% endif %}!</p>
   </div>
   <p>Want to change what MPC Group you are teamed with?  You can modify your profile <a href="peaker/">here</a>.</p>
   
-  {% else %}
+{% else %}
   <p>You can register to participate <a href="/register">here</a>.</p>
   <p>Or if you have already registered, you can login <a href="{% url 'login' %}?next=/">here</a>.</p>
-  {% endif %}
-  {% endblock content %}
+{% endif %}
+{% endblock content %}

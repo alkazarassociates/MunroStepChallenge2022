@@ -17,7 +17,7 @@
       <td style="text-align:center">{{group.count}}</td>
       <td>
         {% if group.team %}
-        <a href={% url 'team_page' group.team %} style="text-align:center;color:{{group.team.color}};">{{group.team}}</a>
+        {% include 'teams/team_link.html' with team=group.team %}
         {% endif %}
       </td>
     </tr>

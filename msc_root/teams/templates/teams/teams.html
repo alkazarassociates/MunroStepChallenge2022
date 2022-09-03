@@ -20,10 +20,10 @@
     <area shape="rect" coords="335,267,535,290" alt="Team Aspen" href="/teams/Aspen">
     <area shape="rect" coords="335,298,535,331" alt="Team Beech" href="/teams/Beech">
   </map>
-
+  
   <ul>
     {% for team in team_list %}
-    <li><a href={% url 'team_page' team.name %} style="color:{{team.color}};">{{team.name}}</a></li>
+    <li>{% include 'teams/team_link.html' %}</li>
     {% endfor %}
   </ul>
   {% endblock content %}

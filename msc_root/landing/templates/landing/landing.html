@@ -13,7 +13,7 @@
 {% if user.is_authenticated %}
   <div style="border-width: 2px;border-style: solid;border-color: black; padding: 1em">
     <p>You are registered as <strong>{{ user.username }}</strong></p>
-    <p>You are on <strong style="color:{{user.profile.team.color}};"">Team {{user.profile.team}}</strong></a></p> 
+    <p>You are on {% include 'teams/team_link.html' with team=user.profile.team %}</p> 
     {% if user.profile.group %}
       <p>You are part of <strong>{{ user.profile.group }}</strong></p>
     {% endif %}

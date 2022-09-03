@@ -4,7 +4,7 @@
 {% if team.picture %}
 <img src='{{team.picture}}' alt="Team {{team.name}}" style="width: 100%;padding-top:1.5em"/>
 {% else %}
-<h1 style="color:{{team.color}};">Team {{team.name}}</h1>
+<h1 class={{team}}>Team {{team.name}}</h1>
 {% endif %}
 <table width="100%" style="padding-top:1em;">
   {% for g in group_list %}
@@ -12,7 +12,7 @@
   {% endfor %}
 
 </table>
-  <p><span style="color:{{team.color}};">Team {{team.name}}</span> has {{team_size}} peakers, and has counted a total of {{team_steps}} steps.</p>
+  <p><span class={{team}}>Team {{team.name}}</span> has {{team_size}} peakers, and has counted a total of {{team_steps}} steps.</p>
   <p><h3 style="padding-top:5em;padding-bottom:5em;">Team Infographics [COMING SOON]</h3></p>
   <h3>Interesting Facts About the {{team.name}} Tree</h3>
   <p>{{team.description|safe}}</p>

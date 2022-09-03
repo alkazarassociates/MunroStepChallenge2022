@@ -98,7 +98,7 @@ def large_entry(request):
 
     return render(request, 'steps/large_entry.html', {'form': form, 'submitted': submitted, 'peaker': request.user})
 
-@login_required(login_url=reverse_lazy('login'))
+@login_required(login_url=reverse_lazy('login'))    
 def peaker_modification(request):
     submitted = False
     if request.method == 'POST':

@@ -3,26 +3,26 @@
 {% block content %}
 <h1>Welcome to the Munro Step Challenge - Team Challenge 2022 </h1>
 
-<p>Our fifth team challenge is underway and we're hoping to make it our best yet.</p>
-<p>Our Goal: 450 Million steps together in September (for teams wanting the extra challenge that’s at least 50 million steps per team)</p>
+<p>Our fifth team challenge is underway and we&rsquo;re hoping to make it our best yet.</p>
+<p>Our Goal: 450 Million steps together in September (for teams wanting the extra challenge that&rsquo;s at least 50 million steps per team)</p>
 <p>The Reason:  September is  Blood Cancer Awareness Month so we are raising awareness and funds for Blood Cancer UK. They really appreciate our enthusiasm and support.</p>
 <b><em>So, are we ready!?!</em></b>
 
 <p>~Mike and Cheryl</p>
   
 {% if user.is_authenticated %}
-  <div style="border-width: 2px;border-style: solid;border-color: black; padding: 1em">
+  <div class="boxed">
     <p>You are registered as <strong>{{ user.username }}</strong></p>
     <p>You are on {% include 'teams/team_link.html' with team=user.profile.team %}</p> 
     {% if user.profile.group %}
       <p>You are part of <strong>{{ user.profile.group }}</strong></p>
     {% endif %}
     <p>You have walked {{total_steps}} steps so far--{% if total_steps %}Keep it up{% else %}Let's get going{% endif %}!</p>
+    <p>You can modify your user profile (password, group, metric or US units) <a href="peaker/">here</a>.</p>
   </div>
-  <p>Want to change what MPC Group you are teamed with?  You can modify your profile <a href="peaker/">here</a>.</p>
   
 {% else %}
-  <p>You can register to participate <a href="/register">here</a>.</p>
+  <p>You can register to participate <a href={% url 'peaker_register' %}>here</a>.</p>
   <p>Or if you have already registered, you can login <a href="{% url 'login' %}?next=/">here</a>.</p>
 {% endif %}
 {% endblock content %}

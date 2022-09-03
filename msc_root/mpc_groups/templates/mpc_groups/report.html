@@ -3,6 +3,7 @@
 {% block title %}{{group}}{% endblock title %}
 
 {% block content %}
+{% load humanize %}
 <h1 class="boxed" style="text-align: center;">{{group}}</h1>
 <table class="mpcreport">
   <caption><em>Daily Totals</em></caption>
@@ -13,7 +14,7 @@
     {% for day_total in day_totals %}
     <tr class="{% cycle 'odd_row' 'even_row' as rowstyle %}">
       <td style="text-align: left";>{{day_total.day}}</td>
-      <td>{{day_total.steps}}</td>
+      <td>{{day_total.steps|intcomma}}</td>
       <td>{{day_total.distance|floatformat:2}}</td>
     </tr>
     {% endfor %}
@@ -28,7 +29,7 @@
       {% for peaker_total in peaker_totals %}
       <tr class="{% cycle 'odd_row' 'even_row' as rowstyle %}">
         <td style="text-align: left">{{peaker_total.peaker}}</td>
-        <td>{{peaker_total.steps}}</td>
+        <td>{{peaker_total.steps|intcomma}}</td>
       </tr>
       {% endfor %}
     </tbody>

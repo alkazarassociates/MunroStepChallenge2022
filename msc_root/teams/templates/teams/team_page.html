@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 
+{% block title %}Team {{team}}{% endblock title %}
+
 {% block content %}
+{% load humanize %}
 {% if team.picture %}
 <img src='{{team.picture}}' alt="Team {{team.name}}" style="width: 100%;padding-top:1.5em"/>
 {% else %}
@@ -8,12 +11,26 @@
 {% endif %}
 <table width="100%" style="padding-top:1em;">
   {% for g in group_list %}
-  <tr><td>{{g.0}}</td><td>{{g.1}}</td><td>{{g.2}}</td></tr>
+  <tr><td>{{g.0|safe}}</td><td>{{g.1|safe}}</td><td>{{g.2|safe}}</td></tr>
   {% endfor %}
-
 </table>
-  <p><span class={{team}}>Team {{team.name}}</span> has {{team_size}} peakers, and has counted a total of {{team_steps}} steps.</p>
-  <p><h3 style="padding-top:5em;padding-bottom:5em;">Team Infographics [COMING SOON]</h3></p>
-  <h3>Interesting Facts About the {{team.name}} Tree</h3>
-  <p>{{team.description|safe}}</p>
-  {% endblock content %}
+
+<p><span class={{team}}>Team {{team.name}}</span> has {{team_size}} peakers, and has counted a total of {{team_steps|intcomma}} steps.</p>
+<table class="mpcreport">
+  <caption><em>Daily Totals</em></caption>
+  <thead>
+    <tr><th>Date</th><th>Steps</th><th>{{unit_name}}</th></tr>
+  </thead>
+  <tbody>
+    {% for day_total in day_totals %}
+    <tr class="{% cycle 'odd_row' 'even_row' as rowstyle %}">
+      <td style="text-align: left";>{{day_total.day}}</td>
+      <td>{{day_total.steps|intcomma}}</td>
+      <td>{{day_total.distance|floatformat:2}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<h3>Interesting Facts About the {{team.name}} Tree</h3>
+<p>{{team.description|safe}}</p>
+ {% endblock content %}

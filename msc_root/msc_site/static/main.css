@@ -24,6 +24,9 @@ body {
 	text-align: justify;
 	color: #474747;
 }
+tt {
+	font-size: 1.4em;
+}
 #footer {
 	text-align: center;
 	font-size: 0.8em;
@@ -125,4 +128,23 @@ tr.even_row td {
 	border-style: solid;
 	border-color: black; 
 	padding: 1em;
+}
+
+table.mpcreport {
+	margin-top: 1em;
+	border: 1px solid black;
+	width: 100%;
+}
+
+table.mpcreport caption {
+	text-align: left;
+}
+
+table.mpcreport thead th {
+	text-align: center;
+}
+
+table.mpcreport td {
+	border: 1px solid black;
+	text-align: right;
 }

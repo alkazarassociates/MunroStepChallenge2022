@@ -6,14 +6,18 @@
 <h1>Recorded Steps</h1>
 
 <p>We have the following days steps recorded for you:</p>
-<table style="border: 1px solid black;width: 100%;">
-    <tr><th style="text-align: center;"">Date</th><th style="text-align: center;"">Steps</th><th style="text-align: center">{{unit_name}}</th></tr>
+<table class="mpcreport">
+  <thead>
+    <tr><th>Date</th><th>Steps</th><th>{{unit_name}}</th></tr>
+  </thead>
+  <tbody>
     {% for se in steps %}
-    <tr class="{% cycle 'odd_row' 'even_row' as rowstyle %}">
-        <td style="border: 1px solid black;">{{se.day}}</td>
-        <td style="border: 1px solid black;text-align:right;">{{se.steps}}</td>
-        <td style="border: 1px solid black;text-align: right;">{{se.distance|floatformat:2}}</td>
+    <tr class="{% cycle 'odd_row' 'even_row' %}">
+        <td style="text-align: left;">{{se.day}}</td>
+        <td>{{se.steps}}</td>
+        <td>{{se.distance|floatformat:2}}</td>
     </tr>
     {% endfor %}
+  </tbody>
 </table>
 {% endblock content %}

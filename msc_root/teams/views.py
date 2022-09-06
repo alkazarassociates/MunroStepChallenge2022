@@ -18,8 +18,8 @@ def amp(text):
 def pp(text):
     return nb(amp(text))
 
-def team_page(request, args):
-    team = Team.objects.get(name=args)
+def team_page(request, team_name):
+    team = Team.objects.get(name=team_name)
     group_list = MpcGroup.objects.filter(team=team).order_by('name')
     groups = [pp(group.name) for group in group_list]
     while len(groups) % 3 != 0:

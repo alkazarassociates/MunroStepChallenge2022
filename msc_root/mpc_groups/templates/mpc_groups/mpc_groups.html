@@ -23,6 +23,6 @@
     </tr>
     {% endfor %}
     <tr><td>&nbsp;</td></tr>
-    <tr><td>Registered without a group:</td><td style="text-align:center">{{no_group_count}}</td></tr>
+    <tr><td><a href={% url 'group_report' 'Peakers United' %}>Peakers United</a>(Registered without a group)</td><td style="text-align:center">{{no_group_count}}</td></tr>
   </table>
   {% endblock content %}

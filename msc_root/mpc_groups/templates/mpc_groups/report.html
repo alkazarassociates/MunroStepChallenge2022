@@ -21,15 +21,26 @@
   </tbody>
 </table>
 <table class="mpcreport">
-  <caption><em>Peaker Totals</em><a href="{% url 'group_report' group %}?sorted=False" style="padding-right: 1em;padding-left: 1em;"><small>Alpha</small></a><a href="{% url 'group_report' group %}?sorted=True"><small>Top Steps</small></a></div>
+  <caption><em>Peaker Totals</em><a href="{% url 'group_report' group %}?sort=Alpha" style="padding-right: 1em;padding-left: 1em;"><small>Alpha</small></a><a href="{% url 'group_report' group %}?sort=Steps"><small>Top Steps</small></a>
+  {% if show_teams %}
+    <a href="{% url 'group_report' group %}?sort=Team" style="left-padding: 2em;"><small>Team</small></a>
+  {% endif %}
+  </div>
     <thead>
-      <tr><th>Peaker</th><th>Steps</th></tr>
+      <tr><th>Peaker</th><th>Steps</th>
+        {% if show_teams %}
+        <th>Team</th>
+        {% endif %}
+      </tr>
     </thead>
     <tbody>
       {% for peaker_total in peaker_totals %}
       <tr class="{% cycle 'odd_row' 'even_row' as rowstyle %}">
         <td style="text-align: left">{{peaker_total.peaker}}</td>
         <td>{{peaker_total.steps|intcomma}}</td>
+        {% if show_teams and peaker_total.team %}
+          <td>{% include 'teams/team_link.html' with team=peaker_total.team %}</td>
+        {% endif %}
       </tr>
       {% endfor %}
     </tbody>

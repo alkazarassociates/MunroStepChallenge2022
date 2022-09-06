@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
 from steps.models import StepEntry
+from teams.models import Team
 from .forms import MpcAdminRegistrationForm
 from .models import GroupModifications, MpcGroup
 
@@ -46,7 +47,10 @@ def members(request, group):
 @login_required(login_url=reverse_lazy('login'))
 def report(request, group):
     try:
-        g = MpcGroup.objects.get(name=group)
+        if group=='Peakers United':
+            g = None
+        else:
+            g = MpcGroup.objects.get(name=group)
     except MpcGroup.DoesNotExist:
         raise Http404("No Such Group")
     dates = StepEntry.objects.distinct('date').values_list('date')
@@ -67,20 +71,30 @@ def report(request, group):
         day_totals.append({'day': day, 'steps': steps, 'distance': distance})
     day_totals.append({'day': 'Total', 'steps': step_total, 'distance': distance_total})
 
-    peakers = StepEntry.objects.filter(peaker__profile__group=g).distinct('peaker').values_list('peaker', 'peaker__username')
+    peakers = StepEntry.objects.filter(peaker__profile__group=g).distinct('peaker').values_list('peaker', 'peaker__username', 'peaker__profile__team')
     peaker_totals = []
     step_total = 0
     for peaker_wrap in peakers:
+        if peaker_wrap[1] == 'admin':
+            continue
+        if peaker_wrap[2] is None:
+            continue
         peaker = peaker_wrap[0]
         steps = StepEntry.objects.filter(peaker=peaker).aggregate(Sum('steps'))['steps__sum'] or 0
         step_total += steps
-        peaker_totals.append({'peaker': peaker_wrap[1], 'steps': steps})
+        team = None if g else Team.objects.get(pk=peaker_wrap[2])
+        peaker_totals.append({'peaker': peaker_wrap[1], 'steps': steps, 'team': team})
     # Sort these alphabetically or by total.
-    if request.GET.get('sorted', 'False') == 'True':
+    sort_by = request.GET.get('sort', 'Alpha') 
+    if  sort_by == 'Steps':
         peaker_totals.sort(key=lambda t: t['steps'], reverse=True)
+    elif sort_by == 'Team':
+        peaker_totals.sort(key=lambda t: t['team'].name)
     else:
         peaker_totals.sort(key=lambda t: t['peaker'].lower())
 
     peaker_totals.append({'peaker': 'Total', 'steps': step_total})
-    context = {'group': g, 'unit_name': unit_name, 'day_totals': day_totals, 'peaker_totals': peaker_totals, 'sort': 'Top steps' if request.GET.get('sorted', False) else 'Alpha'}
+    context = {'group': g or 'Peakers United', 'unit_name': unit_name, 'day_totals': day_totals, 'peaker_totals': peaker_totals, 'sort': request.GET.get('sort', 'Alpha'),
+        'show_teams': (g is None)
+    }
     return render(request, 'mpc_groups/report.html', context)

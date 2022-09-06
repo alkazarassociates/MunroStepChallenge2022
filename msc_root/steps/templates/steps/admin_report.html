@@ -5,5 +5,27 @@
 {% block content %}
 <h1>Admin Report</h1>
 
-<p>Admin report</p>
+<table class="mpcreport">
+    <Caption>Never Logged In  ({{never_logged_in_users|length}} peakers)</Caption>
+    <thead><th>Peaker</th><th>Group</th></thead>
+    <tbody>
+        {% for user in never_logged_in_users %}
+        <tr class={% cycle 'odd_row' 'even_row' %}><td style="text-align: left;">{{user.username}}</td>
+        <td>{{user.profile.group}}</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<table class="mpcreport">
+    <caption>Never logged steps  ({{no_steps|length}} peakers)</caption>
+    <thead><th>Peaker</th><th>Group</th></thead>
+    <tbody>
+        {% for user in no_steps %}
+        <tr class={% cycle 'odd_row' 'even_row' %}>
+            <td style="text-align: left;">{{user.username}}</td>
+            <td>{{user.profile.group}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock content %}

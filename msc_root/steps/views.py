@@ -179,5 +179,8 @@ def overwrite_confirm(request):
 
 @staff_member_required
 def admin_report(request):
-    context = {}
+    never_logged_in_users = User.objects.filter(last_login=None).order_by('profile__group__name')
+    never_logged_steps = User.objects.exclude(pk__in=StepEntry.objects.values_list('peaker')).exclude(pk__in=never_logged_in_users).order_by('profile__group__name')
+
+    context = {'never_logged_in_users': never_logged_in_users, 'no_steps': never_logged_steps}
     return render(request, 'steps/admin_report.html', context)

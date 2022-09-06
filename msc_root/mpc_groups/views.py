@@ -47,7 +47,9 @@ def members(request, group):
 @login_required(login_url=reverse_lazy('login'))
 def report(request, group):
     try:
-        if group=='Peakers United':
+        if isinstance(group, list):
+            g = 'Custom Group'
+        elif group=='Peakers United':
             g = None
         else:
             g = MpcGroup.objects.get(name=group)
@@ -64,14 +66,22 @@ def report(request, group):
         conv = 0.45 / 1000.0
     for date in dates:
         day = date[0]
-        steps = StepEntry.objects.filter(date=day, peaker__profile__group=g).aggregate(Sum('steps'))['steps__sum'] or 0
+        if isinstance(group, list):
+            entries = StepEntry.objects.filter(date=day, peaker__username__in=group)
+        else:
+            entries = StepEntry.objects.filter(date=day, peaker__profile__group=g)
+        steps = entries.aggregate(Sum('steps'))['steps__sum'] or 0
         step_total += steps
         distance = conv * steps
         distance_total += distance
         day_totals.append({'day': day, 'steps': steps, 'distance': distance})
     day_totals.append({'day': 'Total', 'steps': step_total, 'distance': distance_total})
 
-    peakers = StepEntry.objects.filter(peaker__profile__group=g).distinct('peaker').values_list('peaker', 'peaker__username', 'peaker__profile__team')
+    if isinstance(group, list):
+        entries = StepEntry.objects.filter(peaker__username__in=group)
+    else:
+        entries = StepEntry.objects.filter(peaker__profile__group=g)
+    peakers = entries.distinct('peaker').values_list('peaker', 'peaker__username', 'peaker__profile__team')
     peaker_totals = []
     step_total = 0
     for peaker_wrap in peakers:
@@ -98,3 +108,6 @@ def report(request, group):
         'show_teams': (g is None)
     }
     return render(request, 'mpc_groups/report.html', context)
+
+def pseudo_group_report(request):
+    return report(request, request.GET.getlist('members[]'))

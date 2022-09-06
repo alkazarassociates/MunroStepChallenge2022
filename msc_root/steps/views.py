@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.views.generic import CreateView
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 
@@ -175,3 +176,8 @@ def overwrite_confirm(request):
             submitted = True
 
     return render(request, 'steps/overwrite.html', {'form': form, 'submitted': submitted, 'peaker': request.user, 'existing': existing, 'sum_steps': sum_steps})
+
+@staff_member_required
+def admin_report(request):
+    context = {}
+    return render(request, 'steps/admin_report.html', context)

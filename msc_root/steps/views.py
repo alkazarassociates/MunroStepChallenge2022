@@ -18,6 +18,11 @@ class Register(CreateView):
     form_class = PeakerRegistrationForm
     success_url = reverse_lazy('register-success')
 
+    # TODO 2023
+    #  Consider email for password resets.
+    # TimeZone.
+    # More than one groups.
+
     def form_valid(self, form):
         form.save()
         # Now save the profile

@@ -5,12 +5,18 @@
 {% block content %}
 <h1>Peakers Registered with {{group}}</h1>
   <table>
+    <caption><span style="text-align: right;">(<span style="color:red";>Red</span> means no steps logged)</span></caption>
     <tr>
       <th>Peaker</th>
     </tr>
     {% for peaker in peakers %}
     <tr class="{% cycle 'odd_row' 'even_row' as rowstyle %}">
-      <td>{{peaker.username}}</td>
+      {% if peaker.has_steps %}
+        <td style="color:black;">
+      {% else %}
+        <td style="color:red;">
+      {% endif %}
+        {{peaker.username}}</td>
     </tr>
     {% endfor %}
   </table>

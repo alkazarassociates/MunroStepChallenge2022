@@ -42,6 +42,9 @@ def members(request, group):
     except MpcGroup.DoesNotExist:
         raise Http404("No Such Group")
     context = {'group': g, 'peakers': User.objects.filter(profile__group=g).order_by('username')}
+    # Perhaps this could be an annotation, but I don't know how yet.
+    for p in context['peakers']:
+        p.has_steps = StepEntry.objects.filter(peaker=p).exists()
     return render(request, 'mpc_groups/members.html', context)
 
 @login_required(login_url=reverse_lazy('login'))

@@ -3,29 +3,47 @@
 {% block title %}Admin Report{% endblock title %}
 
 {% block content %}
+{% load humanize %}
 <h1>Admin Report</h1>
 
 <table class="mpcreport">
-    <Caption>Never Logged In  ({{never_logged_in_users|length}} peakers)</Caption>
-    <thead><th>Peaker</th><th>Group</th></thead>
+    <Caption>Team Totals</Caption>
+    <thead><th>Team</th><th>Steps</th><th>{{team_data.unit_name}}</th></thead>
     <tbody>
-        {% for user in never_logged_in_users %}
-        <tr class={% cycle 'odd_row' 'even_row' %}><td style="text-align: left;">{{user.username}}</td>
-        <td>{{user.profile.group}}</td></tr>
-        {% endfor %}
-    </tbody>
-</table>
-
-<table class="mpcreport">
-    <caption>Never logged steps  ({{no_steps|length}} peakers)</caption>
-    <thead><th>Peaker</th><th>Group</th></thead>
-    <tbody>
-        {% for user in no_steps %}
+        {% for entry in team_data.data %}
         <tr class={% cycle 'odd_row' 'even_row' %}>
-            <td style="text-align: left;">{{user.username}}</td>
-            <td>{{user.profile.group}}</td>
+            <td style="text-align: left;">{{entry.key}}</td>
+            <td>{{entry.steps|intcomma}}</td>
+            <td>{{entry.distance|floatformat:2}}</td>
         </tr>
         {% endfor %}
     </tbody>
+    <tfoot>
+        <tr>
+            <td style="text-align: center;"">Total</td>
+            <td>{{team_data.total_steps|intcomma}}</td>
+            <td>{{team_data.total_distance|floatformat:2}}</td>
+        </tr>
+    </tfoot>
 </table>
-{% endblock content %}
+
+<table class="mpcreport">
+    <Caption>Group Totals</Caption>
+    <thead><th>Group</th><th>Steps</th><th>{{group_data.unit_name}}</th></thead>
+    <tbody>
+        {% for entry in group_data.data %}
+        <tr class={% cycle 'odd_row' 'even_row' %}>
+            <td style="text-align: left;">{{entry.key}}</td>
+            <td>{{entry.steps|intcomma}}</td>
+            <td>{{entry.distance|floatformat:2}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td style="text-align: center;"">Total</td>
+            <td>{{team_data.total_steps|intcomma}}</td>
+            <td>{{team_data.total_distance|floatformat:2}}</td>
+        </tr>
+    </tfoot>
+</table>{% endblock content %}

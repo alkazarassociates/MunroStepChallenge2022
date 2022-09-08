@@ -6,6 +6,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 
+from collections import defaultdict
 import datetime
 
 from .models import Profile, StepEntry
@@ -177,10 +178,34 @@ def overwrite_confirm(request):
 
     return render(request, 'steps/overwrite.html', {'form': form, 'submitted': submitted, 'peaker': request.user, 'existing': existing, 'sum_steps': sum_steps})
 
+class StepData:
+    def __init__(self, step_data, unit_name, conversion, empty_key_name='---'):
+        self.unit_name = unit_name
+        self.data = []
+        self.total_steps = 0
+        self.total_distance = 0.0
+        for key in sorted(step_data.keys(), key=lambda x: x.name if x else empty_key_name):
+            self.data.append({'key': key.name if key else empty_key_name,
+                              'steps': step_data[key],
+                              'distance': step_data[key] * conversion})
+            self.total_steps += step_data[key]
+        self.total_distance = self.total_steps * conversion
+
+        
 @staff_member_required
 def admin_report(request):
-    never_logged_in_users = User.objects.filter(last_login=None).order_by('profile__group__name')
-    never_logged_steps = User.objects.exclude(pk__in=StepEntry.objects.values_list('peaker')).exclude(pk__in=never_logged_in_users).order_by('profile__group__name')
-
-    context = {'never_logged_in_users': never_logged_in_users, 'no_steps': never_logged_steps}
-    return render(request, 'steps/admin_report.html', context)
+    #never_logged_in_users = User.objects.filter(last_login=None).order_by('profile__group__name')
+    #never_logged_steps = User.objects.exclude(pk__in=StepEntry.objects.values_list('peaker')).exclude(pk__in=never_logged_in_users).order_by('profile__group__name')
+    unit_name = 'Kilometers'
+    conv = 0.7242 / 1000.0
+    if request.user.profile.imperial:
+        unit_name = 'Miles'
+        conv = 0.45 / 1000.0
+    team_step_data = defaultdict(int)
+    group_step_data = defaultdict(int)
+    for entry in StepEntry.objects.all():
+        team = entry.peaker.profile.team
+        group = entry.peaker.profile.group
+        team_step_data[team] += entry.steps
+        group_step_data[group] += entry.steps
+    return render(request, 'steps/admin_report.html', {'team_data': StepData(team_step_data, unit_name, conv), 'group_data': StepData(group_step_data, unit_name, conv, 'Peakers United')})

@@ -203,9 +203,14 @@ def admin_report(request):
         conv = 0.45 / 1000.0
     team_step_data = defaultdict(int)
     group_step_data = defaultdict(int)
-    for entry in StepEntry.objects.all():
-        team = entry.peaker.profile.team
-        group = entry.peaker.profile.group
-        team_step_data[team] += entry.steps
-        group_step_data[group] += entry.steps
+    peaker_cache = {}
+    for entry in StepEntry.objects.values('peaker', 'steps'):
+        profile = peaker_cache.get(entry['peaker'], None)
+        if not profile:
+            peaker_cache[entry['peaker']] = Profile.objects.get(pk=entry['peaker'])
+            profile = peaker_cache.get(entry['peaker'])
+        team = profile.team
+        group = profile.group
+        team_step_data[team] += entry['steps']
+        group_step_data[group] += entry['steps']
     return render(request, 'steps/admin_report.html', {'team_data': StepData(team_step_data, unit_name, conv), 'group_data': StepData(group_step_data, unit_name, conv, 'Peakers United')})

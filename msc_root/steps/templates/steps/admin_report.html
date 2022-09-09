@@ -29,9 +29,11 @@
 
 <table class="mpcreport">
     <Caption>Group Totals</Caption>
-    <thead><th>Group</th><th>Steps</th><th>{{group_data.unit_name}}</th></thead>
+    <thead><th>Group</th><th>Steps</th><th>{{group_data.0.1.unit_name}}</th></thead>
+    {% for gd in group_data %}
     <tbody>
-        {% for entry in group_data.data %}
+        <tr><td>{{gd.0}}</td></tr>
+        {% for entry in gd.1.data %}
         <tr class={% cycle 'odd_row' 'even_row' %}>
             <td style="text-align: left;">{{entry.key}}</td>
             <td>{{entry.steps|intcomma}}</td>
@@ -39,6 +41,7 @@
         </tr>
         {% endfor %}
     </tbody>
+    {% endfor %}
     <tfoot>
         <tr>
             <td style="text-align: center;"">Total</td>

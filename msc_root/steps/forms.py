@@ -36,15 +36,23 @@ class StepEntryForm(ModelForm):
 
 
 class PeakerRegistrationForm(UserCreationForm):
-    group_field = forms.ModelChoiceField(label='Ambassador Group', queryset=MpcGroup.objects.all().order_by('name'), empty_label='None, pick a Team for me.', required=False)
+    group_field = forms.ModelChoiceField(label='Ambassador Group', queryset=MpcGroup.objects.none(), empty_label='None, pick a Team for me.', required=False)
     class Meta(UserCreationForm.Meta):
         pass
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
 class PeakerModificationForm(ModelForm):
-    group = forms.ModelChoiceField(label='Group', queryset=MpcGroup.objects.all().order_by('name'), empty_label='None, pick a Team for me.', required=False)
+    group = forms.ModelChoiceField(label='Group', queryset=MpcGroup.objects.none().order_by('name'), empty_label='None, pick a Team for me.', required=False)
     required_css_class = 'required'
+
+    def __init__(self, *args, **kwargs):
+        current_group = kwargs.pop('current_group', None)
+        super().__init__(*args, **kwargs)
+
+        if current_group:
+            self.fields['group'].queryset = MpcGroup.objects.filter(pk=current_group)
+    
     class Meta:
         model = Profile
         fields = [ 'group', 'imperial']

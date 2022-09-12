@@ -114,6 +114,7 @@ def peaker_modification(request):
             entry = form.save(commit=False)
             try:
                 entry.peaker = request.user
+                # TODO BUG This should only change team when the group has been changed.
                 if entry.group and entry.group.team:
                     entry.team = entry.group.team
                 if not entry.team:

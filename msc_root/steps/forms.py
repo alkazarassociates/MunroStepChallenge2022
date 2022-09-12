@@ -43,16 +43,19 @@ class PeakerRegistrationForm(UserCreationForm):
         super().__init__(*args, **kwargs)
 
 class PeakerModificationForm(ModelForm):
-    group = forms.ModelChoiceField(label='Group', queryset=MpcGroup.objects.none().order_by('name'), empty_label='None, pick a Team for me.', required=False)
+    # This code for disallowing group changes.
+    #group = forms.ModelChoiceField(label='Group', queryset=MpcGroup.objects.none().order_by('name'), empty_label='None, pick a Team for me.', required=False)
     required_css_class = 'required'
 
     def __init__(self, *args, **kwargs):
         current_group = kwargs.pop('current_group', None)
         super().__init__(*args, **kwargs)
 
-        if current_group:
-            self.fields['group'].queryset = MpcGroup.objects.filter(pk=current_group)
+        # When disallowing group switching, this code is how we can modify the drop down.
+        #if current_group:
+        # BUG: This seems for force the "pick a group for me", even when not intended.
+        #    self.fields['group'].queryset = MpcGroup.objects.filter(pk=current_group)
     
     class Meta:
         model = Profile
-        fields = [ 'group', 'imperial']
+        fields = [ 'imperial']

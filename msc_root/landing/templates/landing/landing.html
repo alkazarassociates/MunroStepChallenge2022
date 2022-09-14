@@ -1,13 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% load static %}
 <h1>Welcome to the Munro Step Challenge - Team Challenge 2022 </h1>
 
 <p>Our fifth team challenge is underway and we&rsquo;re hoping to make it our best yet.</p>
+<p>We are circumnavigating the world at the equator:</p>
+<img src={% static 'TSC2022mapping.jpg' %} alt="map of the world" width="600" />
+<img src={% static 'EqualtorialCircumnavigationLegs.jpg' %} alt="table of steps" width="600" />
 <p>Our Goal: 450 Million steps together in September (for teams wanting the extra challenge that&rsquo;s at least 50 million steps per team)</p>
 <p>The Reason:  September is  Blood Cancer Awareness Month so we are raising awareness and funds for Blood Cancer UK. They really appreciate our enthusiasm and support.</p>
-<b><em>So, are we ready!?!</em></b>
-
 <p>~Mike and Cheryl</p>
   
 {% if user.is_authenticated %}

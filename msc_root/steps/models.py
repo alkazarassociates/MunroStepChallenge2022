@@ -8,6 +8,7 @@ from django.dispatch import receiver
 from mpc_groups.models import MpcGroup
 from teams.models import Team
 
+# TODO 2023 Add time zone.  Consider email, for password resets.
 class Profile(models.Model):
     peaker = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     group = models.ForeignKey(MpcGroup, null=True, blank=True, on_delete=models.SET_NULL)

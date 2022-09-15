@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
+from django.forms.models import model_to_dict
 
 from collections import defaultdict
 import datetime
@@ -111,20 +112,30 @@ def peaker_modification(request):
     if request.method == 'POST':
         form = PeakerModificationForm(request.POST)
         if form.is_valid():
+            original_group = request.user.profile.group
+            original_team = request.user.profile.team
             entry = form.save(commit=False)
             try:
+                # print(model_to_dict(entry))
                 entry.peaker = request.user
+                # TEMPORARY: The Group field is disabled, so make sure
+                # it doesn't accidentally change here.
+                entry.group = original_group
+                entry.team = original_team
+                # print(model_to_dict(entry))
+
                 # TODO BUG This should only change team when the group has been changed.
                 if entry.group and entry.group.team:
                     entry.team = entry.group.team
-                if not entry.team:
+                if not request.user.profile.team and not entry.team:
                     # We need to calculate what team to put this peaker on.
                     counter = {}
                     for team in Team.objects.filter(auxiliary=False):
                         counter[team] = User.objects.filter(profile__team=team).count()
                     entry.team = min(counter, key=counter.get)
-            except Exception:
-                pass
+            except Exception as e:
+                print(e)
+            #print(model_to_dict(entry))
             entry.save()
             return HttpResponseRedirect('/peaker/?submitted=True')
     else:

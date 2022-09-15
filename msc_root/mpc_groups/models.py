@@ -1,6 +1,8 @@
 from django.db import models
 from teams.models import Team
 
+# TODO 2023: Make an explicit "Peakers United" group, to be able to distinguish between people
+# unassigned, and assigned by us.
 class MpcGroup(models.Model):
     name = models.CharField('Name', max_length=60, unique=True)
     team = models.ForeignKey(Team, on_delete=models.CASCADE)

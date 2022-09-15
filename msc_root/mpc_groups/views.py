@@ -38,7 +38,10 @@ def register(request):
 @login_required(login_url=reverse_lazy('login'))
 def members(request, group):
     try:
-        g = MpcGroup.objects.get(name=group)
+        if group == 'Peakers United':
+            g = None
+        else:
+            g = MpcGroup.objects.get(name=group)
     except MpcGroup.DoesNotExist:
         raise Http404("No Such Group")
     context = {'group': g, 'peakers': User.objects.filter(profile__group=g).order_by('username')}

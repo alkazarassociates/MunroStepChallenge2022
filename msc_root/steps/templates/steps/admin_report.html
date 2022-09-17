@@ -8,11 +8,12 @@
 
 <table class="mpcreport">
     <Caption>Team Totals</Caption>
-    <thead><th>Team</th><th>Steps</th><th>{{team_data.unit_name}}</th></thead>
+    <thead><th>Team</th><th>Participating</th><th>Steps</th><th>{{team_data.unit_name}}</th></thead>
     <tbody>
         {% for entry in team_data.data %}
         <tr class={% cycle 'odd_row' 'even_row' %}>
             <td style="text-align: left;">{{entry.key}}</td>
+            <td>{{entry.num_peakers}}</td>
             <td>{{entry.steps|intcomma}}</td>
             <td>{{entry.distance|floatformat:2}}</td>
         </tr>
@@ -21,6 +22,7 @@
     <tfoot>
         <tr>
             <td style="text-align: center;"">Total</td>
+            <td>{{team_data.total_peakers}}</td>
             <td>{{team_data.total_steps|intcomma}}</td>
             <td>{{team_data.total_distance|floatformat:2}}</td>
         </tr>
@@ -29,13 +31,14 @@
 
 <table class="mpcreport">
     <Caption>Group Totals</Caption>
-    <thead><th>Group</th><th>Steps</th><th>{{group_data.0.1.unit_name}}</th></thead>
+    <thead><th>Group</th><th>Participating</th><th>Steps</th><th>{{group_data.0.1.unit_name}}</th></thead>
     {% for gd in group_data %}
     <tbody>
         <tr><td>{{gd.0}}</td></tr>
         {% for entry in gd.1.data %}
         <tr class={% cycle 'odd_row' 'even_row' %}>
             <td style="text-align: left;">{{entry.key}}</td>
+            <td>{{entry.num_peakers}}</td>
             <td>{{entry.steps|intcomma}}</td>
             <td>{{entry.distance|floatformat:2}}</td>
         </tr>
@@ -45,6 +48,7 @@
     <tfoot>
         <tr>
             <td style="text-align: center;"">Total</td>
+            <td>&nbsp;</td>
             <td>{{team_data.total_steps|intcomma}}</td>
             <td>{{team_data.total_distance|floatformat:2}}</td>
         </tr>

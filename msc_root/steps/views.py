@@ -191,15 +191,18 @@ def overwrite_confirm(request):
     return render(request, 'steps/overwrite.html', {'form': form, 'submitted': submitted, 'peaker': request.user, 'existing': existing, 'sum_steps': sum_steps})
 
 class StepData:
-    def __init__(self, step_data, unit_name, conversion, empty_key_name='---'):
+    def __init__(self, step_data, peaker_sets, unit_name, conversion, empty_key_name='---'):
         self.unit_name = unit_name
         self.data = []
+        self.total_peakers = 0
         self.total_steps = 0
         self.total_distance = 0.0
         for key in sorted(step_data.keys(), key=lambda x: x.name if x else empty_key_name):
             self.data.append({'key': key.name if key else empty_key_name,
                               'steps': step_data[key],
-                              'distance': step_data[key] * conversion})
+                              'distance': step_data[key] * conversion,
+                              'num_peakers': len(peaker_sets[key])})
+            self.total_peakers += len(peaker_sets[key])
             self.total_steps += step_data[key]
         self.total_distance = self.total_steps * conversion
 
@@ -214,7 +217,9 @@ def admin_report(request):
         unit_name = 'Miles'
         conv = 0.45 / 1000.0
     team_step_data = defaultdict(int)
+    team_peakers = defaultdict(set)
     group_step_data = {}
+    group_peakers = {}
     peaker_cache = {}
     for entry in StepEntry.objects.values('peaker', 'steps'):
         profile = peaker_cache.get(entry['peaker'], None)
@@ -224,10 +229,13 @@ def admin_report(request):
         team = profile.team
         group = profile.group
         team_step_data[team] += entry['steps']
+        team_peakers[team].add(entry['peaker'])
         if team not in group_step_data:
             group_step_data[team] = defaultdict(int)
+            group_peakers[team] = defaultdict(set)
         group_step_data[team][group] += entry['steps']
+        group_peakers[team][group].add(entry['peaker'])
     # Create separate group StepDatas for each team
-    group_step_data_objects = [(t.name, StepData(group_step_data[t], unit_name, conv, 'Peakers United')) for t in group_step_data]
+    group_step_data_objects = [(t.name, StepData(group_step_data[t], group_peakers[t], unit_name, conv, 'Peakers United')) for t in group_step_data]
 
-    return render(request, 'steps/admin_report.html', {'team_data': StepData(team_step_data, unit_name, conv), 'group_data': group_step_data_objects})
+    return render(request, 'steps/admin_report.html', {'team_data': StepData(team_step_data, team_peakers, unit_name, conv), 'group_data': group_step_data_objects})

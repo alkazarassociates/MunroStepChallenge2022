@@ -8,12 +8,6 @@
 <p>The Reason:  September is  Blood Cancer Awareness Month-we are raising awareness and funds for Blood Cancer UK. They really appreciate our enthusiasm and support.</p>
 <p>~Mike and Cheryl</p>
 
-<h2>Team Challenge 2022 - Progress to Date </h2> 
-<p>As of 16 September 2022: 250 million steps or 181,000 kilometers.
-   
-<img src={% static 'TSC2022mapping_week2.jpg' %} alt="map of the world" width="600" />
-<img src={% static 'EqualtorialCircumnavigationLegs.jpg' %} alt="table of steps" width="600" />
-
 {% if user.is_authenticated %}
   <div class="boxed">
     <p>You are registered as <strong>{{ user.username }}</strong></p>
@@ -29,4 +23,10 @@
   <p>You can register to participate <a href={% url 'peaker_register' %}>here</a>.</p>
   <p>Or if you have already registered, you can login <a href="{% url 'login' %}?next=/">here</a>.</p>
 {% endif %}
+
+<h2>Team Challenge 2022 - Progress to Date </h2> 
+<p style="text-align: left;">As of 16 September 2022: 250 million steps or 181,000 kilometers.
+<img src={% static 'TSC2022mapping_week2.jpg' %} alt="map of the world" width="600" />
+<img src={% static 'EqualtorialCircumnavigationLegs.jpg' %} alt="table of steps" width="600" />
+
 {% endblock content %}

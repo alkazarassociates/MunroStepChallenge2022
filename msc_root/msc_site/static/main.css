@@ -12,17 +12,24 @@
 	width: 800px;	
 }
 body {
-	background-image: url('TreeImage.jpg');
 	width: 100%;
-	background-position: center;
+	background-image: url('TreeImage.jpg');
+	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
-	background-color: #E0E0E0;
+	background-attachment: fixed;
+	background-color: aqua;
 	font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 0.9em;
 	text-align: justify;
 	color: #474747;
+}
+@media only screen and (max-width: 600px) {
+	body {
+		background-image: none;	
+		background-color: #E0E0E0;
+	}
 }
 tt {
 	font-size: 1.4em;

@@ -61,6 +61,7 @@ tt {
 	left: 0px;
 	list-style-position: inside;
 	margin-left: -10px;
+	overflow-wrap: break-word;
 }
 #nav li a {
 	text-decoration: none;

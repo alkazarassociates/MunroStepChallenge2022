@@ -25,7 +25,13 @@ body {
 	text-align: justify;
 	color: #474747;
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
+	#header {
+		width: 100%;
+	}
+	#wrapper {
+		width: 100%;
+	}
 	body {
 		background-image: none;	
 		background-color: #E0E0E0;
@@ -60,16 +66,12 @@ tt {
 	text-decoration: none;
 }
 #leftsidebar {
-	width: 180px;
-	height: 350px;
+	width: 20%;
 	float: left;
 }
 #main {
-	width: 560px;
-	float: left;
-	margin-left: 20px;
-	margin-right: 10px;
-	padding-right: 10px;
+	width: 80%;
+	overflow: auto;
 }
 #logo {
 	padding: 10px;

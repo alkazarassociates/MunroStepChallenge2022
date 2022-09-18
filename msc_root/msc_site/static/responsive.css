@@ -19,23 +19,10 @@ body {
 	background-size: cover;
 	background-attachment: fixed;
 	background-attachment: fixed;
-	background-color: aqua;
+	background-color: #E0E0E0;
 	font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 0.9em;
 	text-align: justify;
 	color: #474747;
-}
-@media only screen and (max-width: 800px) {
-	#header {
-		width: 100%;
-	}
-	#wrapper {
-		width: 100%;
-	}
-	body {
-		background-image: none;	
-		background-color: #E0E0E0;
-	}
 }
 tt {
 	font-size: 1.4em;
@@ -71,8 +58,10 @@ tt {
 	float: left;
 }
 #main {
-	width: 80%;
+	max-width: 75%;
 	overflow: auto;
+	padding-left: 1em;
+	padding-right: 1em;
 }
 #logo {
 	padding: 10px;
@@ -162,4 +151,15 @@ table.mpcreport td {
 table.mpcreport tfoot tr {
 	background-color: grey;
 	color: papayawhip;
+}
+@media only screen and (max-width: 800px) {
+	#header {
+		width: 100%;
+	}
+	#wrapper {
+		width: 100%;
+	}
+	body {
+		background-image: none;	
+	}
 }

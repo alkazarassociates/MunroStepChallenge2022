@@ -12,9 +12,9 @@
 	width: 800px;	
 }
 body {
-	background-image: url('TreeImage.jpg');
 	width: 100%;
-	background-position: center;
+	background-image: url('TreeImage.jpg');
+	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
@@ -53,16 +53,12 @@ tt {
 	text-decoration: none;
 }
 #leftsidebar {
-	width: 180px;
-	height: 350px;
+	width: 20%;
 	float: left;
 }
 #main {
-	width: 560px;
-	float: left;
-	margin-left: 20px;
-	margin-right: 10px;
-	padding-right: 10px;
+	width: 80%;
+	overflow: auto;
 }
 #logo {
 	padding: 10px;

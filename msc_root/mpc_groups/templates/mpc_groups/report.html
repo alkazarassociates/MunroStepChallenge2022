@@ -36,7 +36,7 @@
     <tbody>
       {% for peaker_total in peaker_totals %}
       <tr class="{% cycle 'odd_row' 'even_row' as rowstyle %}">
-        <td style="text-align: left">{{peaker_total.peaker}}</td>
+        <td style="text-align: left"><a href={% url 'step_report' peaker_total.peaker|urlencode %}>{{peaker_total.peaker}}</a></td>
         <td>{{peaker_total.steps|intcomma}}</td>
         {% if show_teams and peaker_total.team %}
           <td>{% include 'teams/team_link.html' with team=peaker_total.team %}</td>

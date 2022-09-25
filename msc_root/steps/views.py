@@ -9,6 +9,7 @@ from django.forms.models import model_to_dict
 
 from collections import defaultdict
 import datetime
+import urllib
 
 from .models import Profile, StepEntry
 from .forms import PeakerRegistrationForm, StepEntryForm, PeakerModificationForm
@@ -146,22 +147,29 @@ def peaker_modification(request):
     return render(request, 'steps/peaker.html', {'form': form, 'submitted': submitted, 'peaker': request.user})
 
 @login_required(login_url=reverse_lazy('login'))
-def step_report(request):
+def step_report(request, peaker_name=''):
     unit_name = 'Kilometers'
     conv = 0.7242 / 1000.0
+    # Units depends on the VIEWER, not the peaker whose steps we want
     if request.user.profile.imperial:
         unit_name = 'Miles'
         conv = 0.45 / 1000.0
     step_data = []
     step_total = 0
     distance_total = 0.0
-    for entry in StepEntry.objects.filter(peaker=request.user).all().order_by('date'):
+    if peaker_name:
+        peaker_name = urllib.parse.unquote(peaker_name)
+        peaker = User.objects.get(username=peaker_name)
+    else:
+        peaker_name = 'you'
+        peaker = request.user
+    for entry in StepEntry.objects.filter(peaker=peaker).all().order_by('date'):
         distance = entry.steps * conv
         step_total += entry.steps
         distance_total += distance
         step_data.append({'day': entry.date, 'steps': entry.steps, 'distance': distance})
     step_data.append({'day': 'Total', 'steps': step_total, 'distance': distance_total})
-    return render(request, 'steps/report.html', {'unit_name': unit_name, 'steps': step_data})
+    return render(request, 'steps/report.html', {'unit_name': unit_name, 'steps': step_data, 'peaker_name': peaker_name})
 
 @login_required(login_url=reverse_lazy('login'))
 def overwrite_confirm(request):

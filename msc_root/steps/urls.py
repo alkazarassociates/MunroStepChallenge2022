@@ -8,5 +8,6 @@ urlpatterns = [
     path('report', views.step_report, name='step_report'),
     re_path(r'^report/(?P<peaker_name>[\w%.-]+)/$', views.step_report, name='step_report'),
     path('admin', views.admin_report, name='admin_report'),
-    path('', views.step_entry, name='step_entry'),
+    path('', views.step_entry_denied, name='step_entry'),
+    #path('', views.step_entry, name='step_entry'),
 ]

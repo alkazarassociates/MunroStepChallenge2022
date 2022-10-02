@@ -45,6 +45,10 @@ class Register(CreateView):
         return HttpResponseRedirect(self.success_url)
 
 
+def step_entry_denied(request):
+    return render(request, 'steps/step_entry_denied.html')
+
+
 @login_required(login_url=reverse_lazy('login'))
 def step_entry(request):
     submitted = False

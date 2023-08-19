@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db.models import Sum
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, Http404
@@ -33,7 +34,7 @@ def register(request):
         if 'submitted' in request.GET:
             submitted = True
 
-    return render(request, 'mpc_groups/register.html', {'form': form, 'submitted': submitted})
+    return render(request, 'mpc_groups/register.html', {'form': form, 'submitted': submitted, 'our_email':settings.EMAIL_OUR_ADDRESS})
 
 @login_required(login_url=reverse_lazy('login'))
 def members(request, group):

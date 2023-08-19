@@ -2,14 +2,8 @@
 
 {% block content %}
 {% load static %}
-<h1>Welcome to the Munro Step Challenge-Team Challenge 2022 </h1>
+<h1>Welcome to the Munro Step Challenge-Team Challenge 2023</h1>
 
-<h2>That's a wrap!</h2>
-<p>The 2022 edition of the Team Step Challenge has concluded, with the end of #Steptember.</p>
-<p>We will be putting together a final results page soon, once we have caught our breath.</p>
-<p>Thank you so much to all who accepted the challenge and walked around the world with us!</p>
-<p>~Mike, Cheryl, and Megan</p>
-{% if 0 %}
 <p>Our Goal: 30 days and 450 Million steps together as we circumnavigate the world at the equator. </p>
 <p>The Reason:  September is  Blood Cancer Awareness Month-we are raising awareness and funds for Blood Cancer UK. They really appreciate our enthusiasm and support.</p>
 <p>~Mike, Cheryl and Megan</p>
@@ -17,7 +11,9 @@
 {% if user.is_authenticated %}
   <div class="boxed">
     <p>You are registered as <strong>{{ user.username }}</strong></p>
-    <p>You are on {% include 'teams/team_link.html' with team=user.profile.team %}</p> 
+    {% if user.profile.team %}
+      <p>You are on {% include 'teams/team_link.html' with team=user.profile.team %}</p> 
+    {% endif %}
     {% if user.profile.group %}
       <p>You are part of <strong>{{ user.profile.group }}</strong></p>
     {% endif %}
@@ -30,6 +26,7 @@
   <p>Or if you have already registered, you can login <a href="{% url 'login' %}?next=/">here</a>.</p>
 {% endif %}
 
+{% if 0 %}
 <h2>Team Challenge 2022 - Progress to Date </h2> 
 <p style="text-align: left;">As of 23 September 2022: 357 million steps or 32,300 kilometers.</p>
 <img src={% static 'TSC2022mapping_week3.jpg' %} alt="map of the world" width="600" />

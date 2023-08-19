@@ -1,4 +1,5 @@
 from email.message import EmailMessage
+from django.conf import settings
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.core.mail import EmailMessage, send_mail, get_connection
@@ -15,8 +16,8 @@ def contact(request):
             email = EmailMessage(
                 cd['subject'],
                 'From ' + cd['yourname'] + '\n' + cd['message'],
-                'teamstepchallenge2022@gmail.com',  # From
-                ['teamstepchallenge2022@gmail.com'] # to
+                EMAIL_OUR_ADDRESS,  # From
+                [EMAIL_OUR_ADDRESS] # to
             )
             if 'email' in cd:
                 email.reply_to = [cd['email']]
@@ -28,4 +29,4 @@ def contact(request):
         if 'submitted' in request.GET:
             submitted = True
 
-    return render(request, 'contact/contact.html', {'form': form, 'submitted': submitted})
+    return render(request, 'contact/contact.html', {'form': form, 'submitted': submitted, 'our_email': settings.EMAIL_OUR_ADDRESS})

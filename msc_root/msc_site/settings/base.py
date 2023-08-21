@@ -81,7 +81,7 @@ ADMINS = [('Mike Elkins', 'mike@elkins.com')]
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'django',
+        'NAME': 'tsc23',
         'USER': 'django',
         'PASSWORD': os.environ['POSTGRES_PASSWORD'],
         'HOST': 'localhost',

@@ -16,6 +16,7 @@ After log in:
 Another tab
 . set_secrets
 . go_production
+. prod_environment
 ./start.sh
 
 
@@ -34,3 +35,9 @@ export DJANGO_SECRET_KEY=See Lastpass
 export AWS_EMAIL_USER=See Lastpass
 export AWS_EMAIL_PASSWORD=See Lastpass
 export POSTGRES_PASSWORD=See Lastpass
+
+The database is running NOT THE BITNAMI one, but /usr/lib/postgresql/11/bin!  Use that psql.
+To start it from scratch:
+/usr/lib/postgresql/11/bin/psql -U postgres
+CREATE USER django WITH PASSWORD 'jibjib';
+CREATE DATABASE django_test WITH OWNER = django;

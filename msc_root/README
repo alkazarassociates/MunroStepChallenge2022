@@ -1,0 +1,36 @@
+See https://realpython.com/django-nginx-gunicorn/#:~:text=Gunicorn%20implements%20the%20Web%20Server,to%20thousands%20of%20simultaneous%20connections.
+
+Instance is hosted on AWS Lightsail https://lightsail.aws.amazon.com/ls/webapp/us-east-1/instances/StepChallenge-1/connect
+Mike@Elkins.com, password on LastPass
+
+Server can be logged in at bitnami@44.194.8.93.  I've put Balthasar's pub key in place.
+
+nginx is the reverse proxy/web server.  It starts up automatically on boot.
+Both the main server and test server are run by gunicorn.
+
+After log in:
+. set_secrets
+. go_test_server
+./start.sh
+
+Another tab
+. set_secrets
+. go_production
+./start.sh
+
+
+go_production:
+#/user/bin/bash
+
+cd /opt/bitnami/projects/TSC22/msc_root
+
+go_test_server:
+#/user/bin/bash
+
+cd /opt/bitnami/projects/TSC22_Test/msc_root
+
+set_secrets:
+export DJANGO_SECRET_KEY=See Lastpass
+export AWS_EMAIL_USER=See Lastpass
+export AWS_EMAIL_PASSWORD=See Lastpass
+export POSTGRES_PASSWORD=See Lastpass

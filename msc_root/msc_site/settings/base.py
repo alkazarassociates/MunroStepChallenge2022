@@ -16,6 +16,21 @@ from pickle import TRUE
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
+# Time based settings
+PHASE_PREREG = {'allow_2_groups_per_admin' : True,
+                'allow_peaker_registration' : False,
+                'allow_peaker_registration_in_group': True,
+                'allow_step_entry': False,
+                'allow_group_registration': True,
+}
+PHASE_REGISTRATION = {'allow_2_groups_per_admin': False,
+                      'allow_peaker_registration': True,
+                      'allow_peaker_registration_in_group': True,
+                      'allow_step_entry': False,
+                      'allow_group_registration': True}
+
+CURRENT_PHASE = PHASE_PREREG
+
 # Application definition
 
 INSTALLED_APPS = [

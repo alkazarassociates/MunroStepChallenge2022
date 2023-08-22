@@ -9,11 +9,12 @@ nginx is the reverse proxy/web server.  It starts up automatically on boot.
 Both the main server and test server are run by gunicorn.
 
 After log in:
+screen  or   screen -r
 . set_secrets
 . go_test_server
 ./start.sh
 
-Another tab
+Another tab  (CTrl-a c in screen)
 . set_secrets
 . go_production
 . prod_environment

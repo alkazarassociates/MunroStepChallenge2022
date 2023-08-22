@@ -13,11 +13,16 @@ from .models import GroupModifications, MpcGroup
 
 def index(request):
     group_list = [ {'name': g.name, 'count': User.objects.filter(profile__group=g).count(), 'team': g.team } for g in MpcGroup.objects.order_by('name')]
+    try:
+        updateds = GroupModifications.objects.latest('modification_time').modification_time.strftime("%m/%d/%Y %H:%M")
+    except:
+        updateds = []
+
     context = {
         'group_list': group_list,
         'no_group_count': User.objects.filter(profile__group=None).count,
         'total_peakers': User.objects.count,
-        'updated': GroupModifications.objects.latest('modification_time').modification_time.strftime("%m/%d/%Y %H:%M"),
+        'updated': updateds,
     }
     return render(request, 'mpc_groups/mpc_groups.html', context)
 

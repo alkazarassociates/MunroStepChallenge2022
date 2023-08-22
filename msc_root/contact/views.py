@@ -16,8 +16,8 @@ def contact(request):
             email = EmailMessage(
                 cd['subject'],
                 'From ' + cd['yourname'] + '\n' + cd['message'],
-                EMAIL_OUR_ADDRESS,  # From
-                [EMAIL_OUR_ADDRESS] # to
+                settings.EMAIL_OUR_ADDRESS,  # From
+                [settings.EMAIL_OUR_ADDRESS] # to
             )
             if 'email' in cd:
                 email.reply_to = [cd['email']]

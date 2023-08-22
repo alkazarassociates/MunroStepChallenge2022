@@ -15,4 +15,4 @@ ALLOWED_HOSTS = ['test.alkazarassociates.com', '127.0.0.1', 'localhost']
 DATABASES['default']['NAME'] = 'django_test'
 
 
-print("Development Settings")
+print("Development Settings. " + CURRENT_PHASE['name'])

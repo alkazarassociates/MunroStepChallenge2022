@@ -42,3 +42,13 @@ To start it from scratch:
 /usr/lib/postgresql/11/bin/psql -U postgres
 CREATE USER django WITH PASSWORD 'jibjib';
 CREATE DATABASE django_test WITH OWNER = django;
+
+LOGS--------------------------------------
+nginx access log: /var/log/nginx/access.log
+nginx error log:  /var/log/nginx/error.log
+
+gunicorn access logs: /var/log/gunicorn/access.log and test-access.log
+         error logs:  /var/log/gunicorn/error.log and test-error.log
+
+
+

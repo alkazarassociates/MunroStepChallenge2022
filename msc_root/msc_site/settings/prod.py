@@ -22,4 +22,4 @@ SECURE_HSTS_PRELOAD=True
     
 STATIC_ROOT='/opt/bitnami/projects/TSC22/static'
 
-print("Production Settings")
+print("Production Settings. " + CURRENT_PHASE.Name())

@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User 
 from mpc_groups.models import MpcAdminRegistration, MpcGroup, GroupModifications
@@ -33,26 +34,28 @@ class Command(BaseCommand):
             group_name = group_name.strip()
             if not MpcGroup.objects.filter(name=group_name).exists():
                 if yes_or_no(f"Create '{group_name}'?"):
-                    # We need to calculate what team to put this group on.
-                    counter = {}
-                    for team in Team.objects.filter(auxiliary=True):
-                        counter[team] = User.objects.filter(profile__team=team).count()
-                    team = min(counter, key=counter.get)
-
+                    if settings.CURRENT_PHASE.teams_assigned():
+                        # We need to calculate what team to put this group on.
+                        counter = {}
+                        for team in Team.objects.filter(auxiliary=True):
+                            counter[team] = User.objects.filter(profile__team=team).count()
+                        team = min(counter, key=counter.get)
+                    else:
+                        team = Team.UnassignedTeam()
                     MpcGroup.objects.update_or_create(name=group_name, admin=admin.strip(), team=team)
                     modified = True
                     print(group_name)
             self._groups[cannonical] = group_name
+        elif settings.CURRENT_PHASE.allow_group_modification():
+            print(group_name.strip())
+            obj = MpcGroup.objects.get(name=self._groups[group_name.strip().lower()])
+            old = obj.admin
+            obj.admin = admin.strip()
+            if obj.admin != old:
+                obj.save()
+                print(f"DUP: changed admin from {old} to {admin.strip()}")
+                modified = True
         else:
-            #print(group_name.strip())
-            # obj = MpcGroup.objects.get(name=self._groups[group_name.strip().lower()])
-            #old = obj.admin
-            #obj.admin = admin.strip()
-            #if obj.admin != old:
-                # After Sep 1, no longer automatically doing this.
-                # obj.save()
-                # print(f"DUP: changed admin from {old} to {admin.strip()}")
-                # modified = True
             pass
         if modified or GroupModifications.objects.count() == 0:
             GroupModifications.objects.create()

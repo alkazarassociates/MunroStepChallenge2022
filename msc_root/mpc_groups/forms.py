@@ -8,7 +8,7 @@ class MpcAdminRegistrationForm(ModelForm):
     class Meta:
         model = MpcAdminRegistration
         fields = [
-            'name', 'primary_group',  # No secondary groups after sep 1   'secondary_group'
+            'name', 'primary_group',
         ]
-        if settings.CURRENT_PHASE['allow_2_groups_per_admin']:
+        if settings.CURRENT_PHASE.allow_2_groups_per_admin():
             fields.append('secondary_group')

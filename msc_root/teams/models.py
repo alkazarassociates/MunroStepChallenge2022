@@ -9,3 +9,10 @@ class Team(models.Model):
 
     def __str__(self):
         return self.name
+    
+    @staticmethod
+    def UnassignedTeam():
+        if Team.objects.exists():
+            return Team.objects.first()
+        else:
+            raise Exception("Please create Peakers United team");

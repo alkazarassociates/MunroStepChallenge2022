@@ -20,7 +20,7 @@ from django.views.generic import TemplateView
 from steps.views import Register, peaker_modification
 
 urlpatterns = [
-    #path('steps/', include('steps.urls')),
+    path('steps/', include('steps.urls')),
     path('admin/', admin.site.urls),
     #path('register/success/', TemplateView.as_view(template_name='registration/success.html'), name='register-success'),
     #path('register/', Register.as_view(), name='peaker_register'),

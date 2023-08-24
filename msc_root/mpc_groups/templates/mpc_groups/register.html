@@ -15,20 +15,27 @@
 {% else %}
     Greetings, MPC Ambassador Group Administrators!
 
-    <p>Welcome to our 6th Annual Munro Step Team Challenge!
+    <p>Welcome to our {{phase.year}}th Annual Munro Step Team Challenge!
     
-    <p>By adding your <em>Ambassador Group</em> to our list now, Peakers will be able to register as a member of your group for the event.  We
-    then can ensure all your members are placed on the same Team.</p>
+    {% if phase.allow_group_registration %}
+        <p>By adding your <em>Ambassador Group</em> to our list now, Peakers will be able to register as a member of your group for the event.  We
+        then can ensure all your members are placed on the same Team.</p>
 
-    <form action="" enctype="multipart/form-data" method="post" novalidate>
-        <table>
-            {{ form.as_table }}
-            <tr>
-                <td>&nbsp;</td>
-                <td><input type="submit" value="Submit"></td>
-            </tr>
-        </table>
-        {% csrf_token %}
-    </form>
+        <form action="" enctype="multipart/form-data" method="post" novalidate>
+            <table>
+                {{ form.as_table }}
+                <tr>
+                    <td>&nbsp;</td>
+                    <td><input type="submit" value="Submit"></td>
+                </tr>
+            </table>
+            {% csrf_token %}
+        </form>
+    {% else %}
+        <p>Registration for <em>Ambassador Groups</em> is no longer available for this year's challenge.</p>
+        {% if phase.allow_registration %}
+            <p>But your group's members can still register and participate!  We simply can't place them all on the same Team.</p>
+        {% endif %}
+    {% endif %}
 {% endif %}
 {% endblock content %}

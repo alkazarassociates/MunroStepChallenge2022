@@ -25,9 +25,15 @@
     <nav id="nav">
     <ul>
       <li><a href='/' >Home</a></li>
-      {% if 0 %}<li><a href={% url 'peaker_register' %}>Peaker Registration</a></li>{% endif %}
-      {% if 0 %}<li><a href='/steps'>Enter Steps</a></li>
-      {% if user.is_authenticated %}<li><a href={% url 'step_report' %}>Your Step Summary</a></li>{% endif %}{% endif %}
+      {% if phase.allow_registration %}
+          <li><a href={% url 'peaker_register' %}>Peaker Registration</a></li>
+      {% endif %}
+      {% if phase.allow_step_entry %}
+          <li><a href='/steps'>Enter Steps</a></li>
+          {% if user.is_authenticated %}
+              <li><a href={% url 'step_report' %}>Your Step Summary</a></li>
+          {% endif %}
+      {% endif %}
       <li><a href='/teams'>Teams</a></li>
       <li><a href='/groups'>Groups</a></li>
       <li><a href={% url 'group_register' %}>Group Registration</a></li>

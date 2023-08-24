@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.views.generic import CreateView
@@ -44,13 +45,6 @@ class Register(CreateView):
         prof.save()
         return HttpResponseRedirect(self.success_url)
     
-    def not_allowed_yet(request):
-        return render(request, 'steps/prereg.html')
-
-
-def step_entry_denied(request):
-    return render(request, 'steps/step_entry_denied.html')
-
 
 @login_required(login_url=reverse_lazy('login'))
 def step_entry(request):
@@ -88,7 +82,7 @@ def step_entry(request):
             submitted = True
 
     return render(request, 'steps/steps.html', {
-        'form': form, 'submitted': submitted, 'peaker': request.user, 'recent_steps': recent_steps, 'last_activity': activity
+        'form': form, 'submitted': submitted, 'peaker': request.user, 'recent_steps': recent_steps, 'last_activity': activity, 'phase':settings.CURRENT_PHASE
         })
 
 @login_required(login_url=reverse_lazy('login'))

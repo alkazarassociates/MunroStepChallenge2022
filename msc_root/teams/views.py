@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db.models import Sum
 from django.shortcuts import render
 from mpc_groups.models import MpcGroup
@@ -6,7 +7,7 @@ from .models import Team
 from steps.models import StepEntry
 
 def index(request):
-    context = {'team_list': Team.objects.order_by('name'), 'title': 'Munro Step Challenge'}
+    context = {'team_list': Team.objects.order_by('name'), 'title': 'Munro Step Challenge', 'phase': settings.CURRENT_PHASE}
     return render(request, 'teams/teams.html', context)
 
 def nb(text):
@@ -48,5 +49,5 @@ def team_page(request, team_name):
 
     context = {
         'team': team, 'group_list': group_lines, 'team_size': User.objects.filter(profile__team=team).count(), 
-        'team_steps': step_total, 'day_totals': day_totals, 'unit_name': unit_name}
+        'team_steps': step_total, 'day_totals': day_totals, 'unit_name': unit_name, 'phase': settings.CURRENT_PHASE}
     return render(request, 'teams/team_page.html', context )

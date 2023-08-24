@@ -4,22 +4,25 @@
 
 {% block content %}
 <h1>Peaker Registration</h1>
-<p>Enter your username and password to register.</p>
-<p>Your username will be the name your steps are displayed under.</p>
-<p>Unfortunately, it <strong>can't contain spaces</strong>, so enter something like 'MikeElkins' rather than 'Mike Elkins'</p>
+{% if phase.allow_registration %}
+    <p>Enter your username and password to register.</p>
+    <p>Your username will be the name your steps are displayed under.</p>
+    <p>Unfortunately, it <strong>can't contain spaces</strong>, so enter something like 'MikeElkins' rather than 'Mike Elkins'</p>
 
-<form method="post" action="">
-<table>
-    {{ form.as_table }}
-    <tr><td>&nbsp;</td></tr>
-    <tr><td>&nbsp;</td></tr>
-    <tr>
-        <td>&nbsp;</td>
-        <td><input type="submit" value="Register"></td>
-    </tr>
-</table>
-<input type="hidden" name="next" value="{{ next }}" />
-{% csrf_token %}
-</form>
-
+    <form method="post" action="">
+    <table>
+        {{ form.as_table }}
+        <tr><td>&nbsp;</td></tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td><input type="submit" value="Register"></td>
+        </tr>
+    </table>
+    <input type="hidden" name="next" value="{{ next }}" />
+    {% csrf_token %}
+    </form>
+{% else %}
+    <h3>Registration is not currently open for Peakers to join this year's challenge.</h3>
+{% endif %}
 {% endblock content %}

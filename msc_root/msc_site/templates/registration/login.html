@@ -13,7 +13,11 @@
         <td><input type="submit" value="login"></td>
     </tr>
 </table>
-<p>Not registered yet? <a href="{% url 'peaker_register' %}">Register here</a>.</p>
+{% if phase.allow_registration %}
+    <p>Not registered yet? <a href="{% url 'peaker_register' %}">Register here</a>.</p>
+{% else %}
+    <p>No account yet?  I'm sorry, registration for new users is not currently allowed.</p>
+{% endif %}
 <p>Forgot your password?  Email <tt>teamstepchallenge2023@gmail.com</tt> with your username for a password reset.</p>
 <input type="hidden" name="next" value="{{ next }}"/>
 {% csrf_token %}

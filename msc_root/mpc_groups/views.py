@@ -23,6 +23,7 @@ def index(request):
         'no_group_count': User.objects.filter(profile__group=None).count,
         'total_peakers': User.objects.count,
         'updated': updateds,
+        'phase': settings.CURRENT_PHASE,
     }
     return render(request, 'mpc_groups/mpc_groups.html', context)
 
@@ -39,7 +40,7 @@ def register(request):
         if 'submitted' in request.GET:
             submitted = True
 
-    return render(request, 'mpc_groups/register.html', {'form': form, 'submitted': submitted, 'our_email':settings.EMAIL_OUR_ADDRESS})
+    return render(request, 'mpc_groups/register.html', {'form': form, 'submitted': submitted, 'our_email':settings.EMAIL_OUR_ADDRESS, 'phase': settings.CURRENT_PHASE})
 
 @login_required(login_url=reverse_lazy('login'))
 def members(request, group):
@@ -50,7 +51,7 @@ def members(request, group):
             g = MpcGroup.objects.get(name=group)
     except MpcGroup.DoesNotExist:
         raise Http404("No Such Group")
-    context = {'group': g, 'peakers': User.objects.filter(profile__group=g).order_by('username')}
+    context = {'group': g, 'phasae': settings.CURRENT_PHASE, 'peakers': User.objects.filter(profile__group=g).order_by('username')}
     # Perhaps this could be an annotation, but I don't know how yet.
     for p in context['peakers']:
         p.has_steps = StepEntry.objects.filter(peaker=p).exists()
@@ -117,7 +118,7 @@ def report(request, group):
 
     peaker_totals.append({'peaker': 'Total', 'steps': step_total})
     context = {'group': g or 'Peakers United', 'unit_name': unit_name, 'day_totals': day_totals, 'peaker_totals': peaker_totals, 'sort': request.GET.get('sort', 'Alpha'),
-        'show_teams': (g is None)
+        'show_teams': (g is None), 'phase': settings.CURRENT_PHASE,
     }
     return render(request, 'mpc_groups/report.html', context)
 

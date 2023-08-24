@@ -2,7 +2,7 @@
 
 {% block content %}
 {% load static %}
-<h1>Welcome to the Team Step Challenge 2023</h1>
+<h1>Welcome to the {{ phase.challenge_name }}</h1>
 
 <p>Our Goal: 30 days and 450 million steps for charity.</p>
 <p>The Reason:  September is  Blood Cancer Awareness Month-we are raising awareness and funds for Blood Cancer UK. They really appreciate our enthusiasm and support.</p>
@@ -22,17 +22,12 @@
   </div>
   
 {% else %}
-  {% if 0 %}
+  {% if phase.allow_registration %}
   <p>You can register to participate <a href={% url 'peaker_register' %}>here</a>.</p>
   <p>Or if you have already registered, you can login <a href="{% url 'login' %}?next=/">here</a>.</p>
-  {% endif %}
+  {% else %}
   <p>Step counting begins September 1!</p>
+  {% endif %}
 {% endif %}
 
-{% if 0 %}
-<h2>Team Challenge 2022 - Progress to Date </h2> 
-<p style="text-align: left;">As of 23 September 2022: 357 million steps or 32,300 kilometers.</p>
-<img src={% static 'TSC2022mapping_week3.jpg' %} alt="map of the world" width="600" />
-<img src={% static 'EquatorialCircumnavigation_week3.png' %} alt="table of steps" width="600" />
-{% endif %}
 {% endblock content %}

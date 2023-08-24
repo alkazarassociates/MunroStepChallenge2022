@@ -3,27 +3,33 @@
 {% load static %}
 {% block title %}Teams{% endblock title %}
 {% block content %}
-<h1>Teams for the 2023 Munro Step Challenge</h1>
-  <p>Teams for 2023 will be revealed soon!</p>
-  <img src={% static 'purplemoonbackground2.jpg' %}
-   alt="Teams to be revealed" 
-   usemap="#teammap"
-   style="width: 600px;">
-  <map name="teammap">
-    <area shape="rect" coords="335,14,535,44" alt="Team Oak" href="/teams/Oak">
-    <area shape="rect" coords="335,44,535,80" alt="Team Cedar" href="/teams/Cedar">
-    <area shape="rect" coords="335,80,535,112" alt="Team Mangrove" href="/teams/Mangrove">
-    <area shape="rect" coords="335,112,535,150" alt="Team Acacia" href="/teams/Acacia">
-    <area shape="rect" coords="335,150,535,192" alt="Team Maple" href="/teams/Maple">
-    <area shape="rect" coords="335,192,535,228" alt="Team Rowan" href="/teams/Rowan">
-    <area shape="rect" coords="335,228,535,267" alt="Team Birch" href="/teams/Birch">
-    <area shape="rect" coords="335,267,535,290" alt="Team Aspen" href="/teams/Aspen">
-    <area shape="rect" coords="335,298,535,331" alt="Team Beech" href="/teams/Beech">
-  </map>
-  
-  <ul>
-    {% for team in team_list %}
-    <li>{% include 'teams/team_link.html' %}</li>
-    {% endfor %}
-  </ul>
+<h1>Teams for the {{ phase.challenge_name }}</h1>
+  {% if not phase.teams_revealed %}
+      <p>Teams for {{ phase.year }} will be revealed soon!</p>
+      <img src={% static 'purplemoonbackground2.jpg' %}
+        alt="Teams to be revealed" 
+        style="width: 600px;">
+  {% else %}
+    <img src={% static 'purplemoonbackground2.jpg' %}
+      alt="Teams" 
+      usemap="#teammap"
+      style="width: 600px;">
+    <map name="teammap">
+      <area shape="rect" coords="335,14,535,44" alt="Team Oak" href="/teams/Oak">
+      <area shape="rect" coords="335,44,535,80" alt="Team Cedar" href="/teams/Cedar">
+      <area shape="rect" coords="335,80,535,112" alt="Team Mangrove" href="/teams/Mangrove">
+      <area shape="rect" coords="335,112,535,150" alt="Team Acacia" href="/teams/Acacia">
+      <area shape="rect" coords="335,150,535,192" alt="Team Maple" href="/teams/Maple">
+      <area shape="rect" coords="335,192,535,228" alt="Team Rowan" href="/teams/Rowan">
+      <area shape="rect" coords="335,228,535,267" alt="Team Birch" href="/teams/Birch">
+      <area shape="rect" coords="335,267,535,290" alt="Team Aspen" href="/teams/Aspen">
+      <area shape="rect" coords="335,298,535,331" alt="Team Beech" href="/teams/Beech">
+    </map>
+    
+    <ul>
+      {% for team in team_list %}
+      <li>{% include 'teams/team_link.html' %}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
   {% endblock content %}

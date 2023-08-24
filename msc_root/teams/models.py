@@ -15,4 +15,4 @@ class Team(models.Model):
         if Team.objects.exists():
             return Team.objects.first()
         else:
-            raise Exception("Please create Peakers United team");
+            raise Exception("Please create a placeholder team");

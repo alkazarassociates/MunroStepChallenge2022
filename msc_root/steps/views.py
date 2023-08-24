@@ -43,6 +43,9 @@ class Register(CreateView):
 
         prof.save()
         return HttpResponseRedirect(self.success_url)
+    
+    def not_allowed_yet(self, request):
+        return render(request, 'steps/prereg.html')
 
 
 def step_entry_denied(request):

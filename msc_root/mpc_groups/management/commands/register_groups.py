@@ -46,7 +46,7 @@ class Command(BaseCommand):
                     modified = True
                     print(group_name)
             self._groups[cannonical] = group_name
-        elif settings.CURRENT_PHASE.allow_group_modification():
+        elif settings.CURRENT_PHASE.allow_group_modifications():
             print(group_name.strip())
             obj = MpcGroup.objects.get(name=self._groups[group_name.strip().lower()])
             old = obj.admin

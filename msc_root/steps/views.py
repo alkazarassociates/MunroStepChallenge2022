@@ -69,7 +69,8 @@ def activate(request, uidb64, token):
         print(f"timestamp = {ts}")
         print(f"{user} token={token}, check={account_activation_token.check_token(user, token)}")
         should_be = account_activation_token._make_token_with_timestamp(user, ts)
-        print(f"compare to {should_be}")
+        should_be_2 = account_activation_token._make_token_with_timestamp(user, ts, legacy=True)
+        print(f"compare to {should_be} or {should_be_2}")
         return HttpResponse("Activation link is invalid.")
 
 

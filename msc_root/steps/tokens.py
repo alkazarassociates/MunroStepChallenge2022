@@ -4,6 +4,7 @@ from django.contrib.auth.tokens import PasswordResetTokenGenerator
 class TokenGenerator(PasswordResetTokenGenerator):  
     def _make_hash_value(self, user, timestamp):
         print(f"Make Hash {user.pk} {timestamp} {user.is_active}")
+        print(f" salt={self.key_salt} sec={self.secret} alg={self.algorithm}")
         return (  
             str(user.pk) + str(timestamp) +  
             str(user.is_active)  

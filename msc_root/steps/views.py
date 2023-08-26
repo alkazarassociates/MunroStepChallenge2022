@@ -51,26 +51,14 @@ class Register(CreateView):
 def activate(request, uidb64, token):
     try:
         uid = force_str(urlsafe_base64_decode(uidb64))
-        print("Decoded uid")
         user = User.objects.get(pk=uid)
-        print(f"Got user {user} is_active={user.is_active}")
     except(TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
-        print("Got some excpetion")
     if user is not None and account_activation_token.check_token(user, token):
-        print("Activating")
         user.is_active = True
         user.save()
         return HttpResponse("Thank you for your email confirmation. Now you can login to your account.")
     else:
-        token_b36 = token.split('-')[0]
-        print(f"token_b36={token_b36}")
-        ts = base36_to_int(token_b36)
-        print(f"timestamp = {ts}")
-        print(f"{user} token={token}, check={account_activation_token.check_token(user, token)}")
-        should_be = account_activation_token._make_token_with_timestamp(user, ts)
-        should_be_2 = account_activation_token._make_token_with_timestamp(user, ts, legacy=True)
-        print(f"compare to {should_be} or {should_be_2}")
         return HttpResponse("Activation link is invalid.")
 
 

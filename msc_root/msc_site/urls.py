@@ -29,7 +29,7 @@ urlpatterns = [
     path('peaker/', peaker_modification, name='peaker'),
     # This line needs to be above the django.contrib.auth.urls one to catch the ones we want to give extra info to.
     path('login/', auth_views.LoginView.as_view(extra_context={'phase': settings.CURRENT_PHASE})),
-    re_path('activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',  
+    re_path('activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,32})/',  
         activate, name='activate'),
     path('', include('django.contrib.auth.urls')),
     path('', include('landing.urls')),

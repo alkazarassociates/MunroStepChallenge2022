@@ -8,7 +8,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 from django.forms.models import model_to_dict
 from django.utils.encoding import force_str
-from django.utils.http import urlsafe_base64_decode
+from django.utils.http import urlsafe_base64_decode, base36_to_int
 from collections import defaultdict
 import datetime
 import urllib
@@ -63,7 +63,13 @@ def activate(request, uidb64, token):
         user.save()
         return HttpResponse("Thank you for your email confirmation. Now you can login to your account.")
     else:
+        token_b36 = token.split('-')[0]
+        print(f"token_b36={token_b36}")
+        ts = base36_to_int(token_b36)
+        print(f"timestamp = {ts}")
         print(f"{user} token={token}, check={account_activation_token.check_token(user, token)}")
+        should_be = account_activation_token._make_token_with_timestamp(user, ts)
+        print(f"compare to {should_be}")
         return HttpResponse("Activation link is invalid.")
 
 

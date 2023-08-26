@@ -31,6 +31,7 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(extra_context={'phase': settings.CURRENT_PHASE})),
     re_path('activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,32})/',  
         activate, name='activate'),
+    path('account/password-reset', auth_views.PasswordResetView.as_view(template_name='registration/password_reset.html'), name='password-reset'),
     path('', include('django.contrib.auth.urls')),
     path('', include('landing.urls')),
     path('teams', include('teams.urls')),

@@ -18,7 +18,7 @@
 {% else %}
     <p>No account yet?  I'm sorry, registration for new users is not currently allowed.</p>
 {% endif %}
-<p>Forgot your password?  Email <tt>teamstepchallenge2023@gmail.com</tt> with your username for a password reset.</p>
+<p>Forgot your password?  <a href = "{% url 'password-reset' %}">Ask for a password reset.</a>></p>
 <input type="hidden" name="next" value="{{ next }}"/>
 {% csrf_token %}
 </form>

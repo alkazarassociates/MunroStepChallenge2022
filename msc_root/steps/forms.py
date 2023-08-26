@@ -1,11 +1,17 @@
 from sqlite3 import Date
 import datetime
 from xml.dom import ValidationErr
+from django.conf import settings
+from django.core.mail import EmailMessage
 from django import forms
 from django.forms import ModelForm, ValidationError
 from django.contrib.auth.forms import UserCreationForm
-
+from django.contrib.auth.models import User
+from django.template.loader import render_to_string
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode
 from .models import Profile, StepEntry
+from .tokens import account_activation_token
 from mpc_groups.models import MpcGroup
 
 class StepEntryForm(ModelForm):
@@ -36,11 +42,45 @@ class StepEntryForm(ModelForm):
 
 
 class PeakerRegistrationForm(UserCreationForm):
+    email = forms.EmailField(label='Email', help_text='We use this to contact you for reset passwords only!')
     group_field = forms.ModelChoiceField(label='Ambassador Group', queryset=MpcGroup.objects.none(), empty_label='None, pick a Team for me.', required=False)
     class Meta(UserCreationForm.Meta):
         pass
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+    def username_clean(self):
+        username = self.cleaned_data['username'].lower()
+        isnew = User.objects.filter(username=username)
+        if isnew.count():
+            raise ValidationError("User already exists")
+        return username
+    
+    def email_clean(self):
+        email = self.cleaned_data['email'].lower()
+        isnew = User.objects.filter(email=email)
+        if isnew.count():
+            raise ValidationError("Email already registered")
+        return email
+    
+    def save(self, commit=True):
+        user = User.objects.create_user(
+            self.cleaned_data['username'],
+            self.cleaned_data['email'],
+            self.cleaned_data['password1']
+        )
+        user.is_active = False
+        message = render_to_string('registration/acc_active_email.html', 
+                                   {'user': user,
+                                    'domain': settings.CURRENT_PHASE.domain,
+                                    'uid':urlsafe_base64_encode(force_bytes(user.pk)),
+                                    'token':account_activation_token.make_token(user)})
+        email = EmailMessage(
+            'Please confirm your email address for ' + settings.CURRENT_PHASE.challenge_name,
+            message, to=[self.cleaned_data['email']])
+        email.send()
+        return user
+    
 
 class PeakerModificationForm(ModelForm):
     # This code for disallowing group changes.

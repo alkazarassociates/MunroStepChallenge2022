@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # Time based settings
 
-CURRENT_PHASE = PHASE_PREREG
+CURRENT_PHASE = PHASE_REGISTRATION
 
 # Application definition
 

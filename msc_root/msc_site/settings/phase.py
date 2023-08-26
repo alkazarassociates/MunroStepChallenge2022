@@ -4,7 +4,12 @@ class Project:
     def __init__(self):
         self.challenge_name = "Team Step Challenge 2023"
         self.year = 2023
-        self.next_year = self.year + 1    
+        self.next_year = self.year + 1
+        self.domain = 'tsc23' + '.' + 'alkazarassociates.com'
+
+    def switch_to_test_server(self):
+        self.domain = 'test' + '.' + 'alkazarassociates.com'
+
 
 class PhaseObject(Project):
     def __init__(self, name, allow_group_registration, allow_secondary_groups, teams_assigned, groups_modifiable, allow_registration, allow_step_entry,

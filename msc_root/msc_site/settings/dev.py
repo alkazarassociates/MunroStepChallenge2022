@@ -14,5 +14,6 @@ ALLOWED_HOSTS = ['test.alkazarassociates.com', '127.0.0.1', 'localhost']
 # Use test database
 DATABASES['default']['NAME'] = 'django_test'
 
+CURRENT_PHASE.switch_to_test_server()
 
 print("Development Settings. " + CURRENT_PHASE.Name())

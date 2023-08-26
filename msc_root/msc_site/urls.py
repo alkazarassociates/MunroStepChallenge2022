@@ -13,18 +13,24 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
 from django.contrib import admin
 import django.contrib.auth
+from django.contrib.auth import views as auth_views
 from django.urls import include, path
 from django.views.generic import TemplateView
-from steps.views import Register, peaker_modification
+from steps.views import Register, peaker_modification, activate
 
 urlpatterns = [
     path('steps/', include('steps.urls')),
     path('admin/', admin.site.urls),
     path('register/success/', TemplateView.as_view(template_name='registration/success.html'), name='register-success'),
-    path('register/', Register.as_view(), name='peaker_register'),
+    path('register/', Register.as_view(extra_context={'phase': settings.CURRENT_PHASE}), name='peaker_register'),
     path('peaker/', peaker_modification, name='peaker'),
+    # This line needs to be above the django.contrib.auth.urls one to catch the ones we want to give extra info to.
+    path('login/', auth_views.LoginView.as_view(extra_context={'phase': settings.CURRENT_PHASE})),
+    path('activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',  
+        activate, name='activate'),
     path('', include('django.contrib.auth.urls')),
     path('', include('landing.urls')),
     path('teams', include('teams.urls')),

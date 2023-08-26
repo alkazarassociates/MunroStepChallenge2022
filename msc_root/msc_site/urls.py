@@ -17,7 +17,7 @@ from django.conf import settings
 from django.contrib import admin
 import django.contrib.auth
 from django.contrib.auth import views as auth_views
-from django.urls import include, path
+from django.urls import include, path, re_path
 from django.views.generic import TemplateView
 from steps.views import Register, peaker_modification, activate
 
@@ -29,7 +29,7 @@ urlpatterns = [
     path('peaker/', peaker_modification, name='peaker'),
     # This line needs to be above the django.contrib.auth.urls one to catch the ones we want to give extra info to.
     path('login/', auth_views.LoginView.as_view(extra_context={'phase': settings.CURRENT_PHASE})),
-    path('activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',  
+    re_path('activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',  
         activate, name='activate'),
     path('', include('django.contrib.auth.urls')),
     path('', include('landing.urls')),

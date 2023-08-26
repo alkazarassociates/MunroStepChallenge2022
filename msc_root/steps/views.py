@@ -51,14 +51,19 @@ class Register(CreateView):
 def activate(request, uidb64, token):
     try:
         uid = force_str(urlsafe_base64_decode(uidb64))
+        print("Decoded uid")
         user = User.objects.get(pk=uid)
+        print("Got user")
     except(TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
+        print("Got some excpetion")
     if user is not None and account_activation_token.check_token(user, token):
+        print("Activating")
         user.is_active = True
         user.save()
         return HttpResponse("Thank you for your email confirmation. Now you can login to your account.")
     else:
+        print(f"{user} token={token}, check={account_activation_token.check_token(user, token)}")
         return HttpResponse("Activation link is invalid.")
 
 

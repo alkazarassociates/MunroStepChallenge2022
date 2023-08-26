@@ -1,19 +1,22 @@
 from django.conf import settings
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import CreateView
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 from django.forms.models import model_to_dict
-
+from django.utils.encoding import force_str
+from django.utils.http import urlsafe_base64_decode
 from collections import defaultdict
 import datetime
 import urllib
 
 from .models import Profile, StepEntry
 from .forms import PeakerRegistrationForm, StepEntryForm, PeakerModificationForm
+from .tokens import account_activation_token
+
 from mpc_groups.models import MpcGroup
 from teams.models import Team
 
@@ -46,9 +49,8 @@ class Register(CreateView):
         return HttpResponseRedirect(self.success_url)
 
 def activate(request, uidb64, token):
-    User = get_user_model()
     try:
-        uid = force_text(urlsafe_base64_decode(uidb64))
+        uid = force_str(urlsafe_base64_decode(uidb64))
         user = User.objects.get(pk=uid)
     except(TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None

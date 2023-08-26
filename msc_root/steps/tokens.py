@@ -10,7 +10,7 @@ class TokenGenerator(PasswordResetTokenGenerator):
             str(user.is_active)  
         )  
         signature = salted_hmac(self.key_salt, ret, secret=self.secret, algorithm=self.algorithm)
-        print(signature)
+        print(signature.hexdigest())
         return ret
     
 account_activation_token = TokenGenerator() 

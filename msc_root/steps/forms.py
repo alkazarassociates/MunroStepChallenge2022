@@ -76,8 +76,8 @@ class PeakerRegistrationForm(UserCreationForm):
                                     'uid':urlsafe_base64_encode(force_bytes(user.pk)),
                                     'token':account_activation_token.make_token(user)})
         email = EmailMessage(
-            'Please confirm your email address for ' + settings.CURRENT_PHASE.challenge_name,
-            message, to=[self.cleaned_data['email']])
+            'Confirm email  for ' + settings.CURRENT_PHASE.challenge_name,
+            message, from_email=settings.EMAIL_OUR_ADDRESS, to=[self.cleaned_data['email']])
         email.send()
         return user
     

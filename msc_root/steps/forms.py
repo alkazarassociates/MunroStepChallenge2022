@@ -70,6 +70,7 @@ class PeakerRegistrationForm(UserCreationForm):
             self.cleaned_data['password1']
         )
         user.is_active = False
+        user.save()  # is_active is getting set true without this.
         message = render_to_string('registration/acc_active_email.html', 
                                    {'user': user,
                                     'domain': settings.CURRENT_PHASE.domain,

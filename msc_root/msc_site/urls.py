@@ -32,7 +32,7 @@ urlpatterns = [
     re_path('activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,32})/',  
         activate, name='activate'),
     path('accounts/activate-success/', TemplateView.as_view(template_name='registration/acivation_success.html', extra_context={'phase': settings.CURRENT_PHASE}),
-         name='activation-success'),
+         name='activate-success'),
     path('accounts/password-reset/', auth_views.PasswordResetView.as_view(
         template_name='registration/password_reset.html', 
         extra_context={'phase': settings.CURRENT_PHASE},

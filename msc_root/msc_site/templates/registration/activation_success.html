@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome to {{ phase.challenge_name }}!{% endblock title %}
+
+{% block content %}
+<h1>User Activation Success</h1>
+<p>You have successfully registered and activated, and can login.</p>
+<p>The link to login is <a href="{% url login %}">here</a>.</p>
+<p>Welcome to the Team Step Challenge!</p>
+
+{% endblock content %}

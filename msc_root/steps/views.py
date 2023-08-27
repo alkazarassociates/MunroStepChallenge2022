@@ -27,7 +27,6 @@ class Register(CreateView):
     success_url = reverse_lazy('register-success')
 
     # TODO 2023
-    #  Consider email for password resets.
     # TimeZone.
     # More than one groups.
 
@@ -57,7 +56,7 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        return HttpResponse("Thank you for your email confirmation. Now you can login to your account.")
+        return HttpResponseRedirect(reverse_lazy('activate-success'))
     else:
         return HttpResponse("Activation link is invalid.")
 

@@ -31,6 +31,8 @@ urlpatterns = [
     path('accounts/login/', auth_views.LoginView.as_view(extra_context={'phase': settings.CURRENT_PHASE}), name='login'),
     re_path('activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,32})/',  
         activate, name='activate'),
+    path('accounts/activate-success/', TemplateView.as_view(template_name='registration/acivation_success.html', extra_context={'phase': settings.CURRENT_PHASE}),
+         name='activation-success'),
     path('accounts/password-reset/', auth_views.PasswordResetView.as_view(
         template_name='registration/password_reset.html', 
         extra_context={'phase': settings.CURRENT_PHASE},
@@ -38,7 +40,7 @@ urlpatterns = [
     path('accounts/password-reset/done/', auth_views.PasswordResetDoneView.as_view(
         template_name='registration/password_reset_done.html',
         extra_context={'phase': settings.CURRENT_PHASE}), name='password_reset_done'),
-    path('accounts', include('django.contrib.auth.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('', include('landing.urls')),
     path('teams', include('teams.urls')),
     path('groups/', include('mpc_groups.urls')),

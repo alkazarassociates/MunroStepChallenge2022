@@ -28,14 +28,17 @@ urlpatterns = [
     path('register/', Register.as_view(extra_context={'phase': settings.CURRENT_PHASE}), name='peaker_register'),
     path('peaker/', peaker_modification, name='peaker'),
     # This line needs to be above the django.contrib.auth.urls one to catch the ones we want to give extra info to.
-    path('login/', auth_views.LoginView.as_view(extra_context={'phase': settings.CURRENT_PHASE})),
+    path('accounts/login/', auth_views.LoginView.as_view(extra_context={'phase': settings.CURRENT_PHASE}), name='login'),
     re_path('activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,32})/',  
         activate, name='activate'),
-    path('account/password-reset/', auth_views.PasswordResetView.as_view(
+    path('accounts/password-reset/', auth_views.PasswordResetView.as_view(
         template_name='registration/password_reset.html', 
         extra_context={'phase': settings.CURRENT_PHASE},
         from_email=settings.EMAIL_OUR_ADDRESS), name='password-reset'),
-    path('', include('django.contrib.auth.urls')),
+    path('accounts/password-reset/done/', auth_views.PasswordResetDoneView.as_view(
+        template_name='registration/password_reset_done.html',
+        extra_context={'phase': settings.CURRENT_PHASE}), name='password_reset_done'),
+    path('accounts', include('django.contrib.auth.urls')),
     path('', include('landing.urls')),
     path('teams', include('teams.urls')),
     path('groups/', include('mpc_groups.urls')),

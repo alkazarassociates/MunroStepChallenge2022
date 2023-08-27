@@ -14,7 +14,7 @@ class Project:
 class PhaseObject(Project):
     def __init__(self, name, allow_group_registration, allow_secondary_groups, teams_assigned, groups_modifiable, allow_registration, allow_registration_in_group,
                  allow_step_entry,
-                 challenge_over, teams_revealed):
+                 challenge_over, teams_revealed, allow_non_group_peakers):
         super().__init__()
         self._name = name
         self.allow_group_registration = allow_group_registration
@@ -26,6 +26,7 @@ class PhaseObject(Project):
         self.allow_step_entry = allow_step_entry
         self.challenge_over = challenge_over
         self.teams_revealed = teams_revealed
+        self.allow_non_group_peakers = allow_non_group_peakers
     
     def Name(self):
         return self._name
@@ -49,7 +50,8 @@ PHASE_PREREG = PhaseObject('PREREG',
                            allow_registration_in_group=False,
                            allow_step_entry=False,
                            challenge_over=False,
-                           teams_revealed=False)
+                           teams_revealed=False,
+                           allow_non_group_peakers=False)
 
 PHASE_REGISTRATION = PhaseObject('REGISTRATION',
                                  allow_group_registration=True,
@@ -60,4 +62,5 @@ PHASE_REGISTRATION = PhaseObject('REGISTRATION',
                                  allow_registration_in_group=True,
                                  allow_step_entry=False,
                                  challenge_over=False,
-                                 teams_revealed=False)
+                                 teams_revealed=False,
+                                 allow_non_group_peakers=False)

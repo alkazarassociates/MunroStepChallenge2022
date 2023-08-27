@@ -45,7 +45,7 @@ class PeakerRegistrationForm(UserCreationForm):
     email = forms.EmailField(label='Email', help_text='We use this to contact you for reset passwords only!')
     group_field = forms.ModelChoiceField(label='Ambassador Group',
                                          queryset=MpcGroup.objects.all().order_by('name') if settings.CURRENT_PHASE.allow_registration_in_group else MpcGroup.objects.none(),
-                                         empty_label='None, pick a Team for me.', required=False, 
+                                         empty_label='None, pick a Team for me.' if settings.CURRENT_PHASE.allow_non_group_peakers else None, required=not settings.CURRENT_PHASE.allow_non_group_peakers, 
                                          help_text='We will make sure you are on the same Team as this the rest of the group')
     class Meta(UserCreationForm.Meta):
         pass

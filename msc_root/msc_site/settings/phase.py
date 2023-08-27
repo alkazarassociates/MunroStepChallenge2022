@@ -12,7 +12,8 @@ class Project:
 
 
 class PhaseObject(Project):
-    def __init__(self, name, allow_group_registration, allow_secondary_groups, teams_assigned, groups_modifiable, allow_registration, allow_step_entry,
+    def __init__(self, name, allow_group_registration, allow_secondary_groups, teams_assigned, groups_modifiable, allow_registration, allow_registration_in_group,
+                 allow_step_entry,
                  challenge_over, teams_revealed):
         super().__init__()
         self._name = name
@@ -21,6 +22,7 @@ class PhaseObject(Project):
         self._teams_assigned = teams_assigned
         self._allow_group_modifications = groups_modifiable
         self.allow_registration = allow_registration
+        self.allow_registration_in_group = allow_registration_in_group
         self.allow_step_entry = allow_step_entry
         self.challenge_over = challenge_over
         self.teams_revealed = teams_revealed
@@ -44,11 +46,10 @@ PHASE_PREREG = PhaseObject('PREREG',
                            teams_assigned=False,
                            groups_modifiable=True,
                            allow_registration=False,
+                           allow_registration_in_group=False,
                            allow_step_entry=False,
                            challenge_over=False,
                            teams_revealed=False)
-#                'allow_peaker_registration_in_group': True,
-#                'allow_group_registration': True,
 
 PHASE_REGISTRATION = PhaseObject('REGISTRATION',
                                  allow_group_registration=True,
@@ -56,8 +57,7 @@ PHASE_REGISTRATION = PhaseObject('REGISTRATION',
                                  teams_assigned=False,
                                  groups_modifiable=False,
                                  allow_registration=True,
+                                 allow_registration_in_group=True,
                                  allow_step_entry=False,
                                  challenge_over=False,
                                  teams_revealed=False)
-#                      'allow_peaker_registration_in_group': True,
-#                      'allow_group_registration': True}

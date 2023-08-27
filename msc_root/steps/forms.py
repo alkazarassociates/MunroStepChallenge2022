@@ -43,7 +43,9 @@ class StepEntryForm(ModelForm):
 
 class PeakerRegistrationForm(UserCreationForm):
     email = forms.EmailField(label='Email', help_text='We use this to contact you for reset passwords only!')
-    group_field = forms.ModelChoiceField(label='Ambassador Group', queryset=MpcGroup.objects.none(), empty_label='None, pick a Team for me.', required=False)
+    group_field = forms.ModelChoiceField(label='Ambassador Group',
+                                         queryset=MpcGroup.objects.all() if settings.CURRENT_PHASE.allow_registration_in_group else MpcGroup.objects.none(),
+                                         empty_label='None, pick a Team for me.', required=False)
     class Meta(UserCreationForm.Meta):
         pass
     def __init__(self, *args, **kwargs):

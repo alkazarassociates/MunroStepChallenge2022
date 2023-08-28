@@ -185,7 +185,7 @@ def step_report(request, peaker_name=''):
         distance_total += distance
         step_data.append({'day': entry.date, 'steps': entry.steps, 'distance': distance})
     step_data.append({'day': 'Total', 'steps': step_total, 'distance': distance_total})
-    return render(request, 'steps/report.html', {'unit_name': unit_name, 'steps': step_data, 'peaker_name': peaker_name})
+    return render(request, 'steps/report.html', {'unit_name': unit_name, 'steps': step_data, 'peaker_name': peaker_name, 'phase': settings.CURRENT_PHASE})
 
 @login_required(login_url=reverse_lazy('login'))
 def overwrite_confirm(request):

@@ -25,7 +25,7 @@ class StepEntryForm(ModelForm):
     
     def clean_date(self):
         d = self.cleaned_data['date']
-        if d < datetime.date(2022, 9, 1) or d >= datetime.date(2022, 10, 1):
+        if d < settings.CURRENT_PHASE.challenge_start_date or d >= settings.CURRENT_PHASE.challenge_end_date:
             raise ValidationError("Steps must be for the month of September")
         # UTC+-12 should be enough of the world for this.
         if datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=+12))).date() < d:
@@ -37,7 +37,7 @@ class StepEntryForm(ModelForm):
     def clean_steps(self):
         s = self.cleaned_data['steps']
         if s < 0:
-            raise ValidationError("You must enter a possitive number of steps")
+            raise ValidationError("You must enter a positive number of steps")
         return s
 
 

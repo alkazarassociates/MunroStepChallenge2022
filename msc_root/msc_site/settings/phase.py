@@ -1,4 +1,6 @@
 # Phase.py   Control what options are available based on time.
+import datetime
+
 
 class Project:
     def __init__(self):
@@ -27,6 +29,8 @@ class PhaseObject(Project):
         self.challenge_over = challenge_over
         self.teams_revealed = teams_revealed
         self.allow_non_group_peakers = allow_non_group_peakers
+        self.challenge_start_date = datetime.date(self.year, 9, 1)
+        self.challenge_end_date = datetime.date(self.year, 10, 1)
     
     def Name(self):
         return self._name

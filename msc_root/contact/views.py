@@ -29,4 +29,4 @@ def contact(request):
         if 'submitted' in request.GET:
             submitted = True
 
-    return render(request, 'contact/contact.html', {'form': form, 'submitted': submitted, 'our_email': settings.EMAIL_OUR_ADDRESS})
+    return render(request, 'contact/contact.html', {'form': form, 'submitted': submitted, 'our_email': settings.EMAIL_OUR_ADDRESS, 'phase':settings.CURRENT_PHASE})

@@ -6,11 +6,11 @@
 <h1>Teams for the {{ phase.challenge_name }}</h1>
   {% if not phase.teams_revealed %}
       <p>Teams for {{ phase.year }} will be revealed soon!</p>
-      <img src={% static 'purplemoonbackground2.jpg' %}
+      <img src={% static 'UnrevealedTeams.jpg' %}
         alt="Teams to be revealed" 
         style="width: 600px;">
   {% else %}
-    <img src={% static 'purplemoonbackground2.jpg' %}
+    <img src={% static 'RevealedTeams.jpg' %}
       alt="Teams" 
       usemap="#teammap"
       style="width: 600px;">

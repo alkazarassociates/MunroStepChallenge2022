@@ -58,7 +58,7 @@ def activate(request, uidb64, token):
         user.save()
         return HttpResponseRedirect(reverse_lazy('activate-success'))
     else:
-        return HttpResponse("Activation link is invalid.")
+        return HttpResponse("<p>Activation link is invalid, or account already avtivated.</p><p>This can happen if you click on activation link twice.  Try logging in.</p>")
 
 
 @login_required(login_url=reverse_lazy('login'))

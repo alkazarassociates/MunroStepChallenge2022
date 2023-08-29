@@ -3,5 +3,9 @@
 {% block title %}FAQ{% endblock title %}
 {% block content %}
 <h1 style="margin-bottom: 1em;">Frequently Asked Questions</h1>
-{{text|safe}}
+{% for faq in faqs %}
+<div>
+    {{faq.description|safe}}
+</div>
+{% endfor %}
 {% endblock content %}

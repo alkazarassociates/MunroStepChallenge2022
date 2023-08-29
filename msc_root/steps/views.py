@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from django.forms.models import model_to_dict
 from django.utils.encoding import force_str
 from django.utils.http import urlsafe_base64_decode, base36_to_int
+from django.utils.translation import gettext as _
 from collections import defaultdict
 import datetime
 import urllib
@@ -58,7 +59,7 @@ def activate(request, uidb64, token):
         user.save()
         return HttpResponseRedirect(reverse_lazy('activate-success'))
     else:
-        return HttpResponse("<p>Activation link is invalid, or account already avtivated.</p><p>This can happen if you click on activation link twice.  Try logging in.</p>")
+        return HttpResponse(_("<p>Activation link is invalid, or account already avtivated.</p><p>This can happen if you click on activation link twice.  Try logging in.</p>"))
 
 
 @login_required(login_url=reverse_lazy('login'))
@@ -69,7 +70,7 @@ def step_entry(request):
     if steps:
         latest = steps.latest('entered')
         d = latest.date.strftime("%B %d")
-        recent_steps = str(latest.steps) + " steps for " + d
+        recent_steps = _("%(step_count) steps for %(date)") % {'step_count': latest.steps, 'date': d}
     else:
         recent_steps = ""
     activity = request.session.get('last_activity', '')

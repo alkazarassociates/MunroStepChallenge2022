@@ -1,0 +1,3 @@
+#/user/bin/bash
+
+cd /opt/bitnami/projects/TSC22_Test/msc_root

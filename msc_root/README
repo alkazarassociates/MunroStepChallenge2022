@@ -62,3 +62,12 @@ Gave it a static IP address (named TestServerIP4)
 Add an entry in .ssh/config
 
 Changing the pull of prod db into test to a push of prod to test, so that test has no built in access to prod.
+
+----------------------------------
+I18N:
+
+run 'python manage.py makemessages -l es' to make (for example) the spanish message file.
+Repeat for all languages.
+Update locale/xx/LC_MESSAGES/django.po files with translations.
+run 'python manage.py compilemessages'.
+Check in .po and .mo files

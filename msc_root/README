@@ -52,3 +52,10 @@ gunicorn access logs: /var/log/gunicorn/access.log and test-access.log
 
 
 
+---------------------------
+Setting up new test server
+Lightsail instance 'TSCTest'
+'ssh-keygen' (default choices)
+copy laptop's public key to .ssh/authorized_keys
+Gave it a static IP address (named TestServerIP4)
+Add an entry in .ssh/config

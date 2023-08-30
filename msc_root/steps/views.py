@@ -70,7 +70,7 @@ def step_entry(request):
     if steps:
         latest = steps.latest('entered')
         d = latest.date.strftime("%B %d")
-        recent_steps = _("%(step_count) steps for %(date)") % {'step_count': latest.steps, 'date': d}
+        recent_steps = _("{step_count} steps for {date}").format(step_count=latest.steps, date=d)
     else:
         recent_steps = ""
     activity = request.session.get('last_activity', '')

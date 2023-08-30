@@ -31,6 +31,5 @@
     {% endfor %}
   </tbody>
 </table>
-<h3>Interesting Facts About the Sea of {{team.name}}</h3>
-<p>{{team.description}}</p>
+<p>{{team.description|safe}}</p>
  {% endblock content %}

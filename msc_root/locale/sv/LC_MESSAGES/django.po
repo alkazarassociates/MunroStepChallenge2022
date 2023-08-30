@@ -1,0 +1,250 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-08-29 15:44-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#. Translators: For links like 'to do this, click _here_'
+#: .\steps\templates\steps\steps.html:5
+msgid "here"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:7 .\steps\templates\steps\steps.html:10
+msgid "Enter Your Steps"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:14
+msgid "Your steps were successfully entered."
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:16
+msgid "To enter more steps, click"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:24
+msgid "Your most recent entry was:"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:27
+msgid "You have not entered any steps yet."
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:30
+msgctxt "steps OR activity"
+msgid "OR"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:31
+msgid "Activity Calculator"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:32
+msgid "Activity"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:39
+msgid "Amount"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:41
+msgid "Minutes"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:45
+msgctxt "button name"
+msgid "Submit"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:52
+msgid "Aerobic dance"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:53
+msgid "Basketball game"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:54
+msgid "Bicycling (moderate)"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:55
+msgid "Bicycling (fast)"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:56
+msgid "Bowling"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:57
+msgid "Canoeing"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:58
+msgid "Circuit training"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:59
+msgid "Dancing"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:60
+msgid "Elliptical"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:61
+msgid "Gardening"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:62
+msgid "Golf (no cart)"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:63
+msgid "House cleaning"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:64
+msgid "Ice skating (slow)"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:65
+msgid "Ice skating (moderate)"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:66
+msgid "Ice skating (fast)"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:67
+msgid "Inline/roller skating"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:68
+msgid "Jumping rope"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:69
+msgid "Kayaking"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:70
+msgid "Password Reset (per incident)"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:71
+msgid "Pickleball"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:72
+msgid "Pilates"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:73
+msgid "Racquetball/Squash"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:74
+msgid "Rowing (moderate)"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:75
+msgid "Rowing (vigorous)"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:76
+msgid "Skateboarding"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:77
+msgid "Skiing (downhill)"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:78
+msgid "Skiing (x-country)"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:79
+msgid "Soccer (football)"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:80
+msgid "Softball"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:81
+msgid "Stair-climber"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:82
+msgid "Step aerobics"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:83
+msgid "Swimming laps"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:84
+msgid "Table tennis"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:85
+msgid "Tai chi"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:86
+msgid "Tennis (singles)"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:87
+msgid "Water aerobics"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:88
+msgid "Weight-lifting"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:89
+msgid "Yoga"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:116
+msgid "Team Step Challenge Completed"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:119
+msgctxt "... in 2024"
+msgid "Thank you for participating, it's been an awsome journey. See you in "
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:122
+msgid "Team Step Challenge Begins September 1!"
+msgstr ""
+
+#: .\steps\templates\steps\steps.html:124
+msgid ""
+"#Steptember has not yet begun, come back September 1st to start logging your "
+"steps and activities."
+msgstr ""
+
+#: .\steps\views.py:62
+msgid ""
+"<p>Activation link is invalid, or account already avtivated.</p><p>This can "
+"happen if you click on activation link twice.  Try logging in.</p>"
+msgstr ""
+
+#: .\steps\views.py:73
+msgid "%(step_count) steps for %(date)"
+msgstr ""

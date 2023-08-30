@@ -123,7 +123,7 @@ def large_entry(request):
             submitted = True
 
     return render(request, 'steps/large_entry.html', {'form': form, 'submitted': submitted, 'peaker': request.user,
-                                                      'step_count_warning': _("You entered {form_steps_value} steps, which is a <b>LOT</b>!") % {'form_steps_value': form.steps.value})
+                                                      'step_count_warning': _("You entered {form_steps_value} steps, which is a <b>LOT</b>!") % {'form_steps_value': form.steps.value}})
 
 @login_required(login_url=reverse_lazy('login'))    
 def peaker_modification(request):

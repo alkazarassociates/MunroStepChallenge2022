@@ -40,7 +40,8 @@ export POSTGRES_PASSWORD=See Lastpass
 The database is running NOT THE BITNAMI one, but /usr/lib/postgresql/11/bin!  Use that psql.
 To start it from scratch:
 /usr/lib/postgresql/11/bin/psql -U postgres
-CREATE USER django WITH PASSWORD 'jibjib';
+CREATE USER django WITH PASSWORD <See Lastpass>;
+ALTER USER django CREATEDB;
 CREATE DATABASE django_test WITH OWNER = django;
 
 LOGS--------------------------------------

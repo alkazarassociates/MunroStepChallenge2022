@@ -19,4 +19,8 @@ CURRENT_PHASE.switch_to_test_server()
 CURRENT_PHASE.challenge_start_date = datetime.date(2023, 8, 27)
 CURRENT_PHASE.allow_step_entry = True
 
+# TODO Make this server dependent, not mode dependent
+STATIC_ROOT='/opt/bitnami/projects/TSC22/static'
+
+
 print("Development Settings. " + CURRENT_PHASE.Name())

@@ -4,6 +4,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.utils.translation import gettext_lazy as _
 
 from mpc_groups.models import MpcGroup
 from teams.models import Team
@@ -13,7 +14,7 @@ class Profile(models.Model):
     peaker = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     group = models.ForeignKey(MpcGroup, null=True, blank=True, on_delete=models.SET_NULL)
     team = models.ForeignKey(Team, null=True, blank=True, on_delete=models.SET_NULL)
-    imperial = models.BooleanField(verbose_name='USA Units', default=True, help_text="Check means distances are miles, unchecked means kilometers.")
+    imperial = models.BooleanField(verbose_name='USA Units', default=True, help_text=_("Check means distances are miles, unchecked means kilometers."))
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
@@ -32,7 +33,7 @@ class StepEntry(models.Model):
     peaker = models.ForeignKey(User, on_delete=models.CASCADE)
     entered = models.DateTimeField(auto_now_add=True)
     date = models.DateField()
-    steps = models.IntegerField(help_text="No ',' or '.' please. Just digits.")
+    steps = models.IntegerField(help_text=_("No ',' or '.' please. Just digits."))
     valid = models.BooleanField()
     notes = models.TextField(default='', blank=True)
 

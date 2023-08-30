@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
+from django.utils.translation import gettext as _
 from .models import Profile, StepEntry
 from .tokens import account_activation_token
 from mpc_groups.models import MpcGroup
@@ -26,27 +27,27 @@ class StepEntryForm(ModelForm):
     def clean_date(self):
         d = self.cleaned_data['date']
         if d < settings.CURRENT_PHASE.challenge_start_date or d >= settings.CURRENT_PHASE.challenge_end_date:
-            raise ValidationError("Steps must be for the month of September")
+            raise ValidationError(_("Steps must be for the month of September"))
         # UTC+-12 should be enough of the world for this.
         if datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=+12))).date() < d:
-            raise ValidationError("You can't enter steps for the future")
+            raise ValidationError(_("You can't enter steps for the future"))
         if datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=-12))).date() > d + datetime.timedelta(days=7.0):
-            raise ValidationError("You can't enter steps more than a week old")
+            raise ValidationError(_("You can't enter steps more than a week old"))
         return d
 
     def clean_steps(self):
         s = self.cleaned_data['steps']
         if s < 0:
-            raise ValidationError("You must enter a positive number of steps")
+            raise ValidationError(_("You must enter a positive number of steps"))
         return s
 
 
 class PeakerRegistrationForm(UserCreationForm):
-    email = forms.EmailField(label='Email', help_text='We use this to contact you for reset passwords only!')
-    group_field = forms.ModelChoiceField(label='Ambassador Group',
+    email = forms.EmailField(label=_('Email'), help_text=_('We use this to contact you for reset passwords only!'))
+    group_field = forms.ModelChoiceField(label=_('Ambassador Group'),
                                          queryset=MpcGroup.objects.all().order_by('name') if settings.CURRENT_PHASE.allow_registration_in_group else MpcGroup.objects.none(),
-                                         empty_label='None, pick a Team for me.' if settings.CURRENT_PHASE.allow_non_group_peakers else "--- Select Ambassador Group ---", required=not settings.CURRENT_PHASE.allow_non_group_peakers, 
-                                         help_text='We will make sure you are on the same Team as this the rest of the group')
+                                         empty_label=_('None, pick a Team for me.') if settings.CURRENT_PHASE.allow_non_group_peakers else _("--- Select Ambassador Group ---"), required=not settings.CURRENT_PHASE.allow_non_group_peakers, 
+                                         help_text=_('We will make sure you are on the same Team as this the rest of the group'))
     class Meta(UserCreationForm.Meta):
         pass
     def __init__(self, *args, **kwargs):
@@ -56,14 +57,14 @@ class PeakerRegistrationForm(UserCreationForm):
         username = self.cleaned_data['username'].lower()
         isnew = User.objects.filter(username=username)
         if isnew.count():
-            raise ValidationError("User already exists")
+            raise ValidationError(_("User already exists"))
         return username
     
     def email_clean(self):
         email = self.cleaned_data['email'].lower()
         isnew = User.objects.filter(email=email)
         if isnew.count():
-            raise ValidationError("Email already registered")
+            raise ValidationError(_("Email already registered"))
         return email
     
     def save(self, commit=True):
@@ -80,7 +81,7 @@ class PeakerRegistrationForm(UserCreationForm):
                                     'uid':urlsafe_base64_encode(force_bytes(user.pk)),
                                     'token':account_activation_token.make_token(user)})
         email = EmailMessage(
-            'Confirm email  for ' + settings.CURRENT_PHASE.challenge_name,
+            _('Confirm email  for ') + _(settings.CURRENT_PHASE.challenge_name),
             message, from_email=settings.EMAIL_OUR_ADDRESS, to=[self.cleaned_data['email']])
         email.send()
         return user

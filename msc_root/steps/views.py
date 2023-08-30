@@ -122,7 +122,8 @@ def large_entry(request):
         if 'submitted' in request.GET:
             submitted = True
 
-    return render(request, 'steps/large_entry.html', {'form': form, 'submitted': submitted, 'peaker': request.user})
+    return render(request, 'steps/large_entry.html', {'form': form, 'submitted': submitted, 'peaker': request.user,
+                                                      'step_count_warning': _("You entered {form_steps_value} steps, which is a <b>LOT</b>!") % {'form_steps_value': form.steps.value})
 
 @login_required(login_url=reverse_lazy('login'))    
 def peaker_modification(request):
@@ -213,7 +214,9 @@ def overwrite_confirm(request):
         if 'submitted' in request.GET:
             submitted = True
 
-    return render(request, 'steps/overwrite.html', {'form': form, 'submitted': submitted, 'peaker': request.user, 'existing': existing, 'sum_steps': sum_steps})
+    return render(request, 'steps/overwrite.html', {'form': form, 'submitted': submitted, 'peaker': request.user, 'existing': existing, 'sum_steps': sum_steps,
+                                                    'dupliate_step_warning': _("On {date_entered} you entered {steps} steps for {date}. Do you want to change it to {new_steps} steps, or are these additional steps?" % {'date_entered': existing.entered, 'steps':existing.steps, 'date': existing.date, 'new_steps': form.steps.value}),
+                                                    'overwrite_button': _("Overwrite with {new_steps}") % {'new_steps': form.steps.value}})
 
 class StepData:
     def __init__(self, step_data, peaker_sets, unit_name, conversion, empty_key_name='---'):

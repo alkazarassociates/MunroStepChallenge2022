@@ -1,23 +1,26 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}Confirm Your Steps{% endblock title %}
+{% block title %}{% translate "Confirm Your Steps" %}{% endblock title %}
+{% comment %}Translators: For links like 'to do this, click _here_'{% endcomment %}
+{% translate "here" as link_text %}
 
 {% block content %}
-<h1>Confirm Your Steps</h1>
+<h1>{% translate "Confirm Your Steps" %}</h1>
 
 {% if submitted %}
     <p class="success">
-        Your steps were successfully entered.
+        {% translate "Your steps were successfully entered." %}
     </p>
-    <p>To enter more steps click <a href="{% url 'step_entry' %}">here</a>.</p>
+    <p>{% translate "To enter more steps click" <a href="{% url 'step_entry' %}">{{ link_text }}</a>.</p>
 {% else %}
-    <p>On {{existing.entered}} you entered {{existing.steps}} steps for {{existing.date}}. Do you want to change it to {{form.steps.value}} steps, or are these additional steps?</p>
-    <p>Which do you want to do?</p>
+    <p>{{ duplicate_step_warning }}</p>
+    <p>{% translate "Which do you want to do?" %></p>
         <table>
             <tr>
                 <td>
                     <form action="{% url 'index' %}">
-                        <input type="submit" value="Nevermind." />
+                        <input type="submit" value={% translate "Nevermind." %} />
                     </form>
                 </td>
                 <td>
@@ -25,7 +28,7 @@
                         {{ form.date.as_hidden }}
                         {{ form.steps.as_hidden }}
                         {% csrf_token %}
-                        <input type="submit" value="Overwrite with {{form.steps.value}}" autofocus>
+                        <input type="submit" value="{{ overwrite_button }}" autofocus>
                     </form>
                 </td>
                 <td>
@@ -33,7 +36,7 @@
                         {{ form.date.as_hidden }}
                         <input type="hidden" id="steps" name="steps" value="{{sum_steps}}">
                         {% csrf_token %}
-                        <input type="submit" value="Add them together">
+                        <input type="submit" value={% translate "Add them together" %}>
                     </form>
                 </td>
             </tr>

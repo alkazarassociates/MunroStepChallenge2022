@@ -7,11 +7,12 @@ import datetime
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# Try and allow CSRF not to kill us in http.
+CSRF_COOKIE_SECURE = False
+
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-z7zy3y-od5m8gvw2+gh-&4xr-i+ppo^mm6ehq5mtz7lb#cq9fb'
-
-# Let's turn off CSRF checks because we are not https
-MIDDLEWARE.remove('django.middleware.csrf.CsrfViewMiddleware')
 
 ALLOWED_HOSTS = ['test.alkazarassociates.com', '127.0.0.1', 'localhost']
 

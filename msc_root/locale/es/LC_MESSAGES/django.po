@@ -1,4 +1,4 @@
-﻿# SOME DESCRIPTIVE TITLE.
+# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
@@ -86,9 +86,8 @@ msgstr "Danza aeróbica"
 
 
 #: .\steps\templates\steps\steps.html:53
-msgid "Basketball game""
+msgid "Basketball game"
 msgstr "Juego de Baloncesto"
-
 
 #: .\steps\templates\steps\steps.html:54
 msgid "Bicycling (moderate)"
@@ -201,7 +200,7 @@ msgstr "Remo (vigoroso)"
 
 
 #: .\steps\templates\steps\steps.html:76
-msgid ""Skateboarding"
+msgid "Skateboarding"
 msgstr "Patineta/monopatín"
 
 

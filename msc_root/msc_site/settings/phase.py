@@ -68,3 +68,6 @@ PHASE_REGISTRATION = PhaseObject('REGISTRATION',
                                  challenge_over=False,
                                  teams_revealed=False,
                                  allow_non_group_peakers=False)
+
+# 8/30 We revealed the teams
+PHASE_REGISTRATION.teams_revealed = True

@@ -1,18 +1,18 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Team Step Challenge
+# Copyright (C) 2023 Alkazar Associates
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Christina Camara Serra <cristina.camara.serra@gmail.com>, 2023.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: TSC2023\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-31 10:07-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2023-08-31 HO:MI+ZONE\n"
+"Last-Translator: Christina Camara Serra <cristina.camara.serra@gmail.com>\n"
+"Language-Team:  LANGUAGE <LL@li.org>\n"
+"Language: Portugese\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -160,72 +160,72 @@ msgstr "Ioga"
 
 #: .\steps\forms.py:20
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #: .\steps\forms.py:27
 msgid "Steps"
-msgstr ""
+msgstr "Passos"
 
 #: .\steps\forms.py:33
 msgid "Steps must be for the month of September"
-msgstr ""
+msgstr "Os passos devem ser para o mês de Setembro"
 
 #: .\steps\forms.py:36
 msgid "You can't enter steps for the future"
-msgstr ""
+msgstr "Não pode registar passos para uma data futura"
 
 #: .\steps\forms.py:38
 msgid "You can't enter steps more than a week old"
-msgstr ""
+msgstr "Não pode registar passos com uma data superior a uma semana"
 
 #: .\steps\forms.py:44
 msgid "You must enter a positive number of steps"
-msgstr ""
+msgstr "O número de passos registado tem de ser positivo"
 
 #: .\steps\forms.py:49
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: .\steps\forms.py:49
 msgid "We use this to contact you for reset passwords only!"
-msgstr ""
+msgstr "Utilizamos esta informação apenas para contacto para recuperar palavras-passe!"
 
 #: .\steps\forms.py:50
 msgid "Ambassador Group"
-msgstr ""
+msgstr "Grupo Embaixador"
 
 #: .\steps\forms.py:52
 msgid "None, pick a Team for me."
-msgstr ""
+msgstr "Nenhum, escolham uma Equipa por mim."
 
 #: .\steps\forms.py:52
 msgid "--- Select Ambassador Group ---"
-msgstr ""
+msgstr "--- Escolher Grupo Embaixador ---"
 
 #: .\steps\forms.py:53
 msgid ""
 "We will make sure you are on the same Team as this the rest of the group"
-msgstr ""
+msgstr "Vamos garantir que fica colocado na mesma Equipa que o resto do seu grupo"
 
 #: .\steps\forms.py:63
 msgid "User already exists"
-msgstr ""
+msgstr "Utilizador já existe"
 
 #: .\steps\forms.py:70
 msgid "Email already registered"
-msgstr ""
+msgstr "Endereço de email já registado"
 
 #: .\steps\forms.py:87
 msgid "Confirm email  for "
-msgstr ""
+msgstr "Confirmar email para "
 
 #: .\steps\models.py:17
 msgid "Check means distances are miles, unchecked means kilometers."
-msgstr ""
+msgstr "Seleccionado significa que as distâncias estão em milhas, não seleccionado significa quilómetros"
 
 #: .\steps\models.py:36
 msgid "No ',' or '.' please. Just digits."
-msgstr ""
+msgstr "Não use ',' ou '.', por favor. Só dígitos."
 
 #. Translators: For links like 'to do this, click _here_'
 #: .\steps\templates\steps\large_entry.html:5
@@ -239,7 +239,7 @@ msgstr "aqui"
 #: .\steps\templates\steps\overwrite.html:4
 #: .\steps\templates\steps\overwrite.html:9
 msgid "Confirm Your Steps"
-msgstr ""
+msgstr "Confirme Os Seus Passos"
 
 #: .\steps\templates\steps\large_entry.html:14
 #: .\steps\templates\steps\overwrite.html:13
@@ -250,27 +250,27 @@ msgstr "Os seus passos foram registados com sucesso."
 #: .\steps\templates\steps\large_entry.html:16
 #: .\steps\templates\steps\overwrite.html:15
 msgid "To enter more steps click"
-msgstr ""
+msgstr "Para registar mais passos carregue"
 
 #: .\steps\templates\steps\large_entry.html:19
 msgid "Are you sure?"
-msgstr ""
+msgstr "De certeza?"
 
 #: .\steps\templates\steps\large_entry.html:24
 msgid "Go back, try again."
-msgstr ""
+msgstr "Volte atrás, tente de novo."
 
 #: .\steps\templates\steps\large_entry.html:32
 msgid "I'm sure"
-msgstr ""
+msgstr "Tenho a certeza"
 
 #: .\steps\templates\steps\overwrite.html:23
 msgid "Nevermind."
-msgstr ""
+msgstr "Ignorem."
 
 #: .\steps\templates\steps\overwrite.html:39
 msgid "Add them together"
-msgstr ""
+msgstr "Adicionem-nos juntos"
 
 #: .\steps\templates\steps\steps.html:7 .\steps\templates\steps\steps.html:10
 msgid "Enter Your Steps"
@@ -352,7 +352,7 @@ msgstr "{step_count} passos a {date}"
 #: .\steps\views.py:129
 #, python-brace-format
 msgid "You entered {form_steps_value} steps, which is a <b>LOT</b>!"
-msgstr ""
+msgstr "Registou {form_steps_value} passos, que é <b>IMENSO</b>!"
 
 #: .\steps\views.py:221
 #, python-brace-format
@@ -360,11 +360,13 @@ msgid ""
 "On {date_entered} you entered {steps} steps for {date}. Do you want to "
 "change it to {new_steps} steps, or are these additional steps?"
 msgstr ""
+"No dia {date_entered} registou {steps} passos para o dia {date}. Quer "
+"alterar para {new_steps} passos, ou estes são passos adicionais?"
 
 #: .\steps\views.py:222
 #, python-brace-format
 msgid "Overwrite with {new_steps}"
-msgstr ""
+msgstr "Alterar para {new_steps}"
 
 #~ msgid "Password Reset (per incident)"
 #~ msgstr "Redefinir palava-passe (devido a incidente)"

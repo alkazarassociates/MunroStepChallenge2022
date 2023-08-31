@@ -95,7 +95,7 @@ msgstr ""
 #: .\steps\templates\steps\overwrite.html:13
 #: .\steps\templates\steps\steps.html:14
 msgid "Your steps were successfully entered."
-msgstr "Os seus passos foram registados com sucesso."
+msgstr "Os seus passos foram registrados com sucesso."
 
 #: .\steps\templates\steps\large_entry.html:16
 #: .\steps\templates\steps\overwrite.html:15
@@ -128,15 +128,15 @@ msgstr "Insira os Seus Passos"
 
 #: .\steps\templates\steps\steps.html:16
 msgid "To enter more steps, click"
-msgstr "Para registar mais passos, clique aqui"
+msgstr "Para registrar mais passos, clique aqui"
 
 #: .\steps\templates\steps\steps.html:24
 msgid "Your most recent entry was:"
-msgstr "O seu registo mais recente foi"
+msgstr "O seu registro mais recente foi"
 
 #: .\steps\templates\steps\steps.html:27
 msgid "You have not entered any steps yet."
-msgstr "Ainda não registou nenhum passos."
+msgstr "Ainda não registrou nenhum passos."
 
 #: .\steps\templates\steps\steps.html:30
 msgctxt "steps OR activity"
@@ -327,7 +327,7 @@ msgstr "Obrigado pela participação, foi uma ótima caminhada. Nos vemos em "
 
 #: .\steps\templates\steps\steps.html:122
 msgid "Team Step Challenge Begins September 1!"
-msgstr "O Team Step Challenge Começa em 1 de Setembro!"
+msgstr "O Team Step Challenge Começa 1 de Setembro!"
 
 #: .\steps\templates\steps\steps.html:124
 msgid ""
@@ -348,7 +348,7 @@ msgstr ""
 #: .\steps\views.py:73
 #, python-brace-format
 msgid "{step_count} steps for {date}"
-msgstr "{step_count} passos a {date}"
+msgstr "{step_count} passos para {date}"
 #: .\steps\views.py:126
 #, python-brace-format
 msgid "You entered {form_steps_value} steps, which is a <b>LOT</b>!"

@@ -13,14 +13,14 @@ import os
 from pathlib import Path
 from pickle import TRUE
 
-from .phase import PHASE_PREREG, PHASE_REGISTRATION
+from .phase import PHASE_PREREG, PHASE_REGISTRATION, PHASE_STEPTEMBER
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # Time based settings
 
-CURRENT_PHASE = PHASE_REGISTRATION
+CURRENT_PHASE = PHASE_STEPTEMBER
 
 # Application definition
 

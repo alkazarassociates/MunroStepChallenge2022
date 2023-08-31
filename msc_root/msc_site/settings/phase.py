@@ -1,4 +1,5 @@
 # Phase.py   Control what options are available based on time.
+from copy import copy
 import datetime
 
 
@@ -71,3 +72,7 @@ PHASE_REGISTRATION = PhaseObject('REGISTRATION',
 
 # 8/30 We revealed the teams
 PHASE_REGISTRATION.teams_revealed = True
+
+PHASE_STEPTEMBER = copy(PHASE_REGISTRATION)
+PHASE_STEPTEMBER._teams_assigned = True
+PHASE_STEPTEMBER.allow_step_entry = True

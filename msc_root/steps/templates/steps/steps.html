@@ -48,46 +48,7 @@
             {% csrf_token %}
         </form>
         <script>
-            var StepsPerActivity = {
-            'Aerobic dance': '137',
-            'Basketball game': '150',
-            'Bicycling (moderate)':	'147',
-            'Bicycling (fast)':	'170',
-            'Bowling': '105',
-            'Canoeing': '112',
-            'Circuit training': '135',
-            'Dancing': '149',
-            'Elliptical': '132',
-            'Gardening': '115',
-            'Golf (no cart)': '130',
-            'House cleaning': '110',
-            'Ice skating (slow)': '84',
-            'Ice skating (moderate)': '122',
-            'Ice skating (fast)': '203',
-            'Inline/roller skating': '145',
-            'Jumping rope': '180',
-            'Kayaking': '132',
-            /*'Password Reset (per incident)': '10',*/
-            'Pickleball': '130',
-            'Pilates': '105',
-            'Racquetball/Squash': '145',
-            'Rowing (moderate)': '130',
-            'Rowing (vigorous)': '153',
-            'Skateboarding': '152',
-            /*'Skiing (downhill)': '134',
-            'Skiing (x-country)': '160',*/
-            'Soccer (football)': '145',
-            'Softball': '132',
-            'Stair-climber': '160',
-            'Step aerobics': '153',
-            'Swimming laps': '138',
-            'Table tennis': '119',
-            'Tai chi': '105',
-            'Tennis (singles)': '146',
-            'Water aerobics': '134',
-            'Weight-lifting': '112',
-            'Yoga': '95',
-            };
+            var StepsPerActivity = {{ activities|safe }}
             function FillDropDown() {
                 dropdown = document.getElementById("activity");
                 for (var act in StepsPerActivity) {

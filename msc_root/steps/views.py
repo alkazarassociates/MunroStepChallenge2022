@@ -17,6 +17,7 @@ import urllib
 from .models import Profile, StepEntry
 from .forms import PeakerRegistrationForm, StepEntryForm, PeakerModificationForm
 from .tokens import account_activation_token
+from .activity_conversion import GetActivities
 
 from mpc_groups.models import MpcGroup
 from teams.models import Team
@@ -73,6 +74,7 @@ def step_entry(request):
         recent_steps = _("{step_count} steps for {date}").format(step_count=latest.steps, date=d)
     else:
         recent_steps = ""
+    activities = GetActivities()
     activity = request.session.get('last_activity', '')
     if request.method == 'POST':
         form = StepEntryForm(request.POST)
@@ -98,7 +100,8 @@ def step_entry(request):
             submitted = True
 
     return render(request, 'steps/steps.html', {
-        'form': form, 'submitted': submitted, 'peaker': request.user, 'recent_steps': recent_steps, 'last_activity': activity, 'phase':settings.CURRENT_PHASE
+        'form': form, 'submitted': submitted, 'peaker': request.user, 'recent_steps': recent_steps,
+        'activities': str(activities), 'last_activity': activity, 'phase':settings.CURRENT_PHASE
         })
 
 @login_required(login_url=reverse_lazy('login'))

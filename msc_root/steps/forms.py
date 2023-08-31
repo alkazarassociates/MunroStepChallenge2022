@@ -4,25 +4,28 @@ from xml.dom import ValidationErr
 from django.conf import settings
 from django.core.mail import EmailMessage
 from django import forms
-from django.forms import ModelForm, ValidationError
+from django.forms import ModelForm, ValidationError, DateField
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy, gettext as _
 from .models import Profile, StepEntry
 from .tokens import account_activation_token
 from mpc_groups.models import MpcGroup
 
 class StepEntryForm(ModelForm):
     required_css_class = 'required'
-    date = forms.DateField(widget=forms.SelectDateWidget)
+    date = forms.DateField(widget=forms.SelectDateWidget, label=gettext_lazy('Date'))
     class Meta:
         model = StepEntry
         fields = [
             'date', 'steps'
         ]
+        labels = {
+            'steps': gettext_lazy('Steps')
+        }
     
     def clean_date(self):
         d = self.cleaned_data['date']

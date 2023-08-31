@@ -83,8 +83,7 @@ msgstr ""
 #: .\steps\templates\steps\overwrite.html:6
 #: .\steps\templates\steps\steps.html:5
 msgid "here"
-msgstr ""
-
+msgstr "aqui"
 #: .\steps\templates\steps\large_entry.html:7
 #: .\steps\templates\steps\large_entry.html:10
 #: .\steps\templates\steps\overwrite.html:4
@@ -96,7 +95,7 @@ msgstr ""
 #: .\steps\templates\steps\overwrite.html:13
 #: .\steps\templates\steps\steps.html:14
 msgid "Your steps were successfully entered."
-msgstr ""
+msgstr "Os seus passos foram registados com sucesso."
 
 #: .\steps\templates\steps\large_entry.html:16
 #: .\steps\templates\steps\overwrite.html:15
@@ -125,76 +124,231 @@ msgstr ""
 
 #: .\steps\templates\steps\steps.html:7 .\steps\templates\steps\steps.html:10
 msgid "Enter Your Steps"
-msgstr ""
+msgstr "Insira os Seus Passos"
 
 #: .\steps\templates\steps\steps.html:16
 msgid "To enter more steps, click"
-msgstr ""
+msgstr "Para registar mais passos, clique aqui"
 
 #: .\steps\templates\steps\steps.html:24
 msgid "Your most recent entry was:"
-msgstr ""
+msgstr "O seu registo mais recente foi"
 
 #: .\steps\templates\steps\steps.html:27
 msgid "You have not entered any steps yet."
-msgstr ""
+msgstr "Ainda não registou nenhum passos."
 
 #: .\steps\templates\steps\steps.html:30
 msgctxt "steps OR activity"
 msgid "OR"
-msgstr ""
+msgstr "OU"
 
 #: .\steps\templates\steps\steps.html:31
 msgid "Activity Calculator"
-msgstr ""
+msgstr "Calculadora de Atividade"
 
 #: .\steps\templates\steps\steps.html:32
 msgid "Activity"
-msgstr ""
+msgstr "Atividade"
 
 #: .\steps\templates\steps\steps.html:39
 msgid "Amount"
-msgstr ""
+msgstr "Quantidade"
 
 #: .\steps\templates\steps\steps.html:41
 msgid "Minutes"
-msgstr ""
+msgstr "Minutos"
 
 #: .\steps\templates\steps\steps.html:45
 msgctxt "button name"
 msgid "Submit"
-msgstr ""
+msgstr "Enviar"
+
+#: .\steps\templates\steps\steps.html:52
+msgid "Aerobic dance"
+msgstr "Dança aeróbica"
+
+#: .\steps\templates\steps\steps.html:53
+msgid "Basketball game"
+msgstr "Basquete"
+
+#: .\steps\templates\steps\steps.html:54
+msgid "Bicycling (moderate)"
+msgstr "Andar de bicicleta (moderado)"
+
+#: .\steps\templates\steps\steps.html:55
+msgid "Bicycling (fast)"
+msgstr "Andar de bicicleta (acelerado)"
+
+#: .\steps\templates\steps\steps.html:56
+msgid "Bowling"
+msgstr "Boliche"
+
+#: .\steps\templates\steps\steps.html:57
+msgid "Canoeing"
+msgstr "Canoagem"
+
+#: .\steps\templates\steps\steps.html:58
+msgid "Circuit training"
+msgstr "Treino funcional"
+
+#: .\steps\templates\steps\steps.html:59
+msgid "Dancing"
+msgstr "Dança"
+
+#: .\steps\templates\steps\steps.html:60
+msgid "Elliptical"
+msgstr "Elíptico"
+
+#: .\steps\templates\steps\steps.html:61
+msgid "Gardening"
+msgstr "Jardinagem"
+
+#: .\steps\templates\steps\steps.html:62
+msgid "Golf (no cart)"
+msgstr "Golfe (sem carro)"
+
+#: .\steps\templates\steps\steps.html:63
+msgid "House cleaning"
+msgstr "Limpar a casa"
+
+#: .\steps\templates\steps\steps.html:64
+msgid "Ice skating (slow)"
+msgstr "Patinar no gelo (lento)"
+
+#: .\steps\templates\steps\steps.html:65
+msgid "Ice skating (moderate)"
+msgstr "Patinar no gelo (moderado)"
+
+#: .\steps\templates\steps\steps.html:66
+msgid "Ice skating (fast)"
+msgstr "Patinar no gelo (acelerado)"
+
+#: .\steps\templates\steps\steps.html:67
+msgid "Inline/roller skating"
+msgstr "Andar de patins em linha/de 4 rodas"
+
+#: .\steps\templates\steps\steps.html:68
+msgid "Jumping rope"
+msgstr "Pular corda"
+
+#: .\steps\templates\steps\steps.html:69
+msgid "Kayaking"
+msgstr "Andar de caiaque"
+
+#: .\steps\templates\steps\steps.html:70
+msgid "Password Reset (per incident)"
+msgstr "Redefinir sua senha (devido a incidente)"
+
+#: .\steps\templates\steps\steps.html:71
+msgid "Pickleball"
+msgstr "Pickleball"
+
+#: .\steps\templates\steps\steps.html:72
+msgid "Pilates"
+msgstr "Pilates"
+
+#: .\steps\templates\steps\steps.html:73
+msgid "Racquetball/Squash"
+msgstr "Squash"
+
+#: .\steps\templates\steps\steps.html:74
+msgid "Rowing (moderate)"
+msgstr "Remo (moderado)"
+
+#: .\steps\templates\steps\steps.html:75
+msgid "Rowing (vigorous)"
+msgstr "Remo (vigoroso)"
+
+#: .\steps\templates\steps\steps.html:76
+msgid "Skateboarding"
+msgstr "Fazer skateboard"
+
+#: .\steps\templates\steps\steps.html:77
+msgid "Skiing (downhill)"
+msgstr "Esquiar (downhill)"
+
+#: .\steps\templates\steps\steps.html:78
+msgid "Skiing (x-country)"
+msgstr "Esquiar (cross country)"
+
+#: .\steps\templates\steps\steps.html:79
+msgid "Soccer (football)"
+msgstr "Futebol"
+
+#: .\steps\templates\steps\steps.html:80
+msgid "Softball"
+msgstr "Softbol"
+
+#: .\steps\templates\steps\steps.html:81
+msgid "Stair-climber"
+msgstr "Escada"
+
+#: .\steps\templates\steps\steps.html:82
+msgid "Step aerobics"
+msgstr "Step (aeróbico)"
+
+#: .\steps\templates\steps\steps.html:83
+msgid "Swimming laps"
+msgstr "Natação"
+
+#: .\steps\templates\steps\steps.html:84
+msgid "Table tennis"
+msgstr "Tênis de mesa"
+
+#: .\steps\templates\steps\steps.html:85
+msgid "Tai chi"
+msgstr "Tai chi"
+
+#: .\steps\templates\steps\steps.html:86
+msgid "Tennis (singles)"
+msgstr "Tênis (individual)"
+
+#: .\steps\templates\steps\steps.html:87
+msgid "Water aerobics"
+msgstr "Hidroginástica"
+
+#: .\steps\templates\steps\steps.html:88
+msgid "Weight-lifting"
+msgstr "Levantamento de pesos"
+
+#: .\steps\templates\steps\steps.html:89
+msgid "Yoga"
+msgstr "Ioga"
 
 #: .\steps\templates\steps\steps.html:116
 msgid "Team Step Challenge Completed"
-msgstr ""
+msgstr "Team Step Challenge Finalizado"
 
 #: .\steps\templates\steps\steps.html:119
 msgctxt "... in 2024"
 msgid "Thank you for participating, it's been an awsome journey. See you in "
-msgstr ""
+msgstr "Obrigado pela participação, foi uma ótima caminhada. Nos vemos em "
 
 #: .\steps\templates\steps\steps.html:122
 msgid "Team Step Challenge Begins September 1!"
-msgstr ""
+msgstr "O Team Step Challenge Começa em 1 de Setembro!"
 
 #: .\steps\templates\steps\steps.html:124
 msgid ""
 "#Steptember has not yet begun, come back September 1st to start logging your "
 "steps and activities."
 msgstr ""
+"#Steptember ainda não começou, volte em 1 de Setembro para começar a registar os seus "
+"passos e atividades."
 
 #: .\steps\views.py:62
 msgid ""
 "<p>Activation link is invalid, or account already avtivated.</p><p>This can "
 "happen if you click on activation link twice.  Try logging in.</p>"
 msgstr ""
+"<p>O link de ativação é inválido, ou a conta já foi ativada.</p><p>Isto pode "
+"acontecer se carregar no link de ativação duas vezes. Tente fazer log in.</p>"
 
 #: .\steps\views.py:73
 #, python-brace-format
 msgid "{step_count} steps for {date}"
-msgstr ""
-
+msgstr "{step_count} passos a {date}"
 #: .\steps\views.py:126
 #, python-brace-format
 msgid "You entered {form_steps_value} steps, which is a <b>LOT</b>!"

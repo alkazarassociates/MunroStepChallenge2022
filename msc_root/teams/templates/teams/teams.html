@@ -3,13 +3,6 @@
 {% load static %}
 {% block title %}Teams{% endblock title %}
 
-<style>
-  .wrap {
-    float: right;
-    margin: 5px;
-  }
-</style>
-
 {% block content %}
 <h1>Teams for the {{ phase.challenge_name }}</h1>
   {% if not phase.teams_revealed %}

@@ -2,6 +2,13 @@
 
 {% block title %}Team {{team}}{% endblock title %}
 
+<style>
+  .wrap {
+    float: right;
+    margin: 5px;
+  }
+</style>
+
 {% block content %}
 {% load humanize %}
 {% if team.picture %}

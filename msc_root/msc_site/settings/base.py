@@ -127,7 +127,11 @@ USE_TZ = True
 LANGUAGES = [('en', 'English'),
               ('no', 'Norwegian'),
               ('it', 'Italian'),
-              ('es', 'Spanish')]
+              ('es', 'Spanish'),
+              ('fi', 'Finnish'),
+              ('fr', 'French'),
+              ('pt', 'Portugese'),
+              ('pt-BR', 'Portugese-Brazillian')]
 LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
 
 # Static files (CSS, JavaScript, Images)

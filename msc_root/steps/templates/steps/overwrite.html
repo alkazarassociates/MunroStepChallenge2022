@@ -2,8 +2,6 @@
 {% load i18n %}
 
 {% block title %}{% translate "Confirm Your Steps" %}{% endblock title %}
-{% comment %}Translators: For links like 'to do this, click _here_'{% endcomment %}
-{% translate "here" as link_text %}
 
 {% block content %}
 <h1>{% translate "Confirm Your Steps" %}</h1>
@@ -12,15 +10,15 @@
     <p class="success">
         {% translate "Your steps were successfully entered." %}
     </p>
-    <p>{% translate "To enter more steps click" <a href="{% url 'step_entry' %}">{{ link_text }}</a>.</p>
+    <p>{% translate "To enter more steps, click" %} <a href="{% url 'step_entry' %}">{% translate "here" context "Link Text" %}</a>.</p>
 {% else %}
     <p>{{ duplicate_step_warning }}</p>
-    <p>{% translate "Which do you want to do?" %></p>
+    <p>{% translate "Which do you want to do?" %}</p>
         <table>
             <tr>
                 <td>
                     <form action="{% url 'index' %}">
-                        <input type="submit" value={% translate "Nevermind." %} />
+                        <input type="submit" value="{% translate "Nevermind." %}"" />
                     </form>
                 </td>
                 <td>
@@ -36,7 +34,7 @@
                         {{ form.date.as_hidden }}
                         <input type="hidden" id="steps" name="steps" value="{{sum_steps}}">
                         {% csrf_token %}
-                        <input type="submit" value={% translate "Add them together" %}>
+                        <input type="submit" value="{% translate "Add them together" %}"">
                     </form>
                 </td>
             </tr>

@@ -1,18 +1,18 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Team Step Challenge
+# Copyright (C) 2023 Alkazar Associates
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Barbara Businaro <clanmcpeakers@gmail.com>, 2023.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: TSC2023\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-31 10:07-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2023-08-31 HO:MI+ZONE\n"
+"Last-Translator: Barbara Businaro <clanmcpeakers@gmail.com>\n"
+"Language-Team:  LANGUAGE <LL@li.org>\n"
+"Language: Italian\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -68,11 +68,11 @@ msgstr "Pulizie di casa"
 
 #: .\steps\activity_conversion.py:20
 msgid "Ice skating (slow)"
-msgstr ""
+msgstr "Pattinaggio su ghiaccio (lento)"
 
 #: .\steps\activity_conversion.py:21
 msgid "Ice skating (moderate)"
-msgstr "Pattinaggio su ghiaccio (lento)"
+msgstr "Pattinaggio su ghiaccio (moderato)"
 
 #: .\steps\activity_conversion.py:22
 msgid "Ice skating (fast)"
@@ -80,7 +80,7 @@ msgstr "Pattinaggio su ghiaccio (veloce)"
 
 #: .\steps\activity_conversion.py:23
 msgid "Inline/roller skating"
-msgstr "Pattinaggio in linea/roller"
+msgstr "Pattinaggio in linea/Rollerblade"
 
 #: .\steps\activity_conversion.py:24
 msgid "Jumping rope"
@@ -160,15 +160,15 @@ msgstr "Yoga"
 
 #: .\steps\forms.py:20
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #: .\steps\forms.py:27
 msgid "Steps"
-msgstr ""
+msgstr "Passi"
 
 #: .\steps\forms.py:33
 msgid "Steps must be for the month of September"
-msgstr ""
+msgstr "I passi devono riguardare il mese di Settembre"
 
 #: .\steps\forms.py:36
 #, fuzzy
@@ -178,56 +178,57 @@ msgstr "Non hai ancora inserito alcun passo."
 
 #: .\steps\forms.py:38
 msgid "You can't enter steps more than a week old"
-msgstr ""
+msgstr "Non puoi inserire passi più vecchi di una settimana fa."
 
 #: .\steps\forms.py:44
 msgid "You must enter a positive number of steps"
-msgstr ""
+msgstr "Devi inserire un numero positivo di passi"
 
 #: .\steps\forms.py:49
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: .\steps\forms.py:49
 msgid "We use this to contact you for reset passwords only!"
-msgstr ""
+msgstr "Lo usiamo per contattarvi solo per il reset della password!"
 
 #: .\steps\forms.py:50
 msgid "Ambassador Group"
-msgstr ""
+msgstr "Gruppo Ambassador"
 
 #: .\steps\forms.py:52
 msgid "None, pick a Team for me."
-msgstr ""
+msgstr "Nessuno, scegliete un Team per me."
 
 #: .\steps\forms.py:52
 msgid "--- Select Ambassador Group ---"
-msgstr ""
+msgstr "--- Seleziona Gruppo Ambassador ---"
 
 #: .\steps\forms.py:53
 msgid ""
 "We will make sure you are on the same Team as this the rest of the group"
 msgstr ""
+"Ci assicureremo che siate nello stesso Team del resto del gruppo."
 
 #: .\steps\forms.py:63
 msgid "User already exists"
-msgstr ""
+msgstr "L'utente esiste già"
 
 #: .\steps\forms.py:70
 msgid "Email already registered"
-msgstr ""
+msgstr "Email già registrata"
 
 #: .\steps\forms.py:87
 msgid "Confirm email  for "
-msgstr ""
+msgstr "Confermare l'e-mail per "
 
 #: .\steps\models.py:17
 msgid "Check means distances are miles, unchecked means kilometers."
-msgstr ""
+msgstr "Check selezionato significa che le distanze sono miglia, non selezionato significa chilometri."
 
 #: .\steps\models.py:36
 msgid "No ',' or '.' please. Just digits."
-msgstr ""
+msgstr "Niente ',' o '.' per favore. Solo cifre."
 
 #. Translators: For links like 'to do this, click _here_'
 #: .\steps\templates\steps\large_entry.html:5
@@ -260,23 +261,23 @@ msgstr "Per inserire altri passi, clicca"
 
 #: .\steps\templates\steps\large_entry.html:19
 msgid "Are you sure?"
-msgstr ""
+msgstr "Sei sicuro?"
 
 #: .\steps\templates\steps\large_entry.html:24
 msgid "Go back, try again."
-msgstr ""
+msgstr "Torna indietro, prova di nuovo."
 
 #: .\steps\templates\steps\large_entry.html:32
 msgid "I'm sure"
-msgstr ""
+msgstr "Sono sicuro."
 
 #: .\steps\templates\steps\overwrite.html:23
 msgid "Nevermind."
-msgstr ""
+msgstr "Non importa."
 
 #: .\steps\templates\steps\overwrite.html:39
 msgid "Add them together"
-msgstr ""
+msgstr "Aggiungeteli insieme"
 
 #: .\steps\templates\steps\steps.html:7 .\steps\templates\steps\steps.html:10
 msgid "Enter Your Steps"
@@ -359,7 +360,7 @@ msgstr "{step_count} passi per {date}"
 #: .\steps\views.py:129
 #, python-brace-format
 msgid "You entered {form_steps_value} steps, which is a <b>LOT</b>!"
-msgstr ""
+msgstr "Hai inserito {form_steps_value} passi, che sono <b>MOLTI</b>!"
 
 #: .\steps\views.py:221
 #, python-brace-format
@@ -367,11 +368,13 @@ msgid ""
 "On {date_entered} you entered {steps} steps for {date}. Do you want to "
 "change it to {new_steps} steps, or are these additional steps?"
 msgstr ""
+"Il {date_entered} hai inserito {steps} passi {date}. Vuoi "
+"cambiarli in {new_steps} passi, o questi sono passi aggiuntivi?"
 
 #: .\steps\views.py:222
 #, python-brace-format
 msgid "Overwrite with {new_steps}"
-msgstr ""
+msgstr "Sovrascrivi con {new_steps}"
 
 #~ msgid "Password Reset (per incident)"
 #~ msgstr "Reset della Password (per evento)"

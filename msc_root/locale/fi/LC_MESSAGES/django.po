@@ -1,7 +1,7 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Team Step Challenge
+# Copyright (C) 2023 Alkazar Associates
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Sarita Bergholm <sarita.bergholm@gmail.com>, 2023.
 #
 #, fuzzy
 msgid ""
@@ -10,9 +10,9 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-31 10:07-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: Sarita Bergholm <sarita.bergholm@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: Finnish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -28,7 +28,7 @@ msgstr "Koripallo"
 
 #: .\steps\activity_conversion.py:10
 msgid "Bicycling (moderate)"
-msgstr "Pyöräilyä pikku hiellä "
+msgstr "Pyöräilyä hitaasti "
 
 #: .\steps\activity_conversion.py:11
 msgid "Bicycling (fast)"
@@ -40,7 +40,7 @@ msgstr "Keilailu"
 
 #: .\steps\activity_conversion.py:13
 msgid "Canoeing"
-msgstr "Melonta kanootilla tai suppilaudalla"
+msgstr "Melonta"
 
 #: .\steps\activity_conversion.py:14
 msgid "Circuit training"
@@ -48,7 +48,7 @@ msgstr "Circuit-treeni"
 
 #: .\steps\activity_conversion.py:15
 msgid "Dancing"
-msgstr "Tanssahtelu"
+msgstr "Tanssiminen"
 
 #: .\steps\activity_conversion.py:16
 msgid "Elliptical"
@@ -104,15 +104,15 @@ msgstr "Kössi"
 
 #: .\steps\activity_conversion.py:30
 msgid "Rowing (moderate)"
-msgstr "Leppoisaa soutamista"
+msgstr "Soutaminen hitaasti"
 
 #: .\steps\activity_conversion.py:31
 msgid "Rowing (vigorous)"
-msgstr "Soutamista ihan hitokseen"
+msgstr "Soutamista nopeasti"
 
 #: .\steps\activity_conversion.py:32
 msgid "Skateboarding"
-msgstr "Skeittailu"
+msgstr "Kompostinkääntö"
 
 #: .\steps\activity_conversion.py:35
 msgid "Soccer (football)"
@@ -120,7 +120,7 @@ msgstr "Fudis"
 
 #: .\steps\activity_conversion.py:36
 msgid "Softball"
-msgstr "Mitä lie softballia"
+msgstr "Metsästys"
 
 #: .\steps\activity_conversion.py:37
 msgid "Stair-climber"
@@ -160,15 +160,15 @@ msgstr "Jooga"
 
 #: .\steps\forms.py:20
 msgid "Date"
-msgstr ""
+msgstr "Päivämäärä"
 
 #: .\steps\forms.py:27
 msgid "Steps"
-msgstr ""
+msgstr "Askeleet"
 
 #: .\steps\forms.py:33
 msgid "Steps must be for the month of September"
-msgstr ""
+msgstr "Askeleet tulee olla syyskuulta"
 
 #: .\steps\forms.py:36
 #, fuzzy
@@ -178,56 +178,56 @@ msgstr "Et ole vielä lisännyt askeleitasi"
 
 #: .\steps\forms.py:38
 msgid "You can't enter steps more than a week old"
-msgstr ""
+msgstr "Et voi lisätä yli viikon vanhoja askeleita"
 
 #: .\steps\forms.py:44
 msgid "You must enter a positive number of steps"
-msgstr ""
+msgstr "Sinun tulee lisätä askeleita, ei ottaa niitä pois"
 
 #: .\steps\forms.py:49
 msgid "Email"
-msgstr ""
+msgstr "Sähköposti"
 
 #: .\steps\forms.py:49
 msgid "We use this to contact you for reset passwords only!"
-msgstr ""
+msgstr "Käytämme tätä vain salasanan vaihtoon"
 
 #: .\steps\forms.py:50
 msgid "Ambassador Group"
-msgstr ""
+msgstr "Ambassador-ryhmä"
 
 #: .\steps\forms.py:52
 msgid "None, pick a Team for me."
-msgstr ""
+msgstr "Ei minulla ole, valitse ryhmä puolestani"
 
 #: .\steps\forms.py:52
 msgid "--- Select Ambassador Group ---"
-msgstr ""
+msgstr "--- Valitse Ambassador-ryhmä ---"
 
 #: .\steps\forms.py:53
 msgid ""
 "We will make sure you are on the same Team as this the rest of the group"
-msgstr ""
+msgstr "Pidämme huolen, että olet samassa tiimissä muiden kanssa"
 
 #: .\steps\forms.py:63
 msgid "User already exists"
-msgstr ""
+msgstr "Käyttäjä on jo olemassa"
 
 #: .\steps\forms.py:70
 msgid "Email already registered"
-msgstr ""
+msgstr "Sähköposti on jo rekisteröity"
 
 #: .\steps\forms.py:87
 msgid "Confirm email  for "
-msgstr ""
+msgstr "Vahvista sähköposti"
 
 #: .\steps\models.py:17
 msgid "Check means distances are miles, unchecked means kilometers."
-msgstr ""
+msgstr "Rasti ruutuun tarkoittaa maileja, ilman rastia kilometrejä"
 
 #: .\steps\models.py:36
 msgid "No ',' or '.' please. Just digits."
-msgstr ""
+msgstr "Ei ',' tai '.', kiitos. Merkitsethän vain lukuja."
 
 #. Translators: For links like 'to do this, click _here_'
 #: .\steps\templates\steps\large_entry.html:5
@@ -243,7 +243,7 @@ msgstr "tähän"
 #, fuzzy
 #| msgid "Enter Your Steps"
 msgid "Confirm Your Steps"
-msgstr "Lisää askeleesi"
+msgstr "Vahvista askeleesi"
 
 #: .\steps\templates\steps\large_entry.html:14
 #: .\steps\templates\steps\overwrite.html:13
@@ -260,23 +260,23 @@ msgstr "Jos haluat lisätä lisää askeleita klikkaa tästä"
 
 #: .\steps\templates\steps\large_entry.html:19
 msgid "Are you sure?"
-msgstr ""
+msgstr "Oletko ihan varma?"
 
 #: .\steps\templates\steps\large_entry.html:24
 msgid "Go back, try again."
-msgstr ""
+msgstr "Meneppä takaisin ja yritä uudelleen"
 
 #: .\steps\templates\steps\large_entry.html:32
 msgid "I'm sure"
-msgstr ""
+msgstr "Joo, olen ihan varma"
 
 #: .\steps\templates\steps\overwrite.html:23
 msgid "Nevermind."
-msgstr ""
+msgstr "Ei mitään sittenkään"
 
 #: .\steps\templates\steps\overwrite.html:39
 msgid "Add them together"
-msgstr ""
+msgstr "Lisää ne yhdessä"
 
 #: .\steps\templates\steps\steps.html:7 .\steps\templates\steps\steps.html:10
 msgid "Enter Your Steps"
@@ -309,7 +309,7 @@ msgstr "Aktiviteetti"
 
 #: .\steps\templates\steps\steps.html:39
 msgid "Amount"
-msgstr "Summa"
+msgstr "Lukumäärä"
 
 #: .\steps\templates\steps\steps.html:41
 msgid "Minutes"
@@ -357,19 +357,19 @@ msgstr "{step_count} askeleet {date}"
 #: .\steps\views.py:129
 #, python-brace-format
 msgid "You entered {form_steps_value} steps, which is a <b>LOT</b>!"
-msgstr ""
+msgstr "Olet kirjannut {form_steps_value} askeleita joka tekee yhteensä <b>LOT</b>! "
 
 #: .\steps\views.py:221
 #, python-brace-format
 msgid ""
 "On {date_entered} you entered {steps} steps for {date}. Do you want to "
 "change it to {new_steps} steps, or are these additional steps?"
-msgstr ""
+msgstr "Olet kirjannut {steps} päivälle. Haluatko korvata {new_steps} vai ovatko nämä lisäaskeleita?"
 
 #: .\steps\views.py:222
 #, python-brace-format
 msgid "Overwrite with {new_steps}"
-msgstr ""
+msgstr "Korvaa {new_steps}"
 
 #~ msgid "Password Reset (per incident)"
 #~ msgstr "Tarvitsetko uuden salasanan?"

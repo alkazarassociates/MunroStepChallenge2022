@@ -1,4 +1,4 @@
-﻿# Team Step Challenge
+# Team Step Challenge
 # Copyright (C) 2023 Alkazar Associates
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.

@@ -353,8 +353,6 @@ msgstr ""
 "si clickeas el link de activación dos veces.  Intenta ingresar.</p>"
 
 #: .\steps\views.py:74
-#, fuzzy, python-brace-format
-#| msgid "{step_count) steps for {date}"
 msgid "{step_count} steps for {date}"
 msgstr "{step_count} pasos de {date}"
 

@@ -175,7 +175,7 @@ msgstr "Los pasos deben ser del mes de Septiembre"
 #, fuzzy
 #| msgid "You have not entered any steps yet."
 msgid "You can't enter steps for the future"
-msgstr "No puedes ingresar pasos futuros”
+msgstr "No puedes ingresar pasos futuros"
 
 #: .\steps\forms.py:38
 msgid "You can't enter steps more than a week old"
@@ -361,7 +361,7 @@ msgstr "{step_count} pasos de {date}"
 #: .\steps\views.py:129
 #, python-brace-format
 msgid "You entered {form_steps_value} steps, which is a <b>LOT</b>!"
-msgstr "Has ingresado {form_step_value} pasos, que es a <b>LOT</b>!""
+msgstr "Has ingresado {form_steps_value} pasos, que es a <b>LOT</b>!"
 
 #: .\steps\views.py:221
 #, python-brace-format

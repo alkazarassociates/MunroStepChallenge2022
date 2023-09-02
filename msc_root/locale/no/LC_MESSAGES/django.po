@@ -171,9 +171,6 @@ msgstr "Skritt for September måned"
 
 #: .\steps\forms.py:36
 #, fuzzy
-#| msgid "You have not entered any steps yet."
-#| msgstr "Du har ikke registrert noen skritt ennå."
-
 msgid "You can't enter steps for the future"
 msgstr "Du kan ikke registrere skritt frem i tid"
 

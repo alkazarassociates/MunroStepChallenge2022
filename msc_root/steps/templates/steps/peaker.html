@@ -13,7 +13,7 @@
 {% else %}
     <form action="" enctype="multipart/form-data" method="post" novalidate>
         <p>You can change your password <a href={% url 'change-password' %}>here</a>.
-        <table>
+        <table class="table_with_space">
             <tr><td><b>Peaker</b></td><td>{{peaker}}</td></tr>
             {{ form.as_table }}
             <tr>

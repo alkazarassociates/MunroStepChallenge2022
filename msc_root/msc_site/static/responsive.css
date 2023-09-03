@@ -67,6 +67,7 @@ tt {
 	padding: 10px;
 }
 
+
 ul.errorlist {
 	margin: 0;
 	padding: 0;
@@ -161,6 +162,9 @@ table.mpcreport tfoot tr {
 }
 .guide_col {
 	padding: 0px;
+}
+table.table_with_space td {
+	padding-top: 15px;
 }
 
 @media only screen and (max-width: 800px) {

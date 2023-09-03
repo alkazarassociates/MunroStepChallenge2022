@@ -9,11 +9,18 @@ from django.utils.translation import gettext_lazy as _
 from mpc_groups.models import MpcGroup
 from teams.models import Team
 
-# TODO 2023 Add time zone.  Consider email, for password resets.
+# TODO 2023 Add time zone.
 class Profile(models.Model):
     peaker = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     group = models.ForeignKey(MpcGroup, null=True, blank=True, on_delete=models.SET_NULL)
     team = models.ForeignKey(Team, null=True, blank=True, on_delete=models.SET_NULL)
+    TSC_FUNDRAISING='TSC'
+    OTHER_FUNDRAISING='NO'
+    FUNDRAISING_CHOICES = [
+        (TSC_FUNDRAISING, "Count my steps towards my group's fundraising"),
+        (OTHER_FUNDRAISING, "Do not count my steps towards my group's fundraising.")
+    ]
+    fundraising = models.CharField(max_length=3, choices=FUNDRAISING_CHOICES, default=TSC_FUNDRAISING)
     imperial = models.BooleanField(verbose_name='USA Units', default=True, help_text=_("Check means distances are miles, unchecked means kilometers."))
 
 @receiver(post_save, sender=User)

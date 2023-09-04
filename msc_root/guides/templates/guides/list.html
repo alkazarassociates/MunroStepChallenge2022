@@ -7,7 +7,7 @@
     <tbody>
     {% for item in list_items %}
         <tr class={% cycle 'odd_row' 'even_row' %}>
-            <td style="text-align: left;">{{ item }}</td>
+            <td style="text-align: left;">{{ item|safe }}</td>
         </tr>
     {% endfor %}
     </tbody>

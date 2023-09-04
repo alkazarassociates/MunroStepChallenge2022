@@ -76,3 +76,5 @@ PHASE_REGISTRATION.teams_revealed = True
 PHASE_STEPTEMBER = copy(PHASE_REGISTRATION)
 PHASE_STEPTEMBER._teams_assigned = True
 PHASE_STEPTEMBER.allow_step_entry = True
+ # 9/4 we turned off new group registration
+PHASE_STEPTEMBER.allow_group_registration = False

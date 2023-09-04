@@ -34,7 +34,9 @@
     {% else %}
         <p>Registration for <em>Ambassador Groups</em> is no longer available for this year's challenge.</p>
         {% if phase.allow_registration %}
-            <p>But your group's members can still register and participate!  We simply can't place them all on the same Team.</p>
+            {% if phase.allow_non_group_peakers %}
+                <p>But your group's members can still register and participate!  We simply can't place them all on the same Team.</p>
+            {% endif %}
         {% endif %}
     {% endif %}
 {% endif %}

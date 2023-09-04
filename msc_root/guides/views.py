@@ -6,3 +6,9 @@ def MpcMunroGuide(request):
 
 def index(request):
     return render(request, 'guides/index.html', {'phase': settings.CURRENT_PHASE})
+
+def movies(request):
+    return render(request, 'guides/list.html', {'phase': settings.CURRENT_PHASE, 'title': 'Movies to Inspire', 'list_items': ['sample']})
+
+def shows(request):
+    return render(request, 'guides/list.html', {'phase': settings.CURRENT_PHASE, 'title': 'TV Shows to Inspire', 'list_items': ['sample2']})

@@ -4,7 +4,47 @@
 {% load static %}
 <h1>Useful (or Fun) Guides</h1>
 
-<h2><b>[Coming Soon]</b></h2>
-<img src="/static/moon-and-rocket.jpg" alt="Rocket" style="width:100%;"/>
-
+<div class="guide_row">
+    <div class="guide_col">
+      <a href="https://prismic-io.s3.amazonaws.com/virtual-events/262ab860-001f-45bc-b897-f14af2e1667e_Moonro+Challenge+-+Making+your+fundraising+page.pdf">
+        <figure style="margin:5px;">
+          <img src="/static/MPCMunroStepChallenge2023.png" alt="MPC Set Up Fundraising" style="width:100px;height:100px;">
+          <figcaption style="width:100px;">MPC's Guide to Setting up Fundraising</figcaption>
+        </figure>
+      </a>
+    </div>
+    <div class="guide_col">
+      <a href="https://prismic-io.s3.amazonaws.com/virtual-events/f8e25fd5-cd50-4f7d-85bb-2f18e2547b12_Moonro+Challenge+-+How+to+log+your+steps+manually.pdf">
+        <figure style="margin:5px;">
+          <img src="/static/MPCMunroStepChallenge2023.png" alt="MPC Log Steps" style="width:100px;height:100px;">
+          <figcaption style="width:100px;">MPC's Guide to Logging Steps</figcaption>
+        </figure>
+      </a>
+    </div>
+    <div class="guide_col">
+      <a href={% url 'mpc_guide' %}>
+          <figure style="margin:5px;">
+              <img src="/static/TSC2023Logo.jpg" alt="Our Guide for 2023" style="width:100px;height:100px;">
+              <figcaption style="width:100px;">Our Guide to Participating in Both Challenges</figcaption>
+          </figure>
+      </a>
+    </div>
+    <div class="guide_col">
+        <a href="/guides/movies">
+            <figure style="margin:5px;">
+                <img src="/static/TSC2023Logo.jpg" alt="Movies" style="width:100px;height:100px;">
+                <figcaption style="width:100px;">Movies to Inspire</figcaption>
+            </figure>
+        </a>
+    </div>
+    <div class="guide_col">
+        <a href="/guides/shows">
+            <figure style="margin:5px;">
+                <img src="/static/TSC2023Logo.jpg" alt="Shows" style="width:100px;height:100px;">
+                <figcaption style="width:100px;">TV Shows to Inspire</figcaption>
+            </figure>
+        </a>
+    </div>
+ </div>
+  
 {% endblock content %}

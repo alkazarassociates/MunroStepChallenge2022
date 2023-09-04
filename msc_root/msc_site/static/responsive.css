@@ -152,6 +152,17 @@ table.mpcreport tfoot tr {
 	background-color: grey;
 	color: papayawhip;
 }
+
+.guide_row {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	gap: 0px;
+}
+.guide_col {
+	padding: 0px;
+}
+
 @media only screen and (max-width: 800px) {
 	#header {
 		width: 100%;

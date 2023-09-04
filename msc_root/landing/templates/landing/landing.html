@@ -6,6 +6,10 @@
 
 <p>Our Goal: 30 days and 500 million steps for charity.</p>
 <p>The Reason:  September is  Blood Cancer Awareness Month-we are raising awareness and funds for Blood Cancer UK. They really appreciate our enthusiasm and support.</p>
+<p>The <strong>Team Step Challenge</strong> is an add on to the
+<a href="https://www.munrostepchallenge.com/"><strong>MPC Munro Step Challenge</strong></a>. 
+This is run by Peaker volunteers, not by MPC. We hope our webpage makes it easy to participate in both. See links at the bottom of the page for 
+more information on the MPC Step Challenge and tips and guides for how to best participate.</p>
 <p>~Mike and Cheryl</p>
 
 {% if user.is_authenticated %}
@@ -29,5 +33,32 @@
   <p>Step counting begins September 1!</p>
   {% endif %}
 {% endif %}
+<hr>
+<div class="guide_row">
+  <div class="guide_col">
+    <a href="https://prismic-io.s3.amazonaws.com/virtual-events/262ab860-001f-45bc-b897-f14af2e1667e_Moonro+Challenge+-+Making+your+fundraising+page.pdf">
+      <figure style="margin:5px;">
+        <img src="/static/MPCMunroStepChallenge2023.png" alt="MPC Set Up Fundraising" style="width:100px;height:100px;">
+        <figcaption style="width:100px;">MPC's Guide to Setting up Fundraising</figcaption>
+      </figure>
+    </a>
+  </div>
+  <div class="guide_col">
+    <a href="https://prismic-io.s3.amazonaws.com/virtual-events/f8e25fd5-cd50-4f7d-85bb-2f18e2547b12_Moonro+Challenge+-+How+to+log+your+steps+manually.pdf">
+      <figure style="margin:5px;">
+        <img src="/static/MPCMunroStepChallenge2023.png" alt="MPC Log Steps" style="width:100px;height:100px;">
+        <figcaption style="width:100px;">MPC's Guide to Logging Steps</figcaption>
+      </figure>
+    </a>
+  </div>
+  <div class="guide_col">
+    <a href={% url 'mpc_guide' %}>
+        <figure style="margin:5px;">
+            <img src="/static/TSC2023Logo.jpg" alt="Our Guide for 2023" style="width:100px;height:100px;">
+            <figcaption style="width:100px;">Our Guide to Participating in Both Challenges</figcaption>
+        </figure>
+    </a>
+  </div>
+</div>
 
 {% endblock content %}

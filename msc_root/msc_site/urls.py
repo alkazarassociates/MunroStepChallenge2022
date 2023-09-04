@@ -44,6 +44,7 @@ urlpatterns = [
     path('', include('landing.urls')),
     path('teams', include('teams.urls')),
     path('groups/', include('mpc_groups.urls')),
+    path('guides/', include('guides.urls')),
     path('faq/', include('faq_page.urls')),
     path('contact', include('contact.urls')),
     path('change-password', django.contrib.auth.views.PasswordChangeView.as_view(), name='change-password'),

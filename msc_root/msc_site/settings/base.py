@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'contact.apps.ContactConfig',
     'steps.apps.StepsConfig',
     'faq_page.apps.FaqPageConfig',
+    'guides.apps.GuidesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

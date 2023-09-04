@@ -3,5 +3,14 @@
 {% block content %}
 {% load static %}
 <h1>{{ title }}</h1>
+<table class="mpcreport">
+    <tbody>
+    {% for item in list_items %}
+        <tr class={% cycle 'odd_row' 'even_row' %}>
+            <td style="text-align: left;">{{ item }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
 
 {% endblock content %}

@@ -6,7 +6,8 @@
 
 {% for team in team_list %}
 <div>
-    <a href="{% url 'team_page' team_name=team.name %}/#team_note">{{ team.person }}</a>
+    {{ team.description|safe }}
+    <hr>
 </div>
 {% endfor %}
   

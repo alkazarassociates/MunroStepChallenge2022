@@ -163,11 +163,14 @@ def peaker_modification(request):
             entry.save()
             return HttpResponseRedirect('/peaker/?submitted=True')
     else:
-        form = PeakerModificationForm(current_group=request.user.profile.group.pk if request.user.profile.group else None, initial={'group': request.user.profile.group, 'imperial': request.user.profile.imperial})
+        form = PeakerModificationForm(current_group=request.user.profile.group.pk if request.user.profile.group else None, 
+                                      initial={'group': request.user.profile.group, 'fundraising': request.user.profile.fundraising, 
+                                               'imperial': request.user.profile.imperial})
         if 'submitted' in request.GET:
             submitted = True
 
-    return render(request, 'steps/peaker.html', {'form': form, 'submitted': submitted, 'peaker': request.user})
+    return render(request, 'steps/peaker.html', {'form': form, 'submitted': submitted, 'peaker': request.user,
+                                                 'phase': settings.CURRENT_PHASE})
 
 @login_required(login_url=reverse_lazy('login'))
 def step_report(request, peaker_name=''):

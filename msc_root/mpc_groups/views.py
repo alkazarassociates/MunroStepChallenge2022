@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
-from steps.models import StepEntry
+from steps.models import StepEntry, Profile
 from teams.models import Team
 from .forms import MpcAdminRegistrationForm
 from .models import GroupModifications, MpcGroup
@@ -58,7 +58,7 @@ def members(request, group):
     return render(request, 'mpc_groups/members.html', context)
 
 @login_required(login_url=reverse_lazy('login'))
-def report(request, group):
+def report(request, group, fundraising=False):
     try:
         if isinstance(group, list):
             g = 'Custom Group'
@@ -74,7 +74,7 @@ def report(request, group):
     distance_total = 0
     unit_name = 'Kilometers'
     conv = 0.7242 / 1000.0
-    if request.user.profile.imperial:
+    if request.user.profile and request.user.profile.imperial:
         unit_name = 'Miles'
         conv = 0.45 / 1000.0
     for date in dates:
@@ -83,6 +83,8 @@ def report(request, group):
             entries = StepEntry.objects.filter(date=day, peaker__username__in=group)
         else:
             entries = StepEntry.objects.filter(date=day, peaker__profile__group=g)
+        if fundraising:
+            entries = entries.filter(peaker__profile__fundraising=Profile.TSC_FUNDRAISING)
         steps = entries.aggregate(Sum('steps'))['steps__sum'] or 0
         step_total += steps
         distance = conv * steps
@@ -94,13 +96,15 @@ def report(request, group):
         entries = StepEntry.objects.filter(peaker__username__in=group)
     else:
         entries = StepEntry.objects.filter(peaker__profile__group=g)
-    peakers = entries.distinct('peaker').values_list('peaker', 'peaker__username', 'peaker__profile__team')
+    peakers = entries.distinct('peaker').values_list('peaker', 'peaker__username', 'peaker__profile__team', 'peaker__profile__fundraising')
     peaker_totals = []
     step_total = 0
     for peaker_wrap in peakers:
         if peaker_wrap[1] == 'admin':
             continue
         if peaker_wrap[2] is None:
+            continue
+        if fundraising and peaker_wrap[3] != Profile.TSC_FUNDRAISING:
             continue
         peaker = peaker_wrap[0]
         steps = StepEntry.objects.filter(peaker=peaker).aggregate(Sum('steps'))['steps__sum'] or 0

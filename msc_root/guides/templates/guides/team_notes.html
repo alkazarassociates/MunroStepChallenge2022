@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+<h1>Our Hidden Figures</h1>
+
+{% for team in team_list %}
+<div>
+    <a href="{% url 'team_page' team_name=team.name %}/#team_note">{{ team.person }}</a>
+</div>
+{% endfor %}
+  
+{% endblock content %}

@@ -42,9 +42,12 @@
       {% endif %}
       <li><a href='/teams'>Teams</a></li>
       <li><a href='/groups'>Groups</a></li>
-      <li><a href={% url 'group_register' %}>Group Registration</a></li>
+      {% if phase.allow_group_registration %}
+        <li><a href={% url 'group_register' %}>Group Registration</a></li>
+      {% endif %}
       <li><a href='/faq'>FAQ</a></li>
       <li><a href='/guides'>Guides</a></li>
+      <li><a href={% url 'team_notes' %}>Our Hidden Figures</a></li>
       <li><a href='/contact'>Contact Us</a></li>
     </ul>
     </nav>

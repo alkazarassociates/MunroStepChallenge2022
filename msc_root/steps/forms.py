@@ -106,5 +106,4 @@ class PeakerModificationForm(ModelForm):
     
     class Meta:
         model = Profile
-        fields = [ 'fundraising', 'imperial']
-        help_texts = {'fundraising': "Select 'do not count' if you wish to fundraise with your own steps separately, or not fundraise with them for other reasons."}
+        fields = [ 'justgiving', 'imperial']

@@ -164,7 +164,7 @@ def peaker_modification(request):
             return HttpResponseRedirect('/peaker/?submitted=True')
     else:
         form = PeakerModificationForm(current_group=request.user.profile.group.pk if request.user.profile.group else None, 
-                                      initial={'group': request.user.profile.group, 'fundraising': request.user.profile.fundraising, 
+                                      initial={'group': request.user.profile.group, 'justgiving': request.user.profile.justgiving, 
                                                'imperial': request.user.profile.imperial})
         if 'submitted' in request.GET:
             submitted = True

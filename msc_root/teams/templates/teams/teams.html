@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load static %}
+{% load humanize %}
 {% block title %}Teams{% endblock title %}
 
 {% block content %}
@@ -25,10 +26,11 @@
       <area shape="rect" coords="388,299,582,347" alt="Team Storm" href="/teams/STORM">
     </map>
     
-    <ul>
+    <table>
+      <th>&nbsp;</th><th style="padding-left: 80px;">Steps   (as of {% now "d/M/Y h:i e" %})</th>
       {% for team in team_list %}
-      <li>{% include 'teams/team_link.html' %}</li>
+      <tr><td style="padding-bottom: 8px;"">{% include 'teams/team_link.html' %}</td><td class={{team.name}} style="padding-left: 80px;"">{{ team.steps|intcomma }}</td></tr>
       {% endfor %}
-    </ul>
+    </table>
   {% endif %}
   {% endblock content %}

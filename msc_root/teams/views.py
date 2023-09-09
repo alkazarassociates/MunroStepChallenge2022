@@ -7,7 +7,10 @@ from .models import Team
 from steps.models import StepEntry
 
 def index(request):
-    context = {'team_list': Team.objects.order_by('name'), 'title': 'Munro Step Challenge', 'phase': settings.CURRENT_PHASE}
+    team_list = []
+    for team in Team.objects.order_by('name'):
+        team_list.append({'name': team.name, 'steps': StepEntry.objects.filter(peaker__profile__team=team).aggregate(Sum('steps'))['steps__sum'] or 0})
+    context = {'team_list': team_list, 'title': 'Munro Step Challenge', 'phase': settings.CURRENT_PHASE}
     return render(request, 'teams/teams.html', context)
 
 def nb(text):

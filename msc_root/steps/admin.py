@@ -10,9 +10,10 @@ class StepEntryAdmin(admin.ModelAdmin):
 admin.site.register(StepEntry, StepEntryAdmin)
 
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('peaker', 'get_email', 'get_active', 'group', 'team')
+    list_display = ('peaker', 'get_email', 'get_active', 'justgiving', 'group', 'team')
     list_filter = ('group', 'team')
     search_fields = ('peaker__username', 'peaker__email')
+    verbose_name = {'justgiving': 'JG'}
 
     def get_email(self, obj):
         return obj.peaker.email

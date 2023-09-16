@@ -36,17 +36,19 @@ class Command(BaseCommand):
             print(f"Total of steps on or before {cutoff} as entered at {datetime.datetime.now()}", file=out)
             w = csv.writer(out)
             for team in team_list:
-                w.writerow(['TEAM ' + team.name, 'Total'])
+                w.writerow(['TEAM ' + team.name, 'Total', 'Participants'])
                 for group in MpcGroup.objects.filter(team=team).order_by('name'):
                     step_total = StepEntry.objects.filter(date__lte=cutoff, peaker__profile__group=group).aggregate(Sum('steps'))['steps__sum'] or 0
-                    w.writerow([group.name, step_total])
+                    participants = StepEntry.objects.filter(date__lte=cutoff, peaker__profile__group=group).distinct('peaker').count()
+                    w.writerow([group.name, step_total, participants])
                 w.writerow([])
         with open('group_data.csv', 'w', newline='') as out:
             cutoff = datetime.date(today.year, today.month, options['day'])
             print(f"Total of steps on or before {cutoff} as entered at {datetime.datetime.now()}", file=out)
             w = csv.writer(out)
-            w.writerow(['Group', 'Total'])
+            w.writerow(['Group', 'Total', 'Participants'])
             for group in MpcGroup.objects.order_by('name'):
                 step_total = StepEntry.objects.filter(date__lte=cutoff, peaker__profile__group=group).aggregate(Sum('steps'))['steps__sum'] or 0
-                w.writerow([group.name, step_total])
+                participants = StepEntry.objects.filter(date__lte=cutoff, peaker__profile__group=group).distinct('peaker').count()
+                w.writerow([group.name, step_total, participants])
             w.writerow([])

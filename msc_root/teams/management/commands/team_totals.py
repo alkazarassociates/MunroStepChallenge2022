@@ -31,7 +31,7 @@ class Command(BaseCommand):
                     team_totals.append(step_total)
                     all_teams_total += step_total
                 w.writerow([day, all_teams_total] + team_totals)
-        with open('group_data.csv', 'w', newline='') as out:
+        with open('team_group.csv', 'w', newline='') as out:
             cutoff = datetime.date(today.year, today.month, options['day'])
             print(f"Total of steps on or before {cutoff} as entered at {datetime.datetime.now()}", file=out)
             w = csv.writer(out)
@@ -41,3 +41,12 @@ class Command(BaseCommand):
                     step_total = StepEntry.objects.filter(date__lte=cutoff, peaker__profile__group=group).aggregate(Sum('steps'))['steps__sum'] or 0
                     w.writerow([group.name, step_total])
                 w.writerow([])
+        with open('group_data.csv', 'w', newline='') as out:
+            cutoff = datetime.date(today.year, today.month, options['day'])
+            print(f"Total of steps on or before {cutoff} as entered at {datetime.datetime.now()}", file=out)
+            w = csv.writer(out)
+            w.writerow(['Group', 'Total'])
+            for group in MpcGroup.objects.order_by('name'):
+                step_total = StepEntry.objects.filter(date__lte=cutoff, peaker__profile__group=group).aggregate(Sum('steps'))['steps__sum'] or 0
+                w.writerow([group.name, step_total])
+            w.writerow([])

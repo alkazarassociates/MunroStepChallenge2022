@@ -34,8 +34,8 @@ class StepEntryForm(ModelForm):
         # UTC+-12 should be enough of the world for this.
         if datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=+12))).date() < d:
             raise ValidationError(_("You can't enter steps for the future"))
-        if datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=-12))).date() > d + datetime.timedelta(days=7.0):
-            raise ValidationError(_("You can't enter steps more than a week old"))
+        if datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=-12))).date() > d + datetime.timedelta(days=settings.CURRENT_PHASE.days_to_enter_steps):
+            raise ValidationError(_("You can't enter steps more than a week old"))  # TODO Genericise this message or adapt it to the correct setting.
         return d
 
     def clean_steps(self):

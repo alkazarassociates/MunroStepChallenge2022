@@ -32,6 +32,7 @@ class PhaseObject(Project):
         self.allow_non_group_peakers = allow_non_group_peakers
         self.challenge_start_date = datetime.date(self.year, 9, 1)
         self.challenge_end_date = datetime.date(self.year, 10, 1)
+        self.days_to_enter_steps = 7
     
     def Name(self):
         return self._name
@@ -78,3 +79,5 @@ PHASE_STEPTEMBER._teams_assigned = True
 PHASE_STEPTEMBER.allow_step_entry = True
  # 9/4 we turned off new group registration
 PHASE_STEPTEMBER.allow_group_registration = False
+# 9/23 we disabled week limit
+PHASE_STEPTEMBER.days_to_enter_steps = 38

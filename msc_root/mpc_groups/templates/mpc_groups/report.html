@@ -6,7 +6,7 @@
 {% load humanize %}
 <h1 class="boxed" style="text-align: center;">{{group}}</h1>
 <table class="mpcreport">
-  <caption><em>Daily Totals</em></caption>
+  <caption><span style="float:left;"><em>Daily Totals</em></span><span style="float: right;"><em>{{peaker_totals|length}} participating</em></span></em></caption>
   <thead>
     <tr><th>Date</th><th>Steps</th><th>{{unit_name}}</th></tr>
   </thead>

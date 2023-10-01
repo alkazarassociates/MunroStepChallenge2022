@@ -81,3 +81,5 @@ PHASE_STEPTEMBER.allow_step_entry = True
 PHASE_STEPTEMBER.allow_group_registration = False
 # 9/23 we disabled week limit
 PHASE_STEPTEMBER.days_to_enter_steps = 38
+# We decide to keep going a bit
+PHASE_STEPTEMBER.challenge_end_date = datetime.date(2023, 10, 8)

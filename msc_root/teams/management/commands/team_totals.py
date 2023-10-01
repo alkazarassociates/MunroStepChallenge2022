@@ -2,6 +2,7 @@ import csv
 import datetime
 import os.path
 
+from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.db.models import Sum
 from mpc_groups.models import MpcGroup
@@ -17,13 +18,13 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         today = datetime.date.today()
         with open('team_data.csv', 'w', newline='') as out:
-            cutoff = datetime.date(today.year, today.month, options['day'])
+            cutoff = settings.CURRENT_PHASE.challenge_start_date + datetime.timedelta(days=options['day'] - 1)
             print(f"Total of steps on or before {cutoff} as entered at {datetime.datetime.now()}", file=out)
             w = csv.writer(out)
             team_list = Team.objects.order_by('name').all()
             w.writerow(['Day', 'Total'] + [team.name for team in team_list])
             for day in range(1, options['day'] + 1):
-                cutoff = datetime.date(today.year, today.month, day)
+                cutoff = settings.CURRENT_PHASE.challenge_start_date + datetime.timedelta(days=day-1)
                 all_teams_total = 0
                 team_totals = []
                 for team in team_list:
@@ -32,7 +33,7 @@ class Command(BaseCommand):
                     all_teams_total += step_total
                 w.writerow([day, all_teams_total] + team_totals)
         with open('team_group.csv', 'w', newline='') as out:
-            cutoff = datetime.date(today.year, today.month, options['day'])
+            cutoff = settings.CURRENT_PHASE.challenge_start_date + datetime.timedelta(days=options['day'] - 1)
             print(f"Total of steps on or before {cutoff} as entered at {datetime.datetime.now()}", file=out)
             w = csv.writer(out)
             for team in team_list:
@@ -43,7 +44,7 @@ class Command(BaseCommand):
                     w.writerow([group.name, step_total, participants])
                 w.writerow([])
         with open('group_data.csv', 'w', newline='') as out:
-            cutoff = datetime.date(today.year, today.month, options['day'])
+            cutoff = settings.CURRENT_PHASE.challenge_start_date + datetime.timedelta(days=options['day'] - 1)
             print(f"Total of steps on or before {cutoff} as entered at {datetime.datetime.now()}", file=out)
             w = csv.writer(out)
             w.writerow(['Group', 'Total', 'Participants'])

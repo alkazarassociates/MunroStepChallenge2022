@@ -7,14 +7,9 @@
 
 <p>Our Goal: 30 days and 500 million steps for charity.</p>
 <p>The Reason:  September is  Blood Cancer Awareness Month-we are raising awareness and funds for Blood Cancer UK. They really appreciate our enthusiasm and support.</p>
-<center><h2>This year, we have walked <b><mark style="background-color: #B885C4;padding: 3px;">{{ global_total|intcomma }}</mark></b> steps so far.</h2></center>
-<center><h2>At this rate, we will reach the moon on <strong>Day 40</strong></h2></center>
+<center><h2>Countdown to the Moon:</h2></center>
+<center><h2><b><mark style="background-color: #B885C4;padding: 3px;">{{ global_remaining|intcomma }}</mark></b> STEPS TO GO!</h2></center>
 <center style="margin-top: 40px;"><img src={% static 'Teams_Day30_graphic.jpg' %} width="75%" /></center>
-<p>The <strong>Team Step Challenge</strong> is an add on to the
-<a href="https://www.munrostepchallenge.com/"><strong>MPC Munro Step Challenge</strong></a>. 
-This is run by Peaker volunteers, not by MPC. We hope our webpage makes it easy to participate in both. See links at the bottom of the page for 
-more information on the MPC Step Challenge and tips and guides for how to best participate.</p>
-<p>~Mike and Cheryl</p>
 
 {% if user.is_authenticated %}
   <div class="boxed">
@@ -37,6 +32,11 @@ more information on the MPC Step Challenge and tips and guides for how to best p
   <p>Step counting begins September 1!</p>
   {% endif %}
 {% endif %}
+<p>The <strong>Team Step Challenge</strong> is an add on to the <a href="https://www.munrostepchallenge.com/"><strong>MPC Munro Step Challenge</strong></a>. 
+This is run by Peaker volunteers, not by MPC. We hope our webpage makes it easy to participate in both. See links at the bottom of the page for 
+more information on the MPC Step Challenge and tips and guides for how to best participate.</p>
+<p>~Mike and Cheryl</p>
+  
 <hr>
 <div class="guide_row">
   <div class="guide_col">

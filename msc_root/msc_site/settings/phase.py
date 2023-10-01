@@ -33,6 +33,7 @@ class PhaseObject(Project):
         self.challenge_start_date = datetime.date(self.year, 9, 1)
         self.challenge_end_date = datetime.date(self.year, 10, 1)
         self.days_to_enter_steps = 7
+        self.total_step_goal = 500000000
     
     def Name(self):
         return self._name

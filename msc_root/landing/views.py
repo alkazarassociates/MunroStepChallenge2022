@@ -10,4 +10,4 @@ def index(request):
         if total is None:
             total = 0
     global_total = StepEntry.objects.aggregate(Sum('steps'))['steps__sum']
-    return render(request, 'landing/landing.html', {'total_steps': total, 'global_total': global_total, 'phase': settings.CURRENT_PHASE})
+    return render(request, 'landing/landing.html', {'total_steps': total, 'global_total': global_total, 'global_remaining': settings.CURRENT_PHASE.total_step_goal - global_total, 'phase': settings.CURRENT_PHASE})

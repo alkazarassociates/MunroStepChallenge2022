@@ -6,7 +6,7 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.db.models import Sum
 from mpc_groups.models import MpcGroup
-from steps.models import StepEntry
+from steps.models import StepEntry, Profile
 from teams.models import Team
 
 class Command(BaseCommand):
@@ -52,4 +52,17 @@ class Command(BaseCommand):
                 step_total = StepEntry.objects.filter(date__lte=cutoff, peaker__profile__group=group).aggregate(Sum('steps'))['steps__sum'] or 0
                 participants = StepEntry.objects.filter(date__lte=cutoff, peaker__profile__group=group).distinct('peaker').count()
                 w.writerow([group.name, step_total, participants])
+            w.writerow([])
+        with open('participant_data.csv', 'w', newline='') as out:
+            # depend on cutoff not changing.
+            print(f"Total of steps on or before {cutoff} as entered at {datetime.datetime.now()}", file=out)
+            w = csv.writer(out)
+            w.writerow(['Participant', 'Group', 'Team', 'Total'])
+            for peaker in StepEntry.objects.filter(date__lte=cutoff).distinct('peaker'):
+                profiles = Profile.objects.filter(pk=peaker.peaker)
+                if profiles:
+                    assert(len(profiles) == 1)
+                    profile = profiles[0]
+                    total = StepEntry.objects.filter(date__lte=cutoff, peaker=peaker.peaker).aggregate(Sum('steps'))['steps__sum']
+                    w.writerow([profile.peaker.username, profile.group.name, profile.team.name, total])
             w.writerow([])

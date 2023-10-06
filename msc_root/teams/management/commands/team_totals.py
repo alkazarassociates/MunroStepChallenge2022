@@ -20,7 +20,7 @@ class Command(BaseCommand):
         today = datetime.date.today()
         cut = datetime.datetime.now(tz=datetime.timezone.utc)
         if options['cut']:
-            cut = datetime.datetime(2023, 10, 3, 20, 49, 13,862736, tzinfo=datetime.timezone.utc)
+            cut = datetime.datetime(2023, 10, 3, 15, 49, 13,862736, tzinfo=datetime.timezone.utc)
         with open('team_data.csv', 'w', newline='') as out:
             cutoff = settings.CURRENT_PHASE.challenge_start_date + datetime.timedelta(days=options['day'] - 1)
             print(f"Total of steps on or before {cutoff} as entered at {datetime.datetime.now()}", file=out)
